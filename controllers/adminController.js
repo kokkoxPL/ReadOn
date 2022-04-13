@@ -1,4 +1,4 @@
-const Book = require('../models/book');
+const Book = require("../models/book");
 
 const get_admin = (req, res) => {
     if (req.isVerified) {
@@ -13,7 +13,7 @@ const get_admin = (req, res) => {
 
 const get_admin_new = (req, res) => {
     if (req.isVerified) {
-        const msg = req.query.msg ? msgs[parseInt(req.query.msg)] : 0;
+        const msg = req.msg;
         res.render("adminNew", { msg });
     } else {
         res.redirect("/login");
@@ -34,7 +34,7 @@ const post_admin_new = (req, res) => {
 
 const get_admin_edit = (req, res) => {
     if (req.isVerified) {
-        const msg = req.query.msg ? msgs[parseInt(req.query.msg)] : 0;
+        const msg = req.msg;
         Book.find()
             .then((result) => {
                 console.log(result);
@@ -86,4 +86,13 @@ const post_admin_delete = (req, res) => {
     }
 };
 
-module.exports = { get_admin, get_admin_new, post_admin_new, get_admin_edit, get_admin_edit_id, post_admin_edit_id, get_admin_delete, post_admin_delete };
+module.exports = {
+    get_admin,
+    get_admin_new,
+    post_admin_new,
+    get_admin_edit,
+    get_admin_edit_id,
+    post_admin_edit_id,
+    get_admin_delete,
+    post_admin_delete,
+};

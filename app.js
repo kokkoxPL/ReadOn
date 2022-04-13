@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const crypto = require("crypto");
 const Book = require("./models/book");
-const adminRoutes = require('./routes/adminRoutes');
+const adminRoutes = require("./routes/adminRoutes");
 const app = express();
 
 const hash = (password) => crypto.createHash("sha256").update(password).digest("base64");
@@ -67,7 +67,7 @@ app.post("/api/login", (req, res) => {
     res.redirect("/admin");
 });
 
-app.use('/admin', adminRoutes);
+app.use("/admin", adminRoutes);
 
 app.use((req, res) => {
     res.render("404");

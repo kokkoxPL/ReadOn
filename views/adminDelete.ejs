@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="/TEMPadmin.css" />
+	</head>
+	<body>
+		<a href="/admin">baaaack 👩‍🦳</a>
+		<h1>choose a book to burn alive or burn yourself 🔥</h1>
+		<% books.forEach(book => { %>
+		<button onclick="burn('<%= book._id %>')"><%= book.title %> by <%= book.author %></button>
+		<% }) %>
+		<script>
+			function burn(id) {
+				if (
+					confirm(
+						"are you really sure? like really, we wont be able to recover it anymore and youre gonna lose a book you loser"
+					)
+				) {
+					fetch("/admin/delete", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+						},
+						body: JSON.stringify({ id }),
+					}).then(() => {
+						location.reload();
+					});
+				}
+			}
+		</script>
+	</body>
+</html>

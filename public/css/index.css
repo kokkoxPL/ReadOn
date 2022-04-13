@@ -58,6 +58,11 @@ span {
 	left: 0;
 }
 
+a {
+	text-decoration: none;
+	color: unset;
+}
+
 .menu {
 	position: absolute;
 	right: 0;
