@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Dodaj książke</title>
+
+		<link rel="stylesheet" href="/css/index.css" />
+	</head>
+	<body>
+		<% if (msg) { %>
+		<p><%= msg %></p>
+		<script>
+			window.history.pushState({}, document.title, window.location.pathname);
+		</script>
+		<% } %>
+		<a href="/admin">Go back to the cave</a>
+		<form action="/admin/new" method="post">
+			<label for="title">title: </label> <input type="text" name="title" /><br>
+			<label for="author">author: </label> <input type="text" name="author" /><br>
+			<label for="desc">desce: </label> <textarea name="desc" cols="30" rows="10"></textarea><br>
+			<label for="imgLink">imag link: </label> <input type="text" name="imgLink" /><br>
+			<label for="tags">le tags: </label> <input type="text" name="tags" /><br>
+			<button type="submit">print a book</button>
+		</form>
+	</body>
+</html>
