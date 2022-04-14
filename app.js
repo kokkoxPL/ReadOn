@@ -36,6 +36,14 @@ app.set("view engine", "ejs");
 app.get("/", (req, res) => {
     Book.find()
         .sort({ title: 1 })
+        .limit(8)
+        .then((result) => res.render("index", { books: result }))
+        .catch((err) => res.render("404", { err }));
+});
+
+app.post("/findBook", (req, res) => {
+    Book.find({ title: req.body.title })
+        .sort({ title: 1 })
         .then((result) => res.render("index", { books: result }))
         .catch((err) => res.render("404", { err }));
 });

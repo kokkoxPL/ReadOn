@@ -30,6 +30,11 @@
 
 		<div class="main">
 			<p class="textMain">Lista dostępnych książek</p>
+			<!--Potrzeba css-->
+			<form style="text-align: center;" action="/findBook" method="post">
+				<input type="text" name="title" placeholder="Wpisz nazwę książki" />
+				<input type="submit" value="Szukaj" />
+			</form>
 			<div class="bookList">
 
 				<% books.forEach(book => { %>
