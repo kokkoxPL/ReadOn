@@ -5,24 +5,40 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Dodaj książke</title>
-
         <link rel="stylesheet" href="/css/index.css" />
+        <link rel="stylesheet" href="/css/adminTEMP.css" />
     </head>
     <body>
-        <% if (msg) { %>
-        <p><%= msg %></p>
-        <script>
-            window.history.pushState({}, document.title, window.location.pathname);
-        </script>
-        <% } %>
-        <a href="/admin">Go back to the cave</a>
-        <form action="/admin/new" method="post" enctype="multipart/form-data">
-            <label for="title">title: </label> <input type="text" name="title" /><br />
-            <label for="author">author: </label> <input type="text" name="author" /><br />
-            <label for="desc">desce: </label> <textarea name="desc" cols="30" rows="10"></textarea><br />
-            <label for="img">image: <input type="file" name="img" /></label>
-            <label for="tags">le tags: </label> <input type="text" name="tags" /><br />
-            <button type="submit">print a book</button>
-        </form>
+        <div class="header">
+            <div class="menu">
+                <ul>
+                    <li><a href="/">Strona główna</a></li>
+
+                    <li><a href="/admin/new">Dodaj książkę</a></li>
+
+                    <li><a href="/admin/edit">Edytuj książkę</a></li>
+
+                    <li><a href="/admin/delete">Usuń książkę</a></li>
+                </ul>
+            </div>
+
+            <div class="header-content">
+                <% if (msg) { %>
+                <h1><%= msg %></h1>
+                <script>
+                    window.history.pushState({}, document.title, window.location.pathname);
+                </script>
+                <% } %>
+                <h1>Add a book</h1>
+                <form action="/admin/new" method="post" enctype="multipart/form-data">
+                    <input type="text" name="title" placeholder="Title" /><br />
+                    <input type="text" name="author" placeholder="Author" /><br />
+                    <textarea name="desc" cols="30" rows="10" placeholder="Description"></textarea><br />
+                    <input type="file" name="img" /><br />
+                    <input type="text" name="tags" placeholder="Tags" /><br />
+                    <button type="submit">Add</button>
+                </form>
+            </div>
+        </div>
     </body>
 </html>

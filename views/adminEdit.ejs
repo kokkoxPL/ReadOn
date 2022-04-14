@@ -1,23 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
-		<link rel="stylesheet" href="/TEMPadmin.css" />
-	</head>
-	<body>
-		<% if (msg) { %>
-		<p><%= msg %></p>
-		<script>
-			window.history.pushState({}, document.title, window.location.pathname);
-		</script>
-		<% } %>
-		<a href="/admin">Go back to the cave</a>
-		<h1>choose le book or else... 👺</h1>
-		<% books.forEach(book => { %>
-		<a href="/admin/edit/<%= book._id %>"><%= book.title %> by <%= book.author %></a><br />
-		<% }) %>
-	</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Edytuj książkę</title>
+        <link rel="stylesheet" href="/css/index.css" />
+        <link rel="stylesheet" href="/css/adminTEMP.css" />
+    </head>
+    <body>
+        <div class="header">
+            <div class="menu">
+                <ul>
+                    <li><a href="/">Strona główna</a></li>
+
+                    <li><a href="/admin/new">Dodaj książkę</a></li>
+
+                    <li><a href="/admin/edit">Edytuj książkę</a></li>
+
+                    <li><a href="/admin/delete">Usuń książkę</a></li>
+                </ul>
+            </div>
+
+            <div class="header-content">
+                <% if (msg) { %>
+                <p><%= msg %></p>
+                <script>
+                    window.history.pushState({}, document.title, window.location.pathname);
+                </script>
+                <% } %>
+                <h1>Choose the book to edit</h1>
+                <div id="books">
+                    <% books.forEach(book => { %>
+                    <a class="abutton" href="/admin/edit/<%= book._id %>"><%= book.title %> by <%= book.author %></a
+                    ><br />
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

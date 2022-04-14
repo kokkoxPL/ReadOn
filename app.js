@@ -1,5 +1,5 @@
 require("dotenv").config();
-const compression = require('compression')
+const compression = require("compression");
 const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
@@ -24,7 +24,7 @@ const msgs = {
     3: "Book cover couldn't be uploaded",
 };
 
-app.use(compression())
+app.use(compression());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -44,7 +44,6 @@ app.get("/", (req, res, next) => {
         .then((result) => res.render("index", { books: result }))
         .catch((err) => res.render("404", { err }));
 });
-
 
 app.get("/login", (req, res) => {
     if (req.isVerified) {
@@ -66,7 +65,6 @@ app.post("/api/login", (req, res) => {
     res.cookie("access_token", passHash);
     res.redirect("/admin");
 });
-
 
 app.use(bookRoutes);
 

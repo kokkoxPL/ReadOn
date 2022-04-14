@@ -4,25 +4,41 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-        <link rel="stylesheet" href="/TEMPadmin.css" />
+        <title>Edytuj książkę</title>
+        <link rel="stylesheet" href="/css/index.css" />
+        <link rel="stylesheet" href="/css/adminTEMP.css" />
     </head>
     <body>
-        <% if (msg) { %>
-        <p><%= msg %></p>
-        <script>
-            window.history.pushState({}, document.title, window.location.pathname);
-        </script>
-        <% } %>
-        <a href="/admin">Go back to the cave</a>
-        <form action="/admin/edit/<%= book._id %>" method="post" enctype="multipart/form-data">
-            <label for="title">title: </label> <input type="text" name="title" value="<%= book.title %>" /><br />
-            <label for="author">author: </label> <input type="text" name="author" value="<%= book.author %>" /><br />
-            <label for="desc">desce: </label> <textarea name="desc" cols="30" rows="10"><%= book.desc %></textarea
-            ><br />
-            <label for="img">image: </label> <input type="file" name="img" /><br />
-            <label for="tags">le tags: </label> <input type="text" name="tags" value="<%= book.tags %>" /><br />
-            <button type="submit">reprint a book</button>
-        </form>
+        <div class="header">
+            <div class="menu">
+                <ul>
+                    <li><a href="/">Strona główna</a></li>
+
+                    <li><a href="/admin/new">Dodaj książkę</a></li>
+
+                    <li><a href="/admin/edit">Edytuj książkę</a></li>
+
+                    <li><a href="/admin/delete">Usuń książkę</a></li>
+                </ul>
+            </div>
+
+            <div class="header-content">
+                <% if (msg) { %>
+                <h1><%= msg %></h1>
+                <script>
+                    window.history.pushState({}, document.title, window.location.pathname);
+                </script>
+                <% } %>
+                <h1>Editing <%= book.title %></h1>
+                <form action="/admin/edit/<%= book._id %>" method="post" enctype="multipart/form-data">
+                    <input type="text" name="title" value="<%= book.title %>" /><br />
+                    <input type="text" name="author" value="<%= book.author %>" /><br />
+                    <textarea name="desc" cols="30" rows="10"><%= book.desc %></textarea><br />
+                    <input type="file" name="img" /><br />
+                    <input type="text" name="tags" value="<%= book.tags %>" /><br />
+                    <button type="submit">reprint a book</button>
+                </form>
+            </div>
+        </div>
     </body>
 </html>

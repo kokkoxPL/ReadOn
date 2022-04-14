@@ -1,0 +1,46 @@
+input,
+textarea {
+    width: 500px;
+    padding: 12px 20px;
+    margin: 8px auto;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+::placeholder {
+    color: white;
+    opacity: 0.5;
+}
+
+.header-content {
+    text-align: center;
+    padding: 20px;
+}
+
+button {
+    background-color: #4caf50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 500px;
+}
+
+.abutton {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 8px;
+    border: none;
+}
+
+#books {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
