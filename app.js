@@ -8,6 +8,7 @@ const cookieParser = require("cookie-parser");
 const crypto = require("crypto");
 const Book = require("./models/book");
 const adminRoutes = require("./routes/adminRoutes");
+const bookRoutes = require("./routes/bookRoutes");
 const app = express();
 
 const hash = (password) => crypto.createHash("sha256").update(password).digest("base64");
@@ -44,23 +45,6 @@ app.get("/", (req, res, next) => {
         .catch((err) => res.render("404", { err }));
 });
 
-app.post("/findBook", (req, res) => {
-    res.redirect("/books/" + req.body.title)
-});
-
-app.get("/books/:title", (req, res) => {
-    const reg = new RegExp(req.params.title, "i");
-    Book.find({ title: { $in: reg } })
-        .sort({ title: 1 })
-        .then((result) => res.render("books", { books: result }))
-        .catch((err) => res.render("404", { err }));
-});
-
-app.get("/book/:id", (req, res) => {
-    Book.findById(req.params.id).then((result) => {
-        res.render("book", { book: result });
-    });
-});
 
 app.get("/login", (req, res) => {
     if (req.isVerified) {
@@ -82,6 +66,9 @@ app.post("/api/login", (req, res) => {
     res.cookie("access_token", passHash);
     res.redirect("/admin");
 });
+
+
+app.use(bookRoutes);
 
 app.use("/admin", adminRoutes);
 
