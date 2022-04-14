@@ -19,6 +19,7 @@ mongoose
 const msgs = {
     1: "Successfully printed a book",
     2: "Successfully reprinted a book",
+    3: "Book cover couldn't be uploaded",
 };
 
 app.use(express.static(path.join(__dirname, "public")));

@@ -1,4 +1,6 @@
 const Book = require("../models/book");
+const fetch = require("node-fetch");
+const formData = require("form-data");
 
 const get_admin = (req, res) => {
     if (req.isVerified) {
@@ -20,13 +22,30 @@ const get_admin_new = (req, res) => {
     }
 };
 
-const post_admin_new = (req, res) => {
+const post_admin_new = async (req, res) => {
     if (req.isVerified) {
-        res.redirect("/admin/new?msg=1");
-        const book = new Book(req.body);
-        book.save()
-            .then((result) => res.redirect("/admin"))
-            .catch((err) => res.render("404", { err }));
+        const data = new formData();
+        data.append("image", req.file.buffer);
+        const imgurResponse = await fetch("https://api.imgur.com/3/image", {
+            method: "POST",
+            headers: {
+                Authorization: `Client-ID ${process.env.IMGUR_CLIENT_ID}`,
+            },
+            body: data,
+        });
+        const imgurJson = await imgurResponse.json();
+        if (imgurJson.success === true) {
+            const data = req.body;
+            data.imgLink = imgurJson.data.link;
+            data.imgDeleteHash = imgurJson.data.deletehash;
+            const book = new Book(req.body);
+            book.save()
+                .then((result) => res.redirect("/admin/new?msg=1"))
+                .catch((err) => res.render("404", { err }));
+        } else {
+            console.log(imgurJson);
+            res.redirect("/admin/new?msg=3");
+        }
     } else {
         res.redirect("/login");
     }

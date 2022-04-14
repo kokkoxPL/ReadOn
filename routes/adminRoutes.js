@@ -1,5 +1,7 @@
-const express = require('express');
-const adminController = require('../controllers/adminController');
+const express = require("express");
+const adminController = require("../controllers/adminController");
+const multer = require("multer");
+const upload = multer();
 
 const router = express.Router();
 
@@ -7,7 +9,7 @@ router.get("/", adminController.get_admin);
 
 router.get("/new", adminController.get_admin_new);
 
-router.post("/new", adminController.post_admin_new);
+router.post("/new", upload.single("img"), adminController.post_admin_new);
 
 router.get("/edit", adminController.get_admin_edit);
 
