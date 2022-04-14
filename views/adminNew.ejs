@@ -35,7 +35,12 @@
                     <input type="text" name="author" placeholder="Author" /><br />
                     <textarea name="desc" cols="30" rows="10" placeholder="Description"></textarea><br />
                     <input type="file" name="img" /><br />
-                    <input type="text" name="tags" placeholder="Tags" /><br />
+                    <div class="tags">
+                        <% tags.forEach(tag => { %>
+                            <label for="<%= tag.name %>"><%= tag.name %></label>
+                            <input type="checkbox" name="tags" id="<%= tag.name %>" value="<%= tag.name %>" /><br />
+                        <% }) %>
+                    </div>
                     <button type="submit">Add</button>
                 </form>
             </div>

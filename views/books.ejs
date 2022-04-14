@@ -32,31 +32,9 @@
 				<input type="text" name="title" placeholder="Wpisz nazwę książki" />
 				<input type="submit" value="Szukaj" />
 			</form>
-			<div class="bookList">
-
-				<% books.forEach(book => { %>
-					<a href="/book/<%= book._id %>">
-						<div class="book" id="book">
-							<div class="image" id="image">
-								<img src="<%= book.imgLink %>" class="img" />
-							</div>
-
-							<div class="book-content">
-								<div class="book-title" id="bookTitle">
-									<p><%= book.title %></p>
-								</div>
-
-								<div class="author" id="author">
-									<p><%= book.author %></p>
-								</div>
-								<div class="description" id="description" style="display: none">
-									<p id="bookDesc" class="bookDesc"><%= book.desc %></p>
-								</div>
-							</div>
-						</div>
-					</a>
-				<% });%>
-			</div>
+			
+			<%- include("./partials/bookList.ejs") %>
+			
 		</div>
 		<script src="/js/index.js"></script>
 	</body>

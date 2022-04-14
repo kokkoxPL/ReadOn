@@ -6,9 +6,10 @@ const bookSchema = new Schema({
     author: String,
     desc: String,
     imgLink: String,
-    tags: String,
+    tags: Array,
     imgDeleteHash: String,
 });
 
-const Books = mongoose.model("books", bookSchema);
-module.exports = Books;
+const Book = mongoose.model("books", bookSchema);
+
+module.exports = Book;

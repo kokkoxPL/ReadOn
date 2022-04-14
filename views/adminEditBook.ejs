@@ -35,7 +35,13 @@
                     <input type="text" name="author" value="<%= book.author %>" /><br />
                     <textarea name="desc" cols="30" rows="10"><%= book.desc %></textarea><br />
                     <input type="file" name="img" /><br />
-                    <input type="text" name="tags" value="<%= book.tags %>" /><br />
+                    <div class="tags">
+                        <% tags.forEach(tag => { %>
+                            <label for="<%= tag.name %>"><%= tag.name %></label>
+                            <input type="checkbox" name="tags" id="<%= tag.name %>" value="<%= tag.name %>"
+                            <% if(book.tags.includes(tag.name)) { %> checked <% } %> /><br />
+                        <% }) %>
+                    </div>
                     <button type="submit">reprint a book</button>
                 </form>
             </div>

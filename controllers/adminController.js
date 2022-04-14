@@ -1,6 +1,8 @@
 const Book = require("../models/book");
+const Tag = require("../models/tag");
 const fetch = require("node-fetch");
 const formData = require("form-data");
+const crypto = require("crypto");
 
 async function uploadImageToImgur(buffer) {
     const data = new formData();
@@ -27,6 +29,8 @@ async function deleteImageFromImgur(deleteHash) {
     return json;
 }
 
+const hash = (password) => crypto.createHash("sha256").update(password).digest("base64");
+
 const get_admin = (req, res) => {
     if (req.isVerified) {
         Book.find()
@@ -38,10 +42,36 @@ const get_admin = (req, res) => {
     }
 };
 
+const get_admin_login = (req, res) => {
+    if (req.isVerified) {
+        res.redirect("/admin");
+    } else {
+        res.render("login");
+    }
+};
+
+const post_admin_login = (req, res) => {
+    const { password } = req.body;
+    if (!password) {
+        return res.sendStatus(400);
+    }
+    if (password !== process.env.ADMIN_PASSWORD) {
+        return res.sendStatus(401);
+    }
+    const passHash = hash(password);
+    res.cookie("access_token", passHash);
+    res.redirect("/admin");
+};
+
 const get_admin_new = (req, res) => {
     if (req.isVerified) {
-        const msg = req.msg;
-        res.render("adminNew", { msg });
+        Tag.find()
+            .sort({ name: 1 })
+            .then((result) => {
+                const msg = req.msg;
+                res.render("adminNew", { msg, tags: result });
+            })
+            .catch((err) => res.render("404", { err }));
     } else {
         res.redirect("/login");
     }
@@ -89,7 +119,13 @@ const get_admin_edit_id = (req, res) => {
     if (req.isVerified) {
         Book.findById(req.params.id)
             .then((result) => {
-                res.render("adminEditBook", { msg: req.msg, book: result });
+                Tag.find()
+                    .sort({ name: 1 })
+                    .then((resultTags) => {
+                        const msg = req.msg;
+                        res.render("adminEditBook", { msg: req.msg, book: result, tags: resultTags });
+                    })
+                    .catch((err) => res.render("404", { err }));
             })
             .catch((err) => {
                 res.render("404", { err });
@@ -155,6 +191,8 @@ const post_admin_delete = (req, res) => {
 
 module.exports = {
     get_admin,
+    get_admin_login,
+    post_admin_login,
     get_admin_new,
     post_admin_new,
     get_admin_edit,

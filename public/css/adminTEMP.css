@@ -10,6 +10,19 @@ textarea {
     color: white;
 }
 
+label {
+    color: #ccc;
+    text-align: justify;
+}
+
+input[type=checkbox] {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    color: white;
+}
+
 ::placeholder {
     color: white;
     opacity: 0.5;

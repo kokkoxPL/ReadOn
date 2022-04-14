@@ -7,6 +7,10 @@ const router = express.Router();
 
 router.get("/", adminController.get_admin);
 
+router.get("/login", adminController.get_admin_login);
+
+router.post("/login", adminController.post_admin_login);
+
 router.get("/new", adminController.get_admin_new);
 
 router.post("/new", upload.single("img"), adminController.post_admin_new);

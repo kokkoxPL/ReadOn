@@ -45,27 +45,6 @@ app.get("/", (req, res, next) => {
         .catch((err) => res.render("404", { err }));
 });
 
-app.get("/login", (req, res) => {
-    if (req.isVerified) {
-        res.redirect("/admin");
-    } else {
-        res.render("login");
-    }
-});
-
-app.post("/api/login", (req, res) => {
-    const { password } = req.body;
-    if (!password) {
-        return res.sendStatus(400);
-    }
-    if (password !== process.env.ADMIN_PASSWORD) {
-        return res.sendStatus(401);
-    }
-    const passHash = hash(password);
-    res.cookie("access_token", passHash);
-    res.redirect("/admin");
-});
-
 app.use(bookRoutes);
 
 app.use("/admin", adminRoutes);
