@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=2.0" />
+		<title>READ ON!</title>
+
+		<link rel="stylesheet" href="/css/index.css" />
+	</head>
+	<body>
+		<div style="height: 20%;" class="header">
+			<div class="menu">
+				<ul>
+					<li><a href="/login">Zaloguj się</a></li>
+
+					<li><a href="/">Strona główna</a></li>
+				</ul>
+			</div>
+
+			<div class="header-content">
+				<div class="title">
+					<h2>READ <span>ON!</span></h1>
+				</div>
+			</div>
+		</div>
+
+		<div style="top: 20%;"  class="main">
+			<p class="textMain">Lista dostępnych książek</p>
+			<!--Potrzeba css-->
+			<form style="text-align: center;" action="/findBook" method="post">
+				<input type="text" name="title" placeholder="Wpisz nazwę książki" />
+				<input type="submit" value="Szukaj" />
+			</form>
+			<div class="bookList">
+
+				<% books.forEach(book => { %>
+					<a href="/book/<%= book._id %>">
+						<div class="book" id="book">
+							<div class="image" id="image">
+								<img src="<%= book.imgLink %>" class="img" />
+							</div>
+
+							<div class="book-content">
+								<div class="book-title" id="bookTitle">
+									<p><%= book.title %></p>
+								</div>
+
+								<div class="author" id="author">
+									<p><%= book.author %></p>
+								</div>
+								<div class="description" id="description" style="display: none">
+									<p id="bookDesc" class="bookDesc"><%= book.desc %></p>
+								</div>
+							</div>
+						</div>
+					</a>
+				<% });%>
+			</div>
+		</div>
+		<script src="/js/index.js"></script>
+	</body>
+</html>

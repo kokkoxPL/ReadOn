@@ -1,4 +1,5 @@
 require("dotenv").config();
+const compression = require('compression')
 const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
@@ -22,6 +23,7 @@ const msgs = {
     3: "Book cover couldn't be uploaded",
 };
 
+app.use(compression())
 app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -34,7 +36,7 @@ app.use((req, res, next) => {
 
 app.set("view engine", "ejs");
 
-app.get("/", (req, res) => {
+app.get("/", (req, res, next) => {
     Book.find()
         .sort({ title: 1 })
         .limit(8)
@@ -43,9 +45,14 @@ app.get("/", (req, res) => {
 });
 
 app.post("/findBook", (req, res) => {
-    Book.find({ title: req.body.title })
+    res.redirect("/books/" + req.body.title)
+});
+
+app.get("/books/:title", (req, res) => {
+    const reg = new RegExp(req.params.title, "i");
+    Book.find({ title: { $in: reg } })
         .sort({ title: 1 })
-        .then((result) => res.render("index", { books: result }))
+        .then((result) => res.render("books", { books: result }))
         .catch((err) => res.render("404", { err }));
 });
 
