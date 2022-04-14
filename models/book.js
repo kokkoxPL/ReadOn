@@ -7,6 +7,7 @@ const bookSchema = new Schema({
     desc: String,
     imgLink: String,
     tags: String,
+    imgDeleteHash: String,
 });
 
 const Books = mongoose.model("books", bookSchema);

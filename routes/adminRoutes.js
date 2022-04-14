@@ -15,7 +15,7 @@ router.get("/edit", adminController.get_admin_edit);
 
 router.get("/edit/:id", adminController.get_admin_edit_id);
 
-router.post("/edit/:id", adminController.post_admin_edit_id);
+router.post("/edit/:id", upload.single("img"), adminController.post_admin_edit_id);
 
 router.get("/delete", adminController.get_admin_delete);
 

@@ -16,6 +16,17 @@ async function uploadImageToImgur(buffer) {
     return json;
 }
 
+async function deleteImageFromImgur(deleteHash) {
+    const response = await fetch(`https://api.imgur.com/3/image/${deleteHash}`, {
+        method: "DELETE",
+        headers: {
+            Authorization: `Client-ID ${process.env.IMGUR_CLIENT_ID}`,
+        },
+    });
+    const json = await response.json();
+    return json;
+}
+
 const get_admin = (req, res) => {
     if (req.isVerified) {
         Book.find()
@@ -51,7 +62,8 @@ const post_admin_new = async (req, res) => {
         } else {
             data.imgLink = "https://upload.wikimedia.org/wikipedia/commons/c/c8/Cards-Blank.svg";
         }
-        const book = new Book(req.body);
+        console.log(data);
+        const book = new Book(data);
         book.save()
             .then((result) => res.redirect("/admin/new?msg=1"))
             .catch((err) => res.render("404", { err }));
@@ -65,7 +77,6 @@ const get_admin_edit = (req, res) => {
         const msg = req.msg;
         Book.find()
             .then((result) => {
-                console.log(result);
                 res.render("adminEdit", { books: result, msg });
             })
             .catch((err) => res.render("404", { err }));
@@ -86,11 +97,29 @@ const get_admin_edit_id = (req, res) => {
     }
 };
 
-const post_admin_edit_id = (req, res) => {
+const post_admin_edit_id = async (req, res) => {
     if (req.isVerified) {
-        Book.findOneAndUpdate({ _id: req.params.id }, req.body)
-            .then(() => {
+        const data = req.body;
+        if (req.file) {
+            const buffer = req.file.buffer;
+            const imgurResponse = await uploadImageToImgur(buffer);
+            if (imgurResponse.success === true) {
+                data.imgLink = imgurResponse.data.link;
+                data.imgDeleteHash = imgurResponse.data.deletehash;
+            } else {
+                return res.redirect("/admin/edit?msg=3");
+            }
+        }
+        Book.findOneAndUpdate({ _id: req.params.id }, data)
+            .then((previousResult) => {
                 res.redirect(`/admin/edit/${req.params.id}?msg=2`);
+                if (previousResult.imgDeleteHash && req.file) {
+                    deleteImageFromImgur(previousResult.imgDeleteHash).then((result) => {
+                        if (result.success === false) {
+                            console.log("Couldn't delete image after edit");
+                        }
+                    });
+                }
             })
             .catch((err) => {
                 res.render("404", { err });
@@ -108,8 +137,18 @@ const get_admin_delete = (req, res) => {
 
 const post_admin_delete = (req, res) => {
     if (req.isVerified) {
-        Book.findByIdAndDelete(req.body.id).then(() => {
-            res.sendStatus(200);
+        Book.findById(req.body.id).then((result) => {
+            console.log(result);
+            if (result.imgDeleteHash) {
+                deleteImageFromImgur(result.imgDeleteHash).then((result) => {
+                    if (result.success === false) {
+                        console.log("Couldn't delete image");
+                    }
+                });
+            }
+            Book.findByIdAndDelete(req.body.id).then(() => {
+                res.redirect("/admin/delete?msg=1");
+            });
         });
     }
 };

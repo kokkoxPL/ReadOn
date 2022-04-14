@@ -20,7 +20,7 @@
 
 			<div class="header-content">
 				<div class="title">
-					<h2>READ <span>ON!</span></h1>
+					<h2>READ <span id="onText">ON!</span></h1>
 				</div>
 				<div class="title-content">
 					<p id="titleText"></p>
@@ -62,5 +62,11 @@
 			</div>
 		</div>
 		<script src="/js/index.js"></script>
+		<script src="/js/konami.js"></script>
+		<script>
+			new Konami(() => {
+				document.getElementById("onText").style.backgroundColor = "#FFA31A";
+			})
+		</script>
 	</body>
 </html>
