@@ -6,7 +6,6 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const crypto = require("crypto");
-const Book = require("./models/book");
 const adminRoutes = require("./routes/adminRoutes");
 const bookRoutes = require("./routes/bookRoutes");
 const app = express();
@@ -36,14 +35,6 @@ app.use((req, res, next) => {
 });
 
 app.set("view engine", "ejs");
-
-app.get("/", (req, res, next) => {
-    Book.find()
-        .sort({ title: 1 })
-        .limit(8)
-        .then((result) => res.render("index", { books: result }))
-        .catch((err) => res.render("404", { err }));
-});
 
 app.use(bookRoutes);
 

@@ -1,5 +1,13 @@
 const Book = require("../models/book");
 
+const get_index = (req, res, next) => {
+    Book.find()
+        .sort({ title: 1 })
+        .limit(8)
+        .then((result) => res.render("index", { books: result }))
+        .catch((err) => res.render("404", { err }));
+};
+
 const post_books = (req, res) => {
     res.redirect("/books/" + req.body.title)
 };
@@ -19,6 +27,7 @@ const get_book_id = (req, res) => {
 };
 
 module.exports = {
+    get_index,
     post_books,
     get_books_title,
     get_book_id
