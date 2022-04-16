@@ -38,7 +38,7 @@ const get_admin = (req, res) => {
             .then((result) => res.render("admin", { books: result }))
             .catch((err) => res.render("404", { err }));
     } else {
-        res.redirect("/login");
+        res.redirect("/admin/login");
     }
 };
 
@@ -63,21 +63,18 @@ const post_admin_login = (req, res) => {
     res.redirect("/admin");
 };
 
-const get_admin_new = (req, res) => {
+const get_admin_new_book = (req, res) => {
     if (req.isVerified) {
         Tag.find()
             .sort({ name: 1 })
-            .then((result) => {
-                const msg = req.msg;
-                res.render("adminNew", { msg, tags: result });
-            })
+            .then((result) => res.render("adminNew", { msg: req.msg, tags: result }))
             .catch((err) => res.render("404", { err }));
     } else {
-        res.redirect("/login");
+        res.redirect("/admin/login");
     }
 };
 
-const post_admin_new = async (req, res) => {
+const post_admin_new_book = async (req, res) => {
     if (req.isVerified) {
         const data = req.body;
         if (req.file) {
@@ -102,38 +99,30 @@ const post_admin_new = async (req, res) => {
     }
 };
 
-const get_admin_edit = (req, res) => {
+const get_admin_edit_books = (req, res) => {
     if (req.isVerified) {
-        const msg = req.msg;
         Book.find()
-            .then((result) => {
-                res.render("adminEdit", { books: result, msg });
-            })
+            .then((result) => res.render("adminEdit", { books: result, msg: req.msg }))
             .catch((err) => res.render("404", { err }));
     } else {
-        res.redirect("/login");
+        res.redirect("/admin/login");
     }
 };
 
-const get_admin_edit_id = (req, res) => {
+const get_admin_edit_id_book = (req, res) => {
     if (req.isVerified) {
         Book.findById(req.params.id)
             .then((result) => {
                 Tag.find()
                     .sort({ name: 1 })
-                    .then((resultTags) => {
-                        const msg = req.msg;
-                        res.render("adminEditBook", { msg: req.msg, book: result, tags: resultTags });
-                    })
+                    .then((resultTags) => res.render("adminEditBook", { msg: req.msg, book: result, tags: resultTags }))
                     .catch((err) => res.render("404", { err }));
             })
-            .catch((err) => {
-                res.render("404", { err });
-            });
+            .catch((err) => res.render("404", { err }));
     }
 };
 
-const post_admin_edit_id = async (req, res) => {
+const post_admin_edit_id_book = async (req, res) => {
     if (req.isVerified) {
         const data = req.body;
         if (req.file) {
@@ -157,21 +146,18 @@ const post_admin_edit_id = async (req, res) => {
                     });
                 }
             })
-            .catch((err) => {
-                res.render("404", { err });
-            });
+            .catch((err) => res.render("404", { err }));
     }
 };
 
-const get_admin_delete = (req, res) => {
+const get_admin_delete_book = (req, res) => {
     if (req.isVerified) {
-        Book.find().then((result) => {
-            res.render("adminDelete", { books: result });
-        });
+        Book.find()
+            .then((result) => res.render("adminDelete", { books: result }));
     }
 };
 
-const post_admin_delete = (req, res) => {
+const post_admin_delete_book = (req, res) => {
     if (req.isVerified) {
         Book.findById(req.body.id).then((result) => {
             console.log(result);
@@ -182,9 +168,8 @@ const post_admin_delete = (req, res) => {
                     }
                 });
             }
-            Book.findByIdAndDelete(req.body.id).then(() => {
-                res.redirect("/admin/delete?msg=1");
-            });
+            Book.findByIdAndDelete(req.body.id)
+                .then(() => res.redirect("/admin/delete?msg=1"));
         });
     }
 };
@@ -193,11 +178,11 @@ module.exports = {
     get_admin,
     get_admin_login,
     post_admin_login,
-    get_admin_new,
-    post_admin_new,
-    get_admin_edit,
-    get_admin_edit_id,
-    post_admin_edit_id,
-    get_admin_delete,
-    post_admin_delete,
+    get_admin_new_book,
+    post_admin_new_book,
+    get_admin_edit_books,
+    get_admin_edit_id_book,
+    post_admin_edit_id_book,
+    get_admin_delete_book,
+    post_admin_delete_book,
 };

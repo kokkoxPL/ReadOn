@@ -21,9 +21,7 @@ const get_books_title = (req, res) => {
 };
 
 const get_book_id = (req, res) => {
-    Book.findById(req.params.id).then((result) => {
-        res.render("book", { book: result });
-    });
+    Book.findById(req.params.id).then((result) => res.render("book", { book: result }));
 };
 
 module.exports = {
