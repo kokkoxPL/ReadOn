@@ -5,10 +5,13 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title><%= book.author %> - <%= book.title %></title>
-        <link rel="stylesheet" href="/css/index.css">
+        <link rel="stylesheet" href="/css/bookDesc.css">
+
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.js"></script>
+        <script src="/js/bookDesc.js"></script>
     </head>
     <body>
-		<div style="height: 20%;" class="header">
+		<div style="height: 100px;" class="header">
 			<div class="menu">
 				<ul>
 					<li><a href="/admin/login">Zaloguj się</a></li>
@@ -16,21 +19,23 @@
 					<li><a href="/">Strona główna</a></li>
 				</ul>
 			</div>
-
-			<div class="header-content">
-				<div class="title">
-					<h2>READ <span>ON!</span></h1>
-				</div>
 			</div>
 		</div>
 
-		<div style="top: 20%;" class="main">
-            <a href="/">Back to main page</a>
-            <h1><%= book.title %></h1>
-            <h2><%= book.author %></h2>
-            <h3><%= book.tags %></h3>
-            <p><%= book.desc %></p>
-            <img src="<%= book.imgLink %>" alt="Book cover very sexy" />
+		<div class="main" id="main">
+            <div class="toggle" id="toggle"></div>
+              <div class="image">
+                                <div id="image" 
+                                style= "background: url('<%= book.imgLink %>');
+                                        background-size: cover;
+                                        background-repeat: no-repeat;"></div>
+                </div>
+            <div class="content">
+                 <h1><span>Title:</span> <%= book.title %></h1>
+                <h2><span>Author:</span> <%= book.author %></h2>
+                <h2><span>Category:</span> <%= book.tags %></h2>
+                <p class="desc"> <span>Description:</span> <%= book.desc %></p>
+            </div>
         </div>
     </body>
 </html>

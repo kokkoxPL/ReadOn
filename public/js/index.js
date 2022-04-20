@@ -3,8 +3,7 @@ var title = [
     "Czytanie dobrych książek jest niczym rozmowa z najwspanialszymi ludźmi minionych czasów",
     "Książka i możliwość czytania, to jeden z największych cudów ludzkiej cywilizacji.",
     "Kiedy przeczytam nową książkę, to tak jakbym znalazł nowego przyjaciela, a gdy przeczytam książkę, którą już czytałem - to tak jakbym spotkał się ze starym przyjacielem.",
-    "Shrek is love, Shrek is life",
-];
+ ];
 
 const textEl = document.getElementById("titleText");
 

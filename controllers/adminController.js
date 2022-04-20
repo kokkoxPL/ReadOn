@@ -1,5 +1,6 @@
 const Book = require("../models/book");
 const Tag = require("../models/tag");
+const Log = require("../models/log");
 const fetch = require("node-fetch");
 const formData = require("form-data");
 const crypto = require("crypto");
@@ -138,6 +139,7 @@ const post_admin_edit_id_book = async (req, res) => {
         Book.findOneAndUpdate({ _id: req.params.id }, data)
             .then((previousResult) => {
                 res.redirect(`/admin/edit/${req.params.id}?msg=2`);
+                req.log("book_edited", { from: previousResult, to: data });
                 if (previousResult.imgDeleteHash && req.file) {
                     deleteImageFromImgur(previousResult.imgDeleteHash).then((result) => {
                         if (result.success === false) {
@@ -152,8 +154,7 @@ const post_admin_edit_id_book = async (req, res) => {
 
 const get_admin_delete_book = (req, res) => {
     if (req.isVerified) {
-        Book.find()
-            .then((result) => res.render("adminDelete", { books: result }));
+        Book.find().then((result) => res.render("adminDelete", { books: result }));
     }
 };
 
@@ -168,8 +169,40 @@ const post_admin_delete_book = (req, res) => {
                     }
                 });
             }
-            Book.findByIdAndDelete(req.body.id)
-                .then(() => res.redirect("/admin/delete?msg=1"));
+            Book.findByIdAndDelete(req.body.id).then(() => res.redirect("/admin/delete?msg=1"));
+        });
+    }
+};
+
+const get_admin_tags = (req, res) => {
+    if (req.isVerified) {
+        Tag.find().then((results) => {
+            res.render("tagNew", { tags: results });
+        });
+    }
+};
+
+const post_admin_tags = (req, res) => {
+    if (req.isVerified) {
+        const { tagName } = req.body;
+        const tag = new Tag({ name: tagName });
+        tag.save().then(() => {
+            res.redirect("/admin/tags");
+        });
+    }
+};
+
+const post_admin_tags_delete = (req, res) => {
+    if (req.isVerified) {
+        const { id } = req.body;
+        Tag.findByIdAndDelete(id).then(() => res.redirect("/admin/tags"));
+    }
+};
+
+const get_admin_logs = (req, res) => {
+    if (req.isVerified) {
+        Log.find().then((result) => {
+            res.render("logs", { logs: result });
         });
     }
 };
@@ -185,4 +218,8 @@ module.exports = {
     post_admin_edit_id_book,
     get_admin_delete_book,
     post_admin_delete_book,
+    get_admin_tags,
+    post_admin_tags,
+    post_admin_tags_delete,
+    get_admin_logs,
 };

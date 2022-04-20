@@ -7,6 +7,7 @@
 		<title>READ ON!</title>
 
 		<link rel="stylesheet" href="/css/index.css" />
+		<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.js"></script>
 	</head>
 	<body>
 		<div class="header">
@@ -30,10 +31,23 @@
 
 		<div class="main">
 			<p class="textMain">Lista dostępnych książek</p>
-			<form style="text-align: center;" action="/book" method="post">
-				<input type="text" name="title" placeholder="Wpisz nazwę książki" />
+			<form style="text-align: center; margin-bottom: 50px;" action="/book" method="post">
+				<input type="text" name="title" placeholder="Wpisz nazwę książki" id="bookName"/><br />
 				<input type="submit" value="Szukaj" />
 			</form>
+
+			<script>
+				$(document).ready(function(){
+					$("#bookName").click(function(){
+						$("#bookName").css({
+							borderColor: 'purple',
+							borderStyle: 'solid',
+							borderWidth: '1px',
+							color: 'black'
+						})
+					})
+				})
+			</script>
 
 			<div class="bookList">
 				<% books.forEach(book => { %>

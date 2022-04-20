@@ -25,4 +25,12 @@ router.get("/delete", adminController.get_admin_delete_book);
 
 router.post("/delete", adminController.post_admin_delete_book);
 
+router.get("/tags", adminController.get_admin_tags);
+
+router.post("/tags", adminController.post_admin_tags);
+
+router.post("/deletetag", adminController.post_admin_tags_delete);
+
+router.get("/logs", adminController.get_admin_logs);
+
 module.exports = router;
