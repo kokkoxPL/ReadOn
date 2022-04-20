@@ -37,9 +37,8 @@
                     <input type="file" name="img" /><br />
                     <div class="tags">
                         <% tags.forEach(tag => { %>
-                            <label for="<%= tag.name %>"><%= tag.name %></label>
-                            <input type="checkbox" name="tags" id="<%= tag.name %>" value="<%= tag.name %>" /><br />
-                        <% }) %>
+                        <label for="<%= tag.name %>"><%= tag.name %></label>
+                        <input type="checkbox" name="tags" id="<%= tag.name %>" value="<%= tag.name %>" /> | <% }) %>
                     </div>
                     <button type="submit">Add</button>
                 </form>

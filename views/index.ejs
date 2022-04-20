@@ -21,7 +21,7 @@
 
 			<div class="header-content">
 				<div class="title">
-					<h2>READ <span id="onText">ON!</span></h1>
+					<h2 id="readText">READ <span id="onText">ON!</span></h1>
 				</div>
 				<div class="title-content">
 					<p id="titleText"></p>
@@ -31,8 +31,14 @@
 
 		<div class="main">
 			<p class="textMain">Lista dostępnych książek</p>
-			<form style="text-align: center; margin-bottom: 50px;" action="/book" method="post">
-				<input type="text" name="title" placeholder="Wpisz nazwę książki" id="bookName"/><br />
+			<form style="text-align: center;" action="/book" method="post">
+				<input type="text" name="title" placeholder="Wpisz nazwę książki" /><br>
+				<div class="tags">
+					<% tags.forEach(tag => { %>
+					<label for="<%= tag.name %>"><%= tag.name %></label>
+					<input type="checkbox" name="tags" id="<%= tag.name %>" value="<%= tag.name %>" /><br />
+					<% }) %>
+				</div>
 				<input type="submit" value="Szukaj" />
 			</form>
 
@@ -54,7 +60,7 @@
 					<a href="/book/<%= book._id %>">
 						<div class="book" id="book">
 							<div class="image" id="image">
-								<img src="<%= book.imgLink %>" class="img" />
+								<img src="<%= book.imgLink %>" class="img" alt="Book cover" />
 							</div>
 			
 							<div class="book-content">
@@ -73,14 +79,20 @@
 					</a>
 				<% });%>
 			</div>
-			
 		</div>
 		<script src="/js/index.js"></script>
 		<script src="/js/konami.js"></script>
 		<script>
 			new Konami(() => {
-				document.getElementById("onText").style.backgroundColor = "#FFA31A";
+				document.getElementById("readText").innerHTML = "BOOK <span id='onText'>HUB</span>"
+				setTimeout(() => {
+					document.getElementById("onText").style.backgroundColor = "#FFA31A";
+				}, 1)
 			})
 		</script>
 	</body>
 </html>
+<!--       _
+       .__(.)< (MEOW)
+        \___)   
+ ~~~~~~~~~~~~~~~~~~-->
