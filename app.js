@@ -13,11 +13,11 @@ const app = express();
 
 const hash = (password) => crypto.createHash("sha256").update(password).digest("base64");
 
-mongoose
-    .connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => app.listen(process.env.PORT))
-    .catch((err) => console.log(err));
-
+// mongoose
+//     .connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+//     .then(() => )
+//     .catch((err) => console.log(err));
+app.listen(process.env.PORT)
 const msgs = {
     1: "Successfully printed a book",
     2: "Successfully reprinted a book",
