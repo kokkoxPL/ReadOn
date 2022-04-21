@@ -24,12 +24,12 @@ const msgs = {
     3: "Book cover couldn't be uploaded",
 };
 
-app.use(compression());
+//app.use(compression());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use((req, res, next) => {
+/*app.use((req, res, next) => {
     req.isVerified = req.cookies.access_token == hash(process.env.ADMIN_PASSWORD);
     req.msg = req.query.msg && msgs[req.query.msg] ? msgs[req.query.msg] : "";
     req.log = (type, data) => {
@@ -37,7 +37,7 @@ app.use((req, res, next) => {
         log.save();
     };
     next();
-});
+});*/
 
 app.set("view engine", "ejs");
 
