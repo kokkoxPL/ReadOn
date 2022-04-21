@@ -41,9 +41,9 @@ app.use((req, res, next) => {
 
 app.set("view engine", "ejs");
 
-app.use(bookRoutes);
+//app.use(bookRoutes);
 
-app.use("/admin", adminRoutes);
+//app.use("/admin", adminRoutes);
 
 app.use((req, res) => {
     res.render("404");
