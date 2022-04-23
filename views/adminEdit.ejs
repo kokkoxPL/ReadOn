@@ -5,38 +5,66 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Edytuj książkę</title>
-        <link rel="stylesheet" href="/css/index.css" />
         <link rel="stylesheet" href="/css/adminTEMP.css" />
     </head>
     <body>
         <div class="header">
             <div class="menu">
                 <ul>
-                    <li><a href="/">Strona główna</a></li>
+                    <li><a href="/admin">Strona główna</a></li>
 
                     <li><a href="/admin/new">Dodaj książkę</a></li>
 
                     <li><a href="/admin/edit">Edytuj książkę</a></li>
 
                     <li><a href="/admin/delete">Usuń książkę</a></li>
+
+					<li><a href="/admin/tags">Zarządzaj tagami</a></li>
+
+					<li><a href="/logout">Wyloguj się</a></li>
                 </ul>
             </div>
 
             <div class="header-content">
-                <% if (msg) { %>
-                <p><%= msg %></p>
-                <script>
-                    window.history.pushState({}, document.title, window.location.pathname);
-                </script>
-                <% } %>
-                <h1>Choose the book to edit</h1>
-                <div id="books">
-                    <% books.forEach(book => { %>
-                    <a class="abutton" href="/admin/edit/<%= book._id %>"><%= book.title %> by <%= book.author %></a
-                    ><br />
-                    <% }) %>
+                <div class="title">
+                    <h2 id="readText">READ <span id="onText">ON!</span></h1>
                 </div>
+                <h1>Choose the book to edit</h1>    
             </div>
+        </div>
+
+        <div class="main">
+            <% if (msg) { %>
+            <p><%= msg %></p>
+            <script>
+                window.history.pushState({}, document.title, window.location.pathname);
+            </script>
+            <% } %>
+                <div class="bookList">
+                    <% books.forEach(book => { %>
+                        <a  href="/admin/edit/<%= book._id %>">
+                            <div class="book" id="book">
+                                <div class="image" id="image">
+                                    <img src="<%= book.imgLink %>" class="img" alt="Book cover" />
+                                </div>
+                
+                                <div class="book-content">
+                                    <div class="book-title" id="bookTitle">
+                                        <p><%= book.title %></p>
+                                    </div>
+                
+                                    <div class="author" id="author">
+                                        <p><%= book.author %></p>
+                                    </div>
+                                    <div class="description" id="description" style="display: none">
+                                        <p id="bookDesc" class="bookDesc"><%= book.desc %></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    <% });%>
+                </div>
+
         </div>
     </body>
 </html>

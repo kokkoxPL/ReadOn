@@ -12,13 +12,17 @@
         <div class="header">
             <div class="menu">
                 <ul>
-                    <li><a href="/">Strona główna</a></li>
+                    <li><a href="/admin">Strona główna</a></li>
 
                     <li><a href="/admin/new">Dodaj książkę</a></li>
 
                     <li><a href="/admin/edit">Edytuj książkę</a></li>
 
                     <li><a href="/admin/delete">Usuń książkę</a></li>
+
+					<li><a href="/admin/tags">Zarządzaj tagami</a></li>
+
+					<li><a href="/logout">Wyloguj się</a></li>
                 </ul>
             </div>
 
@@ -37,8 +41,8 @@
                     <input type="file" name="img" /><br />
                     <div class="tags">
                         <% tags.forEach(tag => { %>
-                        <label for="<%= tag.name %>"><%= tag.name %></label>
-                        <input type="checkbox" name="tags" id="<%= tag.name %>" value="<%= tag.name %>" /> | <% }) %>
+                            <label for="<%= tag.name %>"><%= tag.name %><input type="checkbox" name="tags" id="<%= tag.name %>" value="<%= tag.name %>" /></label>
+                        <% }) %>
                     </div>
                     <button type="submit">Add</button>
                 </form>

@@ -33,14 +33,25 @@
 			<p class="textMain">Lista dostępnych książek</p>
 			<form style="text-align: center;" action="/book" method="post">
 				<input type="text" name="title" placeholder="Wpisz nazwę książki" /><br>
-				<div class="tags">
+	
+				<input type="submit" value="Szukaj" />
+				<input type="button" value="Wybierz kategorię" id="categoryButton"/>
+				<div class="tags" id="tags" style="display: none; 	">
 					<% tags.forEach(tag => { %>
-					<label for="<%= tag.name %>"><%= tag.name %></label>
-					<input type="checkbox" name="tags" id="<%= tag.name %>" value="<%= tag.name %>" /><br />
+					<label for="<%= tag.name %>"><%= tag.name %><input type="checkbox" name="tags" id="<%= tag.name %>" value="<%= tag.name %>" /><br /></label>
 					<% }) %>
 				</div>
-				<input type="submit" value="Szukaj" />
 			</form>
+
+			<script>
+				$(document).ready(function(){
+					$("#categoryButton").click(function(){
+						$("#tags").toggle(500);
+						
+					})
+				})
+			</script>
+
 
 			<script>
 				$(document).ready(function(){

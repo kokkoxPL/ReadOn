@@ -6,6 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=2.0" />
 		<title>READ ON!</title>
 
+		<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.js"></script>
 		<link rel="stylesheet" href="/css/index.css" />
 	</head>
 	<body>
@@ -29,9 +30,25 @@
 			<p class="textMain">Lista dostępnych książek</p>
 			<!--Potrzeba css-->
 			<form style="text-align: center;" action="/book" method="post">
-				<input type="text" name="title" placeholder="Wpisz nazwę książki" />
+				<input type="text" name="title" placeholder="Wpisz nazwę książki" /><br>
+	
 				<input type="submit" value="Szukaj" />
+				<input type="button" value="Wybierz kategorię" id="categoryButton"/>
+				<div class="tags" id="tags" style="display: none; 	">
+					<% tags.forEach(tag => { %>
+					<label for="<%= tag.name %>"><%= tag.name %><input type="checkbox" name="tags" id="<%= tag.name %>" value="<%= tag.name %>" /><br /></label>
+					<% }) %>
+				</div>
 			</form>
+
+			<script>
+				$(document).ready(function(){
+					$("#categoryButton").click(function(){
+						$("#tags").toggle(500);
+						
+					})
+				})
+			</script>
 			
 			<div class="bookList">
 				<% books.forEach(book => { %>

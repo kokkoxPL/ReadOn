@@ -41,6 +41,11 @@ app.use((req, res, next) => {
 
 app.set("view engine", "ejs");
 
+app.get("/logout", (req, res) => {
+    res.clearCookie("access_token");
+    res.redirect("/");
+});
+
 app.use(bookRoutes);
 
 app.use("/admin", adminRoutes);

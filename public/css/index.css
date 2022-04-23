@@ -1,3 +1,12 @@
+:root{
+    /* CSS HEX */
+--white: #CEDEE3ff;
+--light-blue: #BCD6DCff;
+--gray: #39444Fff;
+--dark: #2B3039ff;
+--brown: #654332ff;
+}
+
 body {
     width: 100%;
     height: 100%;
@@ -148,6 +157,39 @@ input[type="submit"]:hover {
     background: purple;
     color: white;
     border-radius: 0;
+}
+
+input[type="button"] {
+    font-size: 18px;
+    background: none;
+    border: none;
+    border: 1px solid purple;
+    padding: 10px 30px;
+
+    transition: 0.5s;
+}
+
+input[type="button"]:hover {
+    background: purple;
+    color: white;
+    border-radius: 0;
+}
+
+.tags{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+label{
+    background: var(--gray);
+    width: max-content;
+    color: white;
+    padding: 5px 20px;
+    border-radius:30px;
+    justify-content: center;
+    text-align: center;
+    margin: 10px 10px;
+    align-items: center;
 }
 
 .book {

@@ -19,6 +19,10 @@
                     <li><a href="/admin/edit">Edytuj książkę</a></li>
 
                     <li><a href="/admin/delete">Usuń książkę</a></li>
+
+					<li><a href="/admin/tags">Zarządzaj tagami</a></li>
+
+					<li><a href="/logout">Wyloguj się</a></li>
                 </ul>
             </div>
 
@@ -37,9 +41,9 @@
                     <input type="file" name="img" /><br />
                     <div class="tags">
                         <% tags.forEach(tag => { %>
-                            <label for="<%= tag.name %>"><%= tag.name %></label>
-                            <input type="checkbox" name="tags" id="<%= tag.name %>" value="<%= tag.name %>"
-                            <% if(book.tags.includes(tag.name)) { %> checked <% } %> /><br />
+                            <label for="<%= tag.name %>"><%= tag.name %><input type="checkbox" name="tags" id="<%= tag.name %>" value="<%= tag.name %>"
+                                                                        <% if(book.tags.includes(tag.name)) { %> checked <% } %> /></label>
+                            <br />
                         <% }) %>
                     </div>
                     <button type="submit">reprint a book</button>

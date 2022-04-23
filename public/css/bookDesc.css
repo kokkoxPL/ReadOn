@@ -12,15 +12,13 @@ body {
 }
 
 .header {
-    background: url("/images/mainBackground.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
     width: 100%;
-    height: fit-content;
+    height: 100px;
     position: absolute;
     top: 0;
     left: 0;
     box-shadow: 0px 0px 30px 0px black;
+    background: url("/images/mainBackground.jpg");
 }
 
 a {
@@ -32,8 +30,10 @@ a {
     position: absolute;
     right: 0;
     width: 100%;
-    height: 100px;
-    background: rgba(255, 255, 255, 0.2);
+    height: 100%;
+    background: rgba(255, 255, 255, 0.4);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .menu ul {
@@ -70,7 +70,7 @@ a {
     width: 100%;
     height: fit-content;
     position: absolute;
-    top: 20%;
+    top: 22%;
     left: 0;
 
     display: grid;
