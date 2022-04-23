@@ -28,32 +28,19 @@ const post_books = (req, res) => {
 
 const get_books_title = (req, res) => {
     const reg = new RegExp(req.query.q, "i");
-    // let query = {
-    //     // Only title is inserted
-    //     $or: [{ title: { $in: reg } }, { author: { $in: reg } }],
-    // };
-    // if (req.query.tags) {
-    //     query = {
-    //         $and: [
-    //             {
-    //                 $or: [{ title: { $in: reg } }, { author: { $in: reg } }],
-    //             },
-    //             {
-    //                 $in: { tags: req.query.tags.split(",") },
-    //             },
-    //         ],
-    //     };
-    // }
-    const query = {
+    let query = {
         $or: [{ title: { $in: reg } }, { author: { $in: reg } }],
     };
-    const tags = req.query.tags.split(",");
-    if (tags[0]) {
-        query.tags = { $in: tags };
-    }
+
     Book.find(query)
         .sort({ title: 1 })
-        .then((result) => res.render("books", { books: result, query: req.query.q }))
+        .limit(12)
+        .then((result) => {
+            Tag.find()
+                .sort({ name: 1 })
+                .then((resultTags) => res.render("index", { books: result, tags: resultTags, query: req.query.q }))
+                .catch((err) => res.render("404", { err }));
+        })
         .catch((err) => res.render("404", { err }));
 };
 
