@@ -36,14 +36,10 @@ const get_books_title = (req, res) => {
 
     let query = {
         $or: [{ title: { $in: reg } }, { author: { $in: reg } }],
-        tags: { $in: tags },
     };
 
-    if (req.query.tags == "none") {
-        query = {
-            $or: [{ title: { $in: reg } }, { author: { $in: reg } }]
-        };
-    }
+    if (req.query.tags != "none")
+        Object.assign(query, { tags: { $in: tags } });
 
     Book.find(query)
         .sort({ title: 1 })
