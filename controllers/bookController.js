@@ -23,14 +23,27 @@ const get_index = (req, res, next) => {
 };
 
 const post_books = (req, res) => {
-    res.redirect(`/books?q=${req.body.title}&tags=${ensureArray(req.body.tags).join(",")}`);
+    if (req.body.tags != null) {
+        res.redirect(`/books?q=${req.body.title}&tags=${ensureArray(req.body.tags).join(",")}`);
+    } else {
+        res.redirect(`/books?q=${req.body.title}&tags=none`);
+    }
 };
 
 const get_books_title = (req, res) => {
     const reg = new RegExp(req.query.q, "i");
+    const tags = req.query.tags.split(",");
+
     let query = {
         $or: [{ title: { $in: reg } }, { author: { $in: reg } }],
+        tags: { $in: tags },
     };
+
+    if (req.query.tags == "none") {
+        query = {
+            $or: [{ title: { $in: reg } }, { author: { $in: reg } }]
+        };
+    }
 
     Book.find(query)
         .sort({ title: 1 })
