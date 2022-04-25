@@ -11,6 +11,9 @@
 	</head>
 	<body>
 		<div class="header">
+			<div class="toggleMenu">
+				<p>MENU</p>
+			</div>
 			<div class="menu">
 				<ul>
 					<li><a href="/admin/login">Zaloguj się</a></li>
@@ -84,6 +87,10 @@
 								</div>
 								<div class="description" id="description" style="display: none">
 									<p id="bookDesc" class="bookDesc"><%= book.desc %></p>
+								</div>
+
+								<div class="category" id="category">
+									<p><%= book.tags %></p>
 								</div>
 							</div>
 						</div>

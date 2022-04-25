@@ -207,6 +207,11 @@ const get_admin_logs = (req, res) => {
     }
 };
 
+const get_admin_logout = (req, res) => {
+    res.clearCookie("access_token");
+    res.redirect("/");
+};
+
 module.exports = {
     get_admin,
     get_admin_login,
@@ -222,4 +227,5 @@ module.exports = {
     post_admin_tags,
     post_admin_tags_delete,
     get_admin_logs,
+    get_admin_logout,
 };

@@ -23,11 +23,10 @@ const get_index = (req, res, next) => {
 };
 
 const post_books = (req, res) => {
-    if (req.body.tags != null) {
+    if (req.body.tags != null)
         res.redirect(`/books?q=${req.body.title}&tags=${ensureArray(req.body.tags).join(",")}`);
-    } else {
+    else
         res.redirect(`/books?q=${req.body.title}&tags=none`);
-    }
 };
 
 const get_books_title = (req, res) => {
