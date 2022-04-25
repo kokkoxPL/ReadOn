@@ -33,6 +33,6 @@ router.post("/deletetag", adminController.post_admin_tags_delete);
 
 router.get("/logs", adminController.get_admin_logs);
 
-app.get("/logout", adminController.get_admin_logout);
+router.get("/logout", adminController.get_admin_logout);
 
 module.exports = router;
