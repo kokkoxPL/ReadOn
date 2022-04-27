@@ -8,12 +8,14 @@
 
 		<link rel="stylesheet" href="/css/index.css" />
 		<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.js"></script>
+
+		<link rel="stylesheet" href="/fontello/css/fontello.css" />
 	</head>
 	<body>
 		<div class="header">
-			<!--<div class="toggleMenu">
-				<p>MENU</p>
-			</div>-->
+			<<div class="toggleMenu">
+				<i class="icon-menu"></i>
+			</div>
 			<div class="menu">
 				<ul>
 					<li><a href="/admin/login">Zaloguj się</a></li>
@@ -68,7 +70,6 @@
 					})
 				})
 			</script>
-
 			<div class="bookList">
 				<% books.forEach(book => { %>
 					<a href="/book/<%= book._id %>">
@@ -98,19 +99,32 @@
 				<% });%>
 			</div>
 		</div>
-		<script src="/js/index.js"></script>
-		<script src="/js/konami.js"></script>
-		<script>
-			new Konami(() => {
-				document.getElementById("readText").innerHTML = "BOOK <span id='onText'>HUB</span>"
-				setTimeout(() => {
-					document.getElementById("onText").style.backgroundColor = "#FFA31A";
-				}, 1)
-			})
-		</script>
+		<% if (currentPage != 1) { %>
+			<a href="/?page=<%= currentPage - 1 %>">Previous</a>
+		<% } %>
+		<% for (let i = 1; i <= pages; i++) { %> 
+			<a href="/?page=<%= i %>"><button><%= i %></button></a>
+		<% } %>
+		<% if (currentPage != pages) { %>
+			<a href="/?page=<%= currentPage + 1 %>">Next</a>
+		<% } %>
+	</div>
+	<div id="youtube">a</div>
+	<script src="/js/index.js"></script>
+	<script src="/js/konami.js"></script>
+	<script>
+		new Konami(() => {
+			document.getElementById("readText").innerHTML = "BOOK <span id='onText'>HUB</span>"
+			setTimeout(() => {
+				document.getElementById("onText").style.backgroundColor = "#FFA31A";
+			}, 1)
+			var music = new Audio("/music/metal-gear-solid-3.mp3");
+			music.play();
+		})
+	</script>
 	</body>
 </html>
-<!--       _
-       .__(.)< (MEOW)
-        \___)   
- ~~~~~~~~~~~~~~~~~~-->
+<!--       _                                                 _
+       .__(.)< (MEOW)    (Vote Sweden at ESC ⭐ CORNELIA) >(.)__.
+        \___)                                              (___/
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
