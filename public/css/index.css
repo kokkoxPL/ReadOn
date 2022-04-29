@@ -147,71 +147,151 @@ img {
     aspect-ratio: 9/14;
 }
 
+.toggleMenu{
+    display: none;
+}
+
+.header {
+    background: url("/images/mainBackground.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-shadow: 0px 0px 30px 0px black;
+}
+
+.title {
+    text-align: center;
+    font-size: 40px;
+}
+
+.title-content {
+    font-size: 25px;
+    color: white;
+    width: 70%;
+    margin: auto;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    min-height: 100px;
+    border-radius: 20px;
+    position: absolute;
+    top: 100%;
+    left: 15%;
+}
+
+.header-content {
+    width: 100%;
+    position: absolute;
+    top: 30%;
+}
+
+.main {
+    width: 100%;
+    height: fit-content;
+    position: absolute;
+    top: 102%;
+    left: 0;
+}
+
+.menu {
+    position: absolute;
+    right: 0;
+    width: 100%;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.menu ul {
+    display: flex;
+    position: absolute;
+    right: 2%;
+}
+
+.menu li {
+    margin: 20px 30px;
+    list-style: none;
+}
+
+.textMain {
+    text-align: center;
+    font-size: 35px;
+}
+
+.addInput {
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    border: 2px solid white;
+    text-decoration: none;
+    position: absolute;
+    width: 10%;
+    text-align: center;
+    bottom: 25%;
+    left: 45%;
+
+    font-size: 25px;
+    padding: 20px 40px;
+    border-radius: 40px;
+
+    transition: 0.5s;
+}
+
+.addInput:hover {
+    color: black;
+    background: white;
+    border-radius: 0;
+}
+
+.book-content {
+    margin: 20px;
+}
+
+.book-title {
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.author {
+    font-weight: 600;
+    font-size: 20px;
+    transition: 0.3s;
+
+    color: black;
+}
+
+#titleText {
+    transition: 0.5s;
+}
+
+.bookDesc {
+    font-size: 15px;
+    width: fit-content;
+    height: fit-content;
+}
+
+.description {
+    position: initial;
+    bottom: 0;
+    left: 0;
+}
+
+.icon-menu{
+    font-size: 50px;
+    padding: 20px;
+    position: absolute;
+    top: 1%;
+    right: 1%;
+
+    transition: all 0.5s;
+}
+
+.icon-menu:hover{
+    color: white;
+}
 @media screen and (min-width:1600px) {
-    .header {
-        background: url("/images/mainBackground.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        box-shadow: 0px 0px 30px 0px black;
-    }
-
-    .title {
-        text-align: center;
-        font-size: 40px;
-    }
-
-    .title-content {
-        font-size: 25px;
-        color: white;
-        width: 70%;
-        margin: auto;
-        text-align: center;
-        background: rgba(0, 0, 0, 0.2);
-        padding: 20px;
-        min-height: 100px;
-        border-radius: 20px;
-        position: absolute;
-        top: 100%;
-        left: 15%;
-    }
-
-    .header-content {
-        width: 100%;
-        position: absolute;
-        top: 30%;
-    }
-
-    .main {
-        width: 100%;
-        height: fit-content;
-        position: absolute;
-        top: 102%;
-        left: 0;
-    }
-
-    .menu {
-        position: absolute;
-        right: 0;
-        width: 100%;
-        height: 100px;
-        background: rgba(255, 255, 255, 0.2);
-    }
-
-    .menu ul {
-        display: flex;
-        position: absolute;
-        right: 2%;
-    }
-
-    .menu li {
-        margin: 20px 30px;
-        list-style: none;
-    }
 
     .bookList {
         display: grid;
@@ -232,136 +312,9 @@ img {
 
         border-radius: 20px 20px 0px 0px;
     }
-
-    .textMain {
-        text-align: center;
-        font-size: 35px;
-    }
-
-    .addInput {
-        background: rgba(0, 0, 0, 0.3);
-        color: white;
-        border: 2px solid white;
-        text-decoration: none;
-        position: absolute;
-        width: 10%;
-        text-align: center;
-        bottom: 25%;
-        left: 45%;
-
-        font-size: 25px;
-        padding: 20px 40px;
-        border-radius: 40px;
-
-        transition: 0.5s;
-    }
-
-    .addInput:hover {
-        color: black;
-        background: white;
-        border-radius: 0;
-    }
-
-    .book-content {
-        margin: 20px;
-    }
-
-    .book-title {
-        font-size: 25px;
-        font-weight: 500;
-    }
-
-    .author {
-        font-weight: 600;
-        font-size: 20px;
-        transition: 0.3s;
-
-        color: black;
-    }
-
-    #titleText {
-        transition: 0.5s;
-    }
-
-    .bookDesc {
-        font-size: 15px;
-        width: fit-content;
-        height: fit-content;
-    }
-
-    .description {
-        position: initial;
-        bottom: 0;
-        left: 0;
-    }
 }
 
 @media screen and (max-width:1599px) {
-    .header {
-        background: url("/images/mainBackground.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        box-shadow: 0px 0px 30px 0px black;
-    }
-
-    .title {
-        text-align: center;
-        font-size: 40px;
-    }
-
-    .title-content {
-        font-size: 25px;
-        color: white;
-        width: 70%;
-        margin: auto;
-        text-align: center;
-        background: rgba(0, 0, 0, 0.2);
-        padding: 20px;
-        min-height: 100px;
-        border-radius: 20px;
-        position: absolute;
-        top: 100%;
-        left: 15%;
-    }
-
-    .header-content {
-        width: 100%;
-        position: absolute;
-        top: 30%;
-    }
-
-    .main {
-        width: 100%;
-        height: fit-content;
-        position: absolute;
-        top: 102%;
-        left: 0;
-    }
-
-    .menu {
-        position: absolute;
-        right: 0;
-        width: 100%;
-        height: 100px;
-        background: rgba(255, 255, 255, 0.2);
-    }
-
-    .menu ul {
-        display: flex;
-        position: absolute;
-        right: 2%;
-    }
-
-    .menu li {
-        margin: 20px 30px;
-        list-style: none;
-    }
-
     .bookList {
         display: grid;
         grid-template-columns: repeat(4, 300px);
@@ -381,136 +334,9 @@ img {
 
         border-radius: 20px 20px 0px 0px;
     }
-
-    .textMain {
-        text-align: center;
-        font-size: 32px;
-    }
-
-    .addInput {
-        background: rgba(0, 0, 0, 0.3);
-        color: white;
-        border: 2px solid white;
-        text-decoration: none;
-        position: absolute;
-        width: 10%;
-        text-align: center;
-        bottom: 25%;
-        left: 45%;
-
-        font-size: 25px;
-        padding: 20px 40px;
-        border-radius: 40px;
-
-        transition: 0.5s;
-    }
-
-    .addInput:hover {
-        color: black;
-        background: white;
-        border-radius: 0;
-    }
-
-    .book-content {
-        margin: 20px;
-    }
-
-    .book-title {
-        font-size: 25px;
-        font-weight: 500;
-    }
-
-    .author {
-        font-weight: 600;
-        font-size: 20px;
-        transition: 0.3s;
-
-        color: black;
-    }
-
-    #titleText {
-        transition: 0.5s;
-    }
-
-    .bookDesc {
-        font-size: 15px;
-        width: fit-content;
-        height: fit-content;
-    }
-
-    .description {
-        position: initial;
-        bottom: 0;
-        left: 0;
-    }
 }
 
 @media screen and (max-width:1349px) {
-    .header {
-        background: url("/images/mainBackground.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        box-shadow: 0px 0px 30px 0px black;
-    }
-
-    .title {
-        text-align: center;
-        font-size: 40px;
-    }
-
-    .title-content {
-        font-size: 25px;
-        color: white;
-        width: 70%;
-        margin: auto;
-        text-align: center;
-        background: rgba(0, 0, 0, 0.2);
-        padding: 20px;
-        min-height: 100px;
-        border-radius: 20px;
-        position: absolute;
-        top: 100%;
-        left: 15%;
-    }
-
-    .header-content {
-        width: 100%;
-        position: absolute;
-        top: 30%;
-    }
-
-    .main {
-        width: 100%;
-        height: fit-content;
-        position: absolute;
-        top: 102%;
-        left: 0;
-    }
-
-    .menu {
-        position: absolute;
-        right: 0;
-        width: 100%;
-        height: 100px;
-        background: rgba(255, 255, 255, 0.2);
-    }
-
-    .menu ul {
-        display: flex;
-        position: absolute;
-        right: 2%;
-    }
-
-    .menu li {
-        margin: 20px 30px;
-        list-style: none;
-    }
-
     .bookList {
         display: grid;
         grid-template-columns: repeat(4, 280px);
@@ -536,130 +362,9 @@ img {
         font-size: 32px;
     }
 
-    .addInput {
-        background: rgba(0, 0, 0, 0.3);
-        color: white;
-        border: 2px solid white;
-        text-decoration: none;
-        position: absolute;
-        width: 10%;
-        text-align: center;
-        bottom: 25%;
-        left: 45%;
-
-        font-size: 25px;
-        padding: 20px 40px;
-        border-radius: 40px;
-
-        transition: 0.5s;
-    }
-
-    .addInput:hover {
-        color: black;
-        background: white;
-        border-radius: 0;
-    }
-
-    .book-content {
-        margin: 20px;
-    }
-
-    .book-title {
-        font-size: 25px;
-        font-weight: 500;
-    }
-
-    .author {
-        font-weight: 600;
-        font-size: 20px;
-        transition: 0.3s;
-
-        color: black;
-    }
-
-    #titleText {
-        transition: 0.5s;
-    }
-
-    .bookDesc {
-        font-size: 15px;
-        width: fit-content;
-        height: fit-content;
-    }
-
-    .description {
-        position: initial;
-        bottom: 0;
-        left: 0;
-    }
 }
 
 @media screen and (max-width:1249px) {
-    .header {
-        background: url("/images/mainBackground.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        box-shadow: 0px 0px 30px 0px black;
-    }
-
-    .title {
-        text-align: center;
-        font-size: 40px;
-    }
-
-    .title-content {
-        font-size: 25px;
-        color: white;
-        width: 70%;
-        margin: auto;
-        text-align: center;
-        background: rgba(0, 0, 0, 0.2);
-        padding: 20px;
-        min-height: 100px;
-        border-radius: 20px;
-        position: absolute;
-        top: 100%;
-        left: 15%;
-    }
-
-    .header-content {
-        width: 100%;
-        position: absolute;
-        top: 30%;
-    }
-
-    .main {
-        width: 100%;
-        height: fit-content;
-        position: absolute;
-        top: 102%;
-        left: 0;
-    }
-
-    .menu {
-        position: absolute;
-        right: 0;
-        width: 100%;
-        height: 100px;
-        background: rgba(255, 255, 255, 0.2);
-    }
-
-    .menu ul {
-        display: flex;
-        position: absolute;
-        right: 2%;
-    }
-
-    .menu li {
-        margin: 20px 30px;
-        list-style: none;
-    }
-
     .bookList {
         display: grid;
         grid-template-columns: repeat(3, 340px);
@@ -684,131 +389,9 @@ img {
         text-align: center;
         font-size: 32px;
     }
-
-    .addInput {
-        background: rgba(0, 0, 0, 0.3);
-        color: white;
-        border: 2px solid white;
-        text-decoration: none;
-        position: absolute;
-        width: 10%;
-        text-align: center;
-        bottom: 25%;
-        left: 45%;
-
-        font-size: 25px;
-        padding: 20px 40px;
-        border-radius: 40px;
-
-        transition: 0.5s;
-    }
-
-    .addInput:hover {
-        color: black;
-        background: white;
-        border-radius: 0;
-    }
-
-    .book-content {
-        margin: 20px;
-    }
-
-    .book-title {
-        font-size: 25px;
-        font-weight: 500;
-    }
-
-    .author {
-        font-weight: 600;
-        font-size: 20px;
-        transition: 0.3s;
-
-        color: black;
-    }
-
-    #titleText {
-        transition: 0.5s;
-    }
-
-    .bookDesc {
-        font-size: 15px;
-        width: fit-content;
-        height: fit-content;
-    }
-
-    .description {
-        position: initial;
-        bottom: 0;
-        left: 0;
-    }
 }
 
 @media screen and (max-width:1149px) {
-    .header {
-        background: url("/images/mainBackground.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        box-shadow: 0px 0px 30px 0px black;
-    }
-
-    .title {
-        text-align: center;
-        font-size: 40px;
-    }
-
-    .title-content {
-        font-size: 25px;
-        color: white;
-        width: 70%;
-        margin: auto;
-        text-align: center;
-        background: rgba(0, 0, 0, 0.2);
-        padding: 20px;
-        min-height: 100px;
-        border-radius: 20px;
-        position: absolute;
-        top: 100%;
-        left: 15%;
-    }
-
-    .header-content {
-        width: 100%;
-        position: absolute;
-        top: 30%;
-    }
-
-    .main {
-        width: 100%;
-        height: fit-content;
-        position: absolute;
-        top: 102%;
-        left: 0;
-    }
-
-    .menu {
-        position: absolute;
-        right: 0;
-        width: 100%;
-        height: 100px;
-        background: rgba(255, 255, 255, 0.2);
-    }
-
-    .menu ul {
-        display: flex;
-        position: absolute;
-        right: 2%;
-    }
-
-    .menu li {
-        margin: 20px 30px;
-        list-style: none;
-    }
-
     .bookList {
         display: grid;
         grid-template-columns: repeat(3, 310px);
@@ -833,131 +416,9 @@ img {
         text-align: center;
         font-size: 32px;
     }
-
-    .addInput {
-        background: rgba(0, 0, 0, 0.3);
-        color: white;
-        border: 2px solid white;
-        text-decoration: none;
-        position: absolute;
-        width: 10%;
-        text-align: center;
-        bottom: 25%;
-        left: 45%;
-
-        font-size: 25px;
-        padding: 20px 40px;
-        border-radius: 40px;
-
-        transition: 0.5s;
-    }
-
-    .addInput:hover {
-        color: black;
-        background: white;
-        border-radius: 0;
-    }
-
-    .book-content {
-        margin: 20px;
-    }
-
-    .book-title {
-        font-size: 25px;
-        font-weight: 500;
-    }
-
-    .author {
-        font-weight: 600;
-        font-size: 20px;
-        transition: 0.3s;
-
-        color: black;
-    }
-
-    #titleText {
-        transition: 0.5s;
-    }
-
-    .bookDesc {
-        font-size: 15px;
-        width: fit-content;
-        height: fit-content;
-    }
-
-    .description {
-        position: initial;
-        bottom: 0;
-        left: 0;
-    }
 }
 
 @media screen and (max-width:1049px) {
-    .header {
-        background: url("/images/mainBackground.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        box-shadow: 0px 0px 30px 0px black;
-    }
-
-    .title {
-        text-align: center;
-        font-size: 40px;
-    }
-
-    .title-content {
-        font-size: 25px;
-        color: white;
-        width: 70%;
-        margin: auto;
-        text-align: center;
-        background: rgba(0, 0, 0, 0.2);
-        padding: 20px;
-        min-height: 100px;
-        border-radius: 20px;
-        position: absolute;
-        top: 100%;
-        left: 15%;
-    }
-
-    .header-content {
-        width: 100%;
-        position: absolute;
-        top: 30%;
-    }
-
-    .main {
-        width: 100%;
-        height: fit-content;
-        position: absolute;
-        top: 102%;
-        left: 0;
-    }
-
-    .menu {
-        position: absolute;
-        right: 0;
-        width: 100%;
-        height: 100px;
-        background: rgba(255, 255, 255, 0.2);
-    }
-
-    .menu ul {
-        display: flex;
-        position: absolute;
-        right: 2%;
-    }
-
-    .menu li {
-        margin: 20px 30px;
-        list-style: none;
-    }
-
     .bookList {
         display: grid;
         grid-template-columns: repeat(3, 300px);
@@ -982,131 +443,9 @@ img {
         text-align: center;
         font-size: 32px;
     }
-
-    .addInput {
-        background: rgba(0, 0, 0, 0.3);
-        color: white;
-        border: 2px solid white;
-        text-decoration: none;
-        position: absolute;
-        width: 10%;
-        text-align: center;
-        bottom: 25%;
-        left: 45%;
-
-        font-size: 25px;
-        padding: 20px 40px;
-        border-radius: 40px;
-
-        transition: 0.5s;
-    }
-
-    .addInput:hover {
-        color: black;
-        background: white;
-        border-radius: 0;
-    }
-
-    .book-content {
-        margin: 20px;
-    }
-
-    .book-title {
-        font-size: 25px;
-        font-weight: 500;
-    }
-
-    .author {
-        font-weight: 600;
-        font-size: 20px;
-        transition: 0.3s;
-
-        color: black;
-    }
-
-    #titleText {
-        transition: 0.5s;
-    }
-
-    .bookDesc {
-        font-size: 15px;
-        width: fit-content;
-        height: fit-content;
-    }
-
-    .description {
-        position: initial;
-        bottom: 0;
-        left: 0;
-    }
 }
 
 @media screen and (max-width:999px) {
-    .header {
-        background: url("/images/mainBackground.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        box-shadow: 0px 0px 30px 0px black;
-    }
-
-    .title {
-        text-align: center;
-        font-size: 40px;
-    }
-
-    .title-content {
-        font-size: 25px;
-        color: white;
-        width: 70%;
-        margin: auto;
-        text-align: center;
-        background: rgba(0, 0, 0, 0.2);
-        padding: 20px;
-        min-height: 100px;
-        border-radius: 20px;
-        position: absolute;
-        top: 100%;
-        left: 15%;
-    }
-
-    .header-content {
-        width: 100%;
-        position: absolute;
-        top: 30%;
-    }
-
-    .main {
-        width: 100%;
-        height: fit-content;
-        position: absolute;
-        top: 102%;
-        left: 0;
-    }
-
-    .menu {
-        position: absolute;
-        right: 0;
-        width: 100%;
-        height: 100px;
-        background: rgba(255, 255, 255, 0.2);
-    }
-
-    .menu ul {
-        display: flex;
-        position: absolute;
-        right: 2%;
-    }
-
-    .menu li {
-        margin: 20px 30px;
-        list-style: none;
-    }
-
     .bookList {
         display: grid;
         grid-template-columns: repeat(2, 400px);
@@ -1131,280 +470,44 @@ img {
         text-align: center;
         font-size: 32px;
     }
-
-    .addInput {
-        background: rgba(0, 0, 0, 0.3);
-        color: white;
-        border: 2px solid white;
-        text-decoration: none;
-        position: absolute;
-        width: 10%;
-        text-align: center;
-        bottom: 25%;
-        left: 45%;
-
-        font-size: 25px;
-        padding: 20px 40px;
-        border-radius: 40px;
-
-        transition: 0.5s;
+    .toggleMenu{
+        display: block;
     }
-
-    .addInput:hover {
-        color: black;
-        background: white;
-        border-radius: 0;
-    }
-
-    .book-content {
-        margin: 20px;
-    }
-
-    .book-title {
-        font-size: 25px;
-        font-weight: 500;
-    }
-
-    .author {
-        font-weight: 600;
-        font-size: 20px;
-        transition: 0.3s;
-
-        color: black;
-    }
-
-    #titleText {
-        transition: 0.5s;
-    }
-
-    .bookDesc {
-        font-size: 15px;
-        width: fit-content;
-        height: fit-content;
-    }
-
-    .description {
-        position: initial;
-        bottom: 0;
-        left: 0;
-    }
-}
-
-@media screen and (max-width:899px) {
-    .header {
-        background: url("/images/mainBackground.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
-        width: 100%;
+    .menuList{
+        display: none;
+        width: 50%;
         height: 100%;
+        padding: 30px;
         position: absolute;
-        top: 0;
-        left: 0;
-        box-shadow: 0px 0px 30px 0px black;
-    }
+        top: 100px;
+        right: 0%;
+        background: rgba(43, 48, 57,0.9);
 
-    .title {
-        text-align: center;
-        font-size: 40px;
-    }
-
-    .title-content {
-        font-size: 25px;
-        color: white;
-        width: 70%;
-        margin: auto;
-        text-align: center;
-        background: rgba(0, 0, 0, 0.2);
-        padding: 20px;
-        min-height: 100px;
-        border-radius: 20px;
-        position: absolute;
-        top: 100%;
-        left: 15%;
-    }
-
-    .header-content {
-        width: 100%;
-        position: absolute;
-        top: 30%;
-    }
-
-    .main {
-        width: 100%;
-        height: fit-content;
-        position: absolute;
-        top: 102%;
-        left: 0;
-    }
-
-    .menu {
-        position: absolute;
-        right: 0;
-        width: 100%;
-        height: 100px;
-        background: rgba(255, 255, 255, 0.2);
+        border-radius: 10px 0px 0px 10px;
     }
 
     .menu ul {
-        display: flex;
+        display: block;
         position: absolute;
         right: 2%;
+        align-items: center;
     }
 
-    .menu li {
-        margin: 20px 30px;
-        list-style: none;
-    }
-
-    .bookList {
-        display: grid;
-        grid-template-columns: repeat(2, 350px);
-        grid-template-rows: fit-content;
-        column-gap: 30px;
-        row-gap: 40px;
-        overflow-x: hidden;
-        justify-content: center;
-
-        font-size: 20px;
-        padding-bottom: 5%;
-    }
-
-    .img {
-        width: 350px;
-        height: 500px;
-
-        border-radius: 20px 20px 0px 0px;
-    }
-
-    .textMain {
-        text-align: center;
-        font-size: 32px;
-    }
-
-    .addInput {
-        background: rgba(0, 0, 0, 0.3);
+    .menu a{
         color: white;
-        border: 2px solid white;
-        text-decoration: none;
-        position: absolute;
-        width: 10%;
-        text-align: center;
-        bottom: 25%;
-        left: 45%;
-
-        font-size: 25px;
-        padding: 20px 40px;
-        border-radius: 40px;
-
-        transition: 0.5s;
+    }
+    .menu a:hover{
+        color:purple;
     }
 
-    .addInput:hover {
-        color: black;
-        background: white;
-        border-radius: 0;
-    }
 
-    .book-content {
-        margin: 20px;
-    }
-
-    .book-title {
-        font-size: 25px;
-        font-weight: 500;
-    }
-
-    .author {
-        font-weight: 600;
-        font-size: 20px;
-        transition: 0.3s;
-
-        color: black;
-    }
-
-    #titleText {
-        transition: 0.5s;
-    }
-
-    .bookDesc {
-        font-size: 15px;
-        width: fit-content;
-        height: fit-content;
-    }
-
-    .description {
-        position: initial;
-        bottom: 0;
-        left: 0;
+    .menu{
+        background: none;
     }
 }
 
+
 @media screen and (max-width:899px) {
-    .header {
-        background: url("/images/mainBackground.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        box-shadow: 0px 0px 30px 0px black;
-    }
-
-    .title {
-        text-align: center;
-        font-size: 40px;
-    }
-
-    .title-content {
-        font-size: 25px;
-        color: white;
-        width: 70%;
-        margin: auto;
-        text-align: center;
-        background: rgba(0, 0, 0, 0.2);
-        padding: 20px;
-        min-height: 100px;
-        border-radius: 20px;
-        position: absolute;
-        top: 100%;
-        left: 15%;
-    }
-
-    .header-content {
-        width: 100%;
-        position: absolute;
-        top: 30%;
-    }
-
-    .main {
-        width: 100%;
-        height: fit-content;
-        position: absolute;
-        top: 102%;
-        left: 0;
-    }
-
-    .menu {
-        position: absolute;
-        right: 0;
-        width: 100%;
-        height: 100px;
-        background: rgba(255, 255, 255, 0.2);
-    }
-
-    .menu ul {
-        display: flex;
-        position: absolute;
-        right: 2%;
-    }
-
-    .menu li {
-        margin: 20px 30px;
-        list-style: none;
-    }
-
     .bookList {
         display: grid;
         grid-template-columns: repeat(2, 320px);
@@ -1429,132 +532,10 @@ img {
         text-align: center;
         font-size: 32px;
     }
-
-    .addInput {
-        background: rgba(0, 0, 0, 0.3);
-        color: white;
-        border: 2px solid white;
-        text-decoration: none;
-        position: absolute;
-        width: 10%;
-        text-align: center;
-        bottom: 25%;
-        left: 45%;
-
-        font-size: 25px;
-        padding: 20px 40px;
-        border-radius: 40px;
-
-        transition: 0.5s;
-    }
-
-    .addInput:hover {
-        color: black;
-        background: white;
-        border-radius: 0;
-    }
-
-    .book-content {
-        margin: 20px;
-    }
-
-    .book-title {
-        font-size: 25px;
-        font-weight: 500;
-    }
-
-    .author {
-        font-weight: 600;
-        font-size: 20px;
-        transition: 0.3s;
-
-        color: black;
-    }
-
-    #titleText {
-        transition: 0.5s;
-    }
-
-    .bookDesc {
-        font-size: 15px;
-        width: fit-content;
-        height: fit-content;
-    }
-
-    .description {
-        position: initial;
-        bottom: 0;
-        left: 0;
-    }
 }
 
 
 @media screen and (max-width:719px) {
-    .header {
-        background: url("/images/mainBackground.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        box-shadow: 0px 0px 30px 0px black;
-    }
-
-    .title {
-        text-align: center;
-        font-size: 40px;
-    }
-
-    .title-content {
-        font-size: 25px;
-        color: white;
-        width: 70%;
-        margin: auto;
-        text-align: center;
-        background: rgba(0, 0, 0, 0.2);
-        padding: 20px;
-        min-height: 100px;
-        border-radius: 20px;
-        position: absolute;
-        top: 100%;
-        left: 15%;
-    }
-
-    .header-content {
-        width: 100%;
-        position: absolute;
-        top: 30%;
-    }
-
-    .main {
-        width: 100%;
-        height: fit-content;
-        position: absolute;
-        top: 102%;
-        left: 0;
-    }
-
-    .menu {
-        position: absolute;
-        right: 0;
-        width: 100%;
-        height: 100px;
-        background: rgba(255, 255, 255, 0.2);
-    }
-
-    .menu ul {
-        display: flex;
-        position: absolute;
-        right: 2%;
-    }
-
-    .menu li {
-        margin: 20px 30px;
-        list-style: none;
-    }
-
     .bookList {
         display: grid;
         grid-template-columns: repeat(2, 300px);
@@ -1579,131 +560,9 @@ img {
         text-align: center;
         font-size: 32px;
     }
-
-    .addInput {
-        background: rgba(0, 0, 0, 0.3);
-        color: white;
-        border: 2px solid white;
-        text-decoration: none;
-        position: absolute;
-        width: 10%;
-        text-align: center;
-        bottom: 25%;
-        left: 45%;
-
-        font-size: 25px;
-        padding: 20px 40px;
-        border-radius: 40px;
-
-        transition: 0.5s;
-    }
-
-    .addInput:hover {
-        color: black;
-        background: white;
-        border-radius: 0;
-    }
-
-    .book-content {
-        margin: 20px;
-    }
-
-    .book-title {
-        font-size: 25px;
-        font-weight: 500;
-    }
-
-    .author {
-        font-weight: 600;
-        font-size: 20px;
-        transition: 0.3s;
-
-        color: black;
-    }
-
-    #titleText {
-        transition: 0.5s;
-    }
-
-    .bookDesc {
-        font-size: 15px;
-        width: fit-content;
-        height: fit-content;
-    }
-
-    .description {
-        position: initial;
-        bottom: 0;
-        left: 0;
-    }
 }
 
 @media screen and (max-width:649px) {
-    .header {
-        background: url("/images/mainBackground.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        box-shadow: 0px 0px 30px 0px black;
-    }
-
-    .title {
-        text-align: center;
-        font-size: 40px;
-    }
-
-    .title-content {
-        font-size: 25px;
-        color: white;
-        width: 70%;
-        margin: auto;
-        text-align: center;
-        background: rgba(0, 0, 0, 0.2);
-        padding: 20px;
-        min-height: 100px;
-        border-radius: 20px;
-        position: absolute;
-        top: 100%;
-        left: 15%;
-    }
-
-    .header-content {
-        width: 100%;
-        position: absolute;
-        top: 30%;
-    }
-
-    .main {
-        width: 100%;
-        height: fit-content;
-        position: absolute;
-        top: 102%;
-        left: 0;
-    }
-
-    .menu {
-        position: absolute;
-        right: 0;
-        width: 100%;
-        height: 100px;
-        background: rgba(255, 255, 255, 0.2);
-    }
-
-    .menu ul {
-        display: flex;
-        position: absolute;
-        right: 2%;
-    }
-
-    .menu li {
-        margin: 20px 30px;
-        list-style: none;
-    }
-
     .bookList {
         display: grid;
         grid-template-columns: repeat(1, 80%);
@@ -1727,63 +586,6 @@ img {
     .textMain {
         text-align: center;
         font-size: 32px;
-    }
-
-    .addInput {
-        background: rgba(0, 0, 0, 0.3);
-        color: white;
-        border: 2px solid white;
-        text-decoration: none;
-        position: absolute;
-        width: 10%;
-        text-align: center;
-        bottom: 25%;
-        left: 45%;
-
-        font-size: 25px;
-        padding: 20px 40px;
-        border-radius: 40px;
-
-        transition: 0.5s;
-    }
-
-    .addInput:hover {
-        color: black;
-        background: white;
-        border-radius: 0;
-    }
-
-    .book-content {
-        margin: 20px;
-    }
-
-    .book-title {
-        font-size: 25px;
-        font-weight: 500;
-    }
-
-    .author {
-        font-weight: 600;
-        font-size: 20px;
-        transition: 0.3s;
-
-        color: black;
-    }
-
-    #titleText {
-        transition: 0.5s;
-    }
-
-    .bookDesc {
-        font-size: 15px;
-        width: fit-content;
-        height: fit-content;
-    }
-
-    .description {
-        position: initial;
-        bottom: 0;
-        left: 0;
     }
 
     .tags {
