@@ -33,7 +33,11 @@ const post_books = (req, res) => {
     else res.redirect(`/books?q=${req.body.title}&tags=none`);
 };
 
-const get_books_title = (req, res) => {
+const get_books_title = async (req, res) => {
+    let numberOfBooks = await Book.count();
+    let numberOfPages = Math.ceil(numberOfBooks / 12);
+    const page = parseInt(req.query.page) || 1;
+
     const reg = new RegExp(req.query.q, "i");
     const tags = req.query.tags.split(",");
 
@@ -45,11 +49,12 @@ const get_books_title = (req, res) => {
 
     Book.find(query)
         .sort({ title: 1 })
+        .skip(12 * (page - 1))
         .limit(12)
         .then((result) => {
             Tag.find()
                 .sort({ name: 1 })
-                .then((resultTags) => res.render("index", { books: result, tags: resultTags, query: req.query.q }))
+                .then((resultTags) => res.render("index", { books: result, tags: resultTags, query: req.query.q, pages: numberOfPages, currentPage: page }))
                 .catch((err) => res.render("404", { err }));
         })
         .catch((err) => res.render("404", { err }));
