@@ -119,25 +119,41 @@
 					</a>
 				<% });%>
 
-				<div class="pages">
-			<div class="previous">
-				<% if (currentPage != 1) { %>
-					<a href="/?page=<%= currentPage - 1 %>">Previous</a>
-				<% } %>
-			</div>
+			<div class="pages">
+				<div class="previous">
+					<% if (currentPage != 1) { %>
+						<a href="/?page=<%= currentPage - 1 %>">Previous</a>
+					<% } %>
+				</div>
 
-			<div class="pagesList">
-				<% for (let i = 1; i <= pages; i++) { %> 
-					<a href="/?page=<%= i %>"><%= i %></a>
-				<% } %>
-			</div>
+				<div class="pagesList">
+					<% if (pages <= 5) {%>
+						<% for (let i = 1; i <= pages; i++) { %> 
+							<a href="/?page=<%= i %>"><button><%= i %></button></a>
+						<% } %>
+					<% } else { %>
+						<% if (currentPage <= 2) { %>
+							<% for (let i = currentPage - 2; i <= currentPage + 2; i++) { %> 
+								<a href="/?page=<%= i %>"><button><%= i %></button></a>
+							<% } %>
+						<% } else if(currentPage >= pages - 2) { %>
+							<% for (let i = currentPage - 2; i <= pages; i++) { %> 
+								<a href="/?page=<%= i %>"><button><%= i %></button></a>
+							<% } %>
+						<% } else { %>
+							<% for (let i = currentPage - 2; i <= currentPage + 2; i++) { %> 
+								<a href="/?page=<%= i %>"><button><%= i %></button></a>
+							<% } %>
+						<% } %> 
+					<% } %>
+				</div>
 
-			<div class="next">
-				<% if (currentPage != pages) { %>
-					<a href="/?page=<%= currentPage + 1 %>">Next</a>
-				<% } %>
+				<div class="next">
+					<% if (currentPage != pages) { %>
+						<a href="/?page=<%= currentPage + 1 %>">Next</a>
+					<% } %>
 			</div>
-		</div>
+			</div>
 			</div>
 		</div>
 	<script src="/js/index.js"></script>
