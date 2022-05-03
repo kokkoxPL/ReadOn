@@ -7,6 +7,7 @@
         <title>Dodaj książke</title>
         <link rel="stylesheet" href="/css/index.css" />
         <link rel="stylesheet" href="/css/admin.css" />
+		<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.js"></script>
     </head>
     <body>
         <div class="header">
@@ -28,12 +29,12 @@
 
             <div class="header-content">
                 <% if (msg) { %>
-                <h1><%= msg %></h1>
-                <script>
-                    window.history.pushState({}, document.title, window.location.pathname);
-                </script>
+                    <h1><%= msg %></h1>
+                    <script>
+                        window.history.pushState({}, document.title, window.location.pathname);
+                    </script>
                 <% } %>
-                <h1>Add a book</h1>
+                <h1>Dodaj Książkę</h1>
                 <form action="/admin/new" method="post" enctype="multipart/form-data">
                     <input type="text" name="title" placeholder="Title" /><br />
                     <input type="text" name="author" placeholder="Author" /><br />
@@ -44,9 +45,22 @@
                             <label for="<%= tag.name %>"><%= tag.name %><input type="checkbox" name="tags" id="<%= tag.name %>" value="<%= tag.name %>" /></label>
                         <% }) %>
                     </div>
-                    <button type="submit">Add</button>
+                    <button type="submit">Dodaj</button>
                 </form>
             </div>
         </div>
+        <script>
+            $(document).ready(function(){
+                $(".tag").each(function() {
+                    if (this.checked) {
+                        $(this).parent().addClass("selected");
+                    }
+                })
+
+                $(".tag").click(function() {
+                    $(this).parent().toggleClass("selected");
+                });
+            })
+        </script>
     </body>
 </html>
