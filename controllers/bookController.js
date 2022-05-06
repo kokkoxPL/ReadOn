@@ -1,18 +1,11 @@
 const Book = require("../models/book");
 const Tag = require("../models/tag");
 
-function ensureArray(arg) {
-    if (Array.isArray(arg)) {
-        return arg;
-    } else {
-        return [arg];
-    }
-}
-
-const get_index = async (req, res, next) => {
-    let numberOfBooks = await Book.count();
-    let numberOfPages = Math.ceil(numberOfBooks / 12);
+const get_index = async (req, res) => {
+    const numberOfBooks = await Book.count();
+    const numberOfPages = Math.ceil(numberOfBooks / 12);
     const page = parseInt(req.query.page) || 1;
+
     Book.find()
         .sort({ title: 1 })
         .skip(12 * (page - 1))
@@ -20,32 +13,28 @@ const get_index = async (req, res, next) => {
         .then((result) => {
             Tag.find()
                 .sort({ name: 1 })
-                .then((resultTags) =>
-                    res.render("index", { books: result, tags: resultTags, pages: numberOfPages, currentPage: page })
-                )
+                .then((resultTags) => res.render("index", { books: result, tags: resultTags, pages: numberOfPages, currentPage: page }))
                 .catch((err) => res.render("404", { err }));
         })
         .catch((err) => res.render("404", { err }));
 };
 
 const post_books = (req, res) => {
-    if (req.body.tags != null) res.redirect(`/books?q=${req.body.title}&tags=${ensureArray(req.body.tags).join(",")}`);
-    else res.redirect(`/books?q=${req.body.title}&tags=none`);
+    res.redirect(`/books?search=${req.body.title}&tags=${req.body.tags != null ? req.body.tags : "none"}`);
 };
 
 const get_books_title = async (req, res) => {
-    let numberOfBooks = await Book.count();
-    let numberOfPages = Math.ceil(numberOfBooks / 12);
+    const numberOfBooks = await Book.count();
+    const numberOfPages = Math.ceil(numberOfBooks / 12);
     const page = parseInt(req.query.page) || 1;
 
-    const reg = new RegExp(req.query.q, "i");
+    const reg = new RegExp(req.query.search, "i");
     const tags = req.query.tags.split(",");
 
-    let query = {
-        $or: [{ title: { $in: reg } }, { author: { $in: reg } }],
-    };
+    let query = { $or: [{ title: { $in: reg } }, { author: { $in: reg } }] };
 
-    if (req.query.tags != "none") Object.assign(query, { tags: { $in: tags } });
+    if (req.query.tags != "none")
+        Object.assign(query, { tags: { $in: tags } });
 
     Book.find(query)
         .sort({ title: 1 })
@@ -54,7 +43,7 @@ const get_books_title = async (req, res) => {
         .then((result) => {
             Tag.find()
                 .sort({ name: 1 })
-                .then((resultTags) => res.render("index", { books: result, tags: resultTags, query: req.query.q, pages: numberOfPages, currentPage: page }))
+                .then((resultTags) => res.render("index", { books: result, tags: resultTags, pages: numberOfPages, currentPage: page }))
                 .catch((err) => res.render("404", { err }));
         })
         .catch((err) => res.render("404", { err }));
