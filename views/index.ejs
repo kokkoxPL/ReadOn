@@ -165,6 +165,7 @@
 				document.getElementById("onText").style.backgroundColor = "#FFA31A";
 			}, 1)
 			var music = Math.random() < 0.5 ? new Audio("/music/metal-gear-solid-3.mp3") : new Audio("/music/metal-gear-rising.mp3");
+			music.volume(0.5);
 			music.play();
 		})
 	</script>
