@@ -119,11 +119,11 @@ label {
 }
 
 label:hover{
-    background: green;
+    background: rgb(36, 0, 104);
 }
 
 .selected {
-    background: green;
+    background: rgb(36, 0, 104);
 }
 
 .book {
@@ -208,6 +208,8 @@ img {
     position: absolute;
     top: 102%;
     left: 0;
+    padding-bottom: 10%;
+    margin-top: 20px;
 }
 
 .menu {
@@ -307,8 +309,29 @@ img {
 
 .pages{
     display: flex;
-    position: absolute;
-    bottom: 0;
+    width: 100%;
+    margin: auto;
+    justify-content: center;
+}
+
+.previous button, .pagesList button, .next button{
+    background: none;
+    border: none;
+    font-size:25px;
+    border-bottom: 2px solid black ;
+    margin: 2px;
+    padding-bottom: 2px;
+    width: 35px;
+    height: 35px;
+    transition: all 0.5s;
+}
+
+.previous button:hover, .pagesList button:hover, .next button:hover{
+    border: 2px solid black;
+    padding: 2px;
+    border-radius: 50%; 
+    background: rgb(71, 7, 71);
+    color: white;
 }
 
 @media screen and (min-width:1600px) {
@@ -324,6 +347,7 @@ img {
 
         font-size: 20px;
         padding-bottom: 5%;
+        padding-top: 30px;
     }
     .img {
         width: 100%;
@@ -345,6 +369,7 @@ img {
 
         font-size: 20px;
         padding-bottom: 5%;
+        padding-top: 30px;
     }
         .img {
         width: 100%;
@@ -432,9 +457,6 @@ img {
         font-size: 20px;
         padding-bottom: 5%;
     }
-    .toggleMenu{
-        display: block;
-    }
     .menuList{
         display: none;
         width: 50%;
@@ -518,5 +540,10 @@ img {
         display: block;
         justify-content: center;
         text-align: center;
+        margin: auto;
+    }
+    label{
+        display: block;
+        margin:  10px auto;
     }
 }

@@ -118,57 +118,80 @@
 						</div>
 					</a>
 				<% });%>
+			</div>
 
-				<div class="pages">
-					<div class="previous">
-						<% if (currentPage != 1) { %>
-							<a href="/?page=<%= currentPage - 1 %>"><button>&#60;</button></a>
+			<div class="pages">
+				<div class="previous">
+					<% if (currentPage != 1) { %>
+						<a href="/?page=<%= currentPage - 1 %>"><button>&#60;</button></a>
+					<% } %>
+				</div>
+
+				<div class="pagesList">
+					<% if (pages <= 5) {%>
+						<% for (let i = 1; i <= pages; i++) { %> 
+							<a href="/?page=<%= i %>"><button><%= i %></button></a>
 						<% } %>
-					</div>
-
-					<div class="pagesList">
-						<% if (pages <= 5) {%>
-							<% for (let i = 1; i <= pages; i++) { %> 
+					<% } else { %>
+						<% if (currentPage <= 2) { %>
+							<% for (let i = 1; i <= 5; i++) { %> 
+								<a href="/?page=<%= i %>"><button><%= i %></button></a>
+							<% } %>
+						<% } else if(currentPage >= pages - 2) { %>
+							<% for (let i = pages - 4; i <= pages; i++) { %> 
 								<a href="/?page=<%= i %>"><button><%= i %></button></a>
 							<% } %>
 						<% } else { %>
-							<% if (currentPage <= 2) { %>
-								<% for (let i = currentPage - 2; i <= currentPage + 2; i++) { %> 
-									<a href="/?page=<%= i %>"><button><%= i %></button></a>
-								<% } %>
-							<% } else if(currentPage >= pages - 2) { %>
-								<% for (let i = currentPage - 2; i <= pages; i++) { %> 
-									<a href="/?page=<%= i %>"><button><%= i %></button></a>
-								<% } %>
-							<% } else { %>
-								<% for (let i = currentPage - 2; i <= currentPage + 2; i++) { %> 
-									<a href="/?page=<%= i %>"><button><%= i %></button></a>
-								<% } %>
-							<% } %> 
-						<% } %>
-					</div>
+							<% for (let i = currentPage - 2; i <= currentPage + 2; i++) { %> 
+								<a href="/?page=<%= i %>"><button><%= i %></button></a>
+							<% } %>
+						<% } %> 
+					<% } %>
+				</div>
 
-					<div class="next">
-						<% if (currentPage != pages) { %>
-							<a href="/?page=<%= currentPage + 1 %>"><button>&#62;</button></a>
-						<% } %>
-					</div>
+				<div class="next">
+					<% if (currentPage != pages) { %>
+						<a href="/?page=<%= currentPage + 1 %>"><button>&#62;</button></a>
+					<% } %>
 				</div>
 			</div>
+
+			<script>
+				if (new URLSearchParams(location.search).has('tags')) {
+					let param = new URLSearchParams(location.search).toString();
+					const pages = document.getElementsByClassName('pages')[0].children;
+					for (let i = 0; i < pages.length; i++) {
+						for (let j = 0; j < pages[i].children.length; j++) {
+							let href = pages[i].children[j].href
+							href = href[href.length - 1];
+							param = param.replace(/.page../, '');
+							pages[i].children[j].href = `/books?${param}&page=${href}`;
+						}
+					}
+				}
+
+				if (new URLSearchParams(location.search).toString())
+					var main = document.getElementsByClassName('main')[0].scrollIntoView({behavior: "smooth"});
+			</script>
 		</div>
-	<script src="/js/index.js"></script>
-	<script src="/js/konami.js"></script>
-	<script>
-		new Konami(() => {
-			document.getElementById("readText").innerHTML = "BOOK <span id='onText'>HUB</span>"
-			setTimeout(() => {
-				document.getElementById("onText").style.backgroundColor = "#FFA31A";
-			}, 1)
-			var music = Math.random() < 0.5 ? new Audio("/music/metal-gear-solid-3.mp3") : new Audio("/music/metal-gear-rising.mp3");
-			music.volume = 0.4;
-			music.play();
-		})
-	</script>
+		<script src="/js/index.js"></script>
+		<script src="/js/konami.js"></script>
+		<script>
+			new Konami(() => {
+				document.getElementById("readText").innerHTML = "BOOK <span id='onText'>HUB</span>"
+				setTimeout(() => {
+					document.getElementById("onText").style.backgroundColor = "#FFA31A";
+				}, 1)
+				var intro = new Audio("/music/intro.mp3")
+				intro.volume = 0.4;
+				intro.play();
+				intro.onended = () => {
+					var music = Math.random() < 0.5 ? new Audio("/music/metal-gear-solid-3.mp3") : new Audio("/music/metal-gear-rising.mp3");
+					music.volume = 0.4;
+					music.play();
+				}
+			})
+		</script>
 	</body>
 </html>
 <!--       _                                                 _
