@@ -1,3 +1,4 @@
+const { query } = require("express");
 const Book = require("../models/book");
 const Tag = require("../models/tag");
 
@@ -24,8 +25,8 @@ const findTags = () => {
 const findBookNumber = (search) => {
     return new Promise((resolve, reject) => {
         Book.count(search)
-        .then((result) => resolve(result))
-        .catch((err) => reject(err))
+            .then((result) => resolve(result))
+            .catch((err) => reject(err))
     })
 }
 
@@ -43,10 +44,9 @@ const find = async (page, search = {}) => {
 }
 
 const get_index = async (req, res) => {
+    const currentPage = parseInt(req.query.page) || 1;
     const { books, tags, bookNumber } = await find(currentPage);
     const pages = Math.ceil(bookNumber / 12);
-    const currentPage = parseInt(req.query.page) || 1;
-
 
     res.render("index", { books, tags, pages, currentPage });
 };
@@ -56,10 +56,7 @@ const post_books = (req, res) => {
 };
 
 const get_books_title = async (req, res) => {
-    const { books, tags, bookNumber } = await find(currentPage);
-    const pages = Math.ceil(bookNumber / 12);
     const currentPage = parseInt(req.query.page) || 1;
-
     const reg = new RegExp(req.query.search, "i");
     const tagsReg = req.query.tags.split(",");
 
@@ -67,6 +64,9 @@ const get_books_title = async (req, res) => {
 
     if (req.query.tags != "none")
         Object.assign(search, { tags: { $in: tagsReg } });
+
+    const { books, tags, bookNumber } = await find(currentPage, search);
+    const pages = Math.ceil(bookNumber / 12);
 
     res.render("index", { books, tags, pages, currentPage });
 };
