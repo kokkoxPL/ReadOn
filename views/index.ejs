@@ -59,38 +59,33 @@
 					$(".tag").click(function() {
 						$(this).parent().toggleClass("selected");
 					});
-				})
-			</script>
 
-
-			<script>
-				$(document).ready(function(){
 					$("#bookName").click(function(){
                             $("#bookName").css({
 							backgroundColor: 'purple',
 							color: 'white'
 						})
 					})
-							$("#bookName").mouseover(function(){
-								$("#bookName").css({
-								borderColor: 'purple',
-								borderWidth: '1px',
-								borderStyle: 'solid',
-								borderRadius: '10px',
-								color: 'white',
-								transition: '0.5s'
+
+					$("#bookName").mouseover(function(){
+						$("#bookName").css({
+						borderColor: 'purple',
+						borderWidth: '1px',
+						borderStyle: 'solid',
+						borderRadius: '10px',
+						color: 'white',
+						transition: '0.5s'
+						})
+					})
+
+					$(document).ready(function(){
+						$("#menuIcon").click(function(){
+							$("#menuList").toggle(500)
 						})
 					})
 				})
 			</script>
 
-			<script>
-				$(document).ready(function(){
-					$("#menuIcon").click(function(){
-						$("#menuList").toggle(500)
-					})
-				})
-			</script>
 			<div class="bookList">
 				<% books.forEach(book => { %>
 					<a href="/book/<%= book._id %>">
@@ -112,7 +107,7 @@
 								</div>
 
 								<div class="category" id="category">
-									<p><%= book.tags.slice(0,3) %></p>
+									<p><%= book.tags.length < 4 ? book.tags : book.tags.slice(0, 3) + ",..."  %></p>
 								</div>
 							</div>
 						</div>
@@ -162,7 +157,7 @@
 					const pages = document.getElementsByClassName('pages')[0].children;
 					for (let i = 0; i < pages.length; i++) {
 						for (let j = 0; j < pages[i].children.length; j++) {
-							let href = pages[i].children[j].href[pages[i].children[j].href.length - 1]
+							let href = pages[i].children[j].href.slice(-1);
 							param = param.replace(/.page../, '');
 							pages[i].children[j].href = `/books?${param}&page=${href}`;
 						}
@@ -177,15 +172,13 @@
 		<script src="/js/konami.js"></script>
 		<script>
 			new Konami(() => {
-				document.getElementById("readText").innerHTML = "BOOK <span id='onText'>HUB</span>"
-				setTimeout(() => {
-					document.getElementById("onText").style.backgroundColor = "#FFA31A";
-				}, 1)
+				document.getElementById("readText").innerHTML = "BOOK <span id='onText'>HUB</span>";
+				setTimeout(() => document.getElementById("onText").style.backgroundColor = "#FFA31A", 1);
 				var intro = new Audio("/music/intro.mp3")
 				intro.volume = 0.4;
 				intro.play();
 				intro.onended = () => {
-					var music = Math.random() < 0.5 ? new Audio("/music/metal-gear-solid-3.mp3") : new Audio("/music/metal-gear-rising.mp3");
+					var music = new Audio("/music/metal-gear-rising.mp3");
 					music.volume = 0.4;
 					music.play();
 				}

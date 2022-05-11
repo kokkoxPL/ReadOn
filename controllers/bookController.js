@@ -30,22 +30,25 @@ const findBookNumber = (search) => {
     })
 }
 
-
 const find = async (page, search = {}) => {
-    const books = findBooks(page, search);
-    const tags = findTags();
-    const bookNumber = findBookNumber(search);
+    try {
+        const books = findBooks(page, search);
+        const tags = findTags();
+        const bookNumber = findBookNumber(search);
 
-    return {
-        books: await books,
-        tags: await tags,
-        bookNumber: await bookNumber,
+        return {
+            books: await books,
+            tags: await tags,
+            bookNumber: await bookNumber,
+        }
+    } catch (err) {
+        return err;
     }
 }
 
 const get_index = async (req, res) => {
     const currentPage = parseInt(req.query.page) || 1;
-    const { books, tags, bookNumber } = await find(currentPage);
+    const { books, tags, bookNumber } = await find(currentPage).catch((err) => res.render("404", { err }));
     const pages = Math.ceil(bookNumber / 12);
 
     res.render("index", { books, tags, pages, currentPage });
@@ -63,9 +66,9 @@ const get_books_title = async (req, res) => {
     let search = { $or: [{ title: { $in: reg } }, { author: { $in: reg } }] };
 
     if (req.query.tags != "none")
-        Object.assign(search, { tags: { $in: tagsReg } });
+        Object.assign(search, { tags: { $all: tagsReg } });
 
-    const { books, tags, bookNumber } = await find(currentPage, search);
+    const { books, tags, bookNumber } = await find(currentPage, search).catch((err) => res.render("404", { err }));
     const pages = Math.ceil(bookNumber / 12);
 
     res.render("index", { books, tags, pages, currentPage });
