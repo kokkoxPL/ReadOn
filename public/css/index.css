@@ -94,7 +94,7 @@ input[type="button"] {
     transition: 0.5s;
 }
 
-input[type="checkbox"]{
+input[type="checkbox"] {
     display: none;
 }
 
@@ -118,7 +118,7 @@ label {
     transition: all 0.5s;
 }
 
-label:hover{
+label:hover {
     background: rgb(36, 0, 104);
 }
 
@@ -160,9 +160,6 @@ img {
     aspect-ratio: 9/13;
 }
 
-.toggleMenu{
-    display: none;
-}
 
 .header {
     background: url("/images/mainBackground.jpg");
@@ -293,32 +290,24 @@ img {
     left: 0;
 }
 
-.icon-menu{
-    font-size: 50px;
-    padding: 20px;
-    position: absolute;
-    top: 1%;
-    right: 1%;
-
-    transition: all 0.5s;
-}
-
-.icon-menu:hover{
+.icon-menu:hover {
     color: white;
 }
 
-.pages{
+.pages {
     display: flex;
     width: 100%;
     margin: auto;
     justify-content: center;
 }
 
-.previous button, .pagesList button, .next button{
+.previous button,
+.pagesList button,
+.next button {
     background: none;
     border: none;
-    font-size:25px;
-    border-bottom: 2px solid black ;
+    font-size: 25px;
+    border-bottom: 2px solid black;
     margin: 2px;
     padding-bottom: 2px;
     width: 35px;
@@ -326,10 +315,12 @@ img {
     transition: all 0.5s;
 }
 
-.previous button:hover, .pagesList button:hover, .next button:hover{
+.previous button:hover,
+.pagesList button:hover,
+.next button:hover {
     border: 2px solid black;
     padding: 2px;
-    border-radius: 50%; 
+    border-radius: 50%;
     background: rgb(71, 7, 71);
     color: white;
 }
@@ -349,11 +340,16 @@ img {
         padding-bottom: 5%;
         padding-top: 30px;
     }
+
     .img {
         width: 100%;
         height: auto;
 
         border-radius: 20px 20px 0px 0px;
+    }
+
+    .toggleMenu {
+        display: none;
     }
 }
 
@@ -371,11 +367,17 @@ img {
         padding-bottom: 5%;
         padding-top: 30px;
     }
-        .img {
+
+    .img {
         width: 100%;
         height: auto;
 
         border-radius: 20px 20px 0px 0px;
+    }
+
+
+    .toggleMenu {
+        display: none;
     }
 }
 
@@ -392,6 +394,7 @@ img {
         font-size: 20px;
         padding-bottom: 5%;
     }
+
     .textMain {
         text-align: center;
         font-size: 32px;
@@ -457,15 +460,16 @@ img {
         font-size: 20px;
         padding-bottom: 5%;
     }
-    .menuList{
+
+    .menuList {
         display: none;
-        width: 50%;
+        min-width: 250px;
         height: 100%;
-        padding: 30px;
+        padding: 50px 10px;
         position: absolute;
         top: 100px;
         right: 0%;
-        background: rgba(43, 48, 57,0.9);
+        background: rgba(43, 48, 57, 0.9);
 
         border-radius: 10px 0px 0px 10px;
     }
@@ -475,19 +479,42 @@ img {
         position: absolute;
         right: 2%;
         align-items: center;
+        text-align: center;
     }
 
-    .menu a{
+    .menu a {
         color: white;
+        margin: auto;
     }
-    .menu a:hover{
-        color:purple;
+
+    .menu li {
+        text-align: center;
+        margin: 20px 0;
+    }
+
+    .menu a:hover {
+        color: rgb(176, 192, 197);
     }
 
 
-    .menu{
+    .menu {
         background: none;
     }
+
+    .icon-menu {
+        font-size: 50px;
+        padding: 20px;
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        transition: all 0.5s;
+    }
+
+    .toggleMenu {
+        display: block;
+    }
+
 }
 
 
@@ -542,8 +569,9 @@ img {
         text-align: center;
         margin: auto;
     }
-    label{
+
+    label {
         display: block;
-        margin:  10px auto;
+        margin: 10px auto;
     }
 }

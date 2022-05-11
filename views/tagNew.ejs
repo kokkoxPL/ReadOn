@@ -5,30 +5,69 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Tagi</title>
+        <link rel="stylesheet" href="/css/index.css" />
+        <link rel="stylesheet" href="/css/admin.css" />
+        <style>
+            button {
+                width: fit-content;
+            }
+            .x {
+                background-color: red;
+            }
+            .x:hover {
+                box-shadow: 2px 5px 20px 1px red;
+            }
+            ul {
+                margin: auto;
+                width: fit-content;
+            }
+            li {
+                text-align: right;
+            }
+        </style>
     </head>
     <body>
-        <h1>list of tags</h1>
-        <ul>
-            <li>
+        <div class="header">
+            <div class="menu">
+                <ul>
+                    <li><a href="/admin">Strona główna</a></li>
+
+                    <li><a href="/admin/new">Dodaj książkę</a></li>
+
+                    <li><a href="/admin/edit">Edytuj książkę</a></li>
+
+                    <li><a href="/admin/delete">Usuń książkę</a></li>
+
+                    <li><a href="/admin/tags">Zarządzaj tagami</a></li>
+
+                    <li><a href="/admin/logout">Wyloguj się</a></li>
+                </ul>
+            </div>
+
+            <div class="header-content">
                 <form action="/admin/tags" method="post">
                     <input type="text" name="tagName" /> <button type="submit">Create</button>
                 </form>
-            </li>
-            <% tags.forEach(tag => { %>
-            <li><%= tag.name %> <button onclick="erase('<%= tag._id %>')">X</button></li>
-            <% }) %>
-        </ul>
+                <ul>
+                    <% tags.forEach(tag => { %>
+                    <li><%= tag.name %> <button class="x" onclick="erase('<%= tag._id %>')">X</button></li>
+                    <% }) %>
+                </ul>
+            </div>
+        </div>
         <script>
             function erase(tagId) {
-                fetch("/admin/deletetag", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ id: tagId }),
-                }).then(() => {
-                    location.reload();
-                });
+                if (confirm("u sure?")) {
+                    fetch("/admin/deletetag", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({ id: tagId }),
+                    }).then(() => {
+                        location.reload();
+                    });
+                }
             }
         </script>
     </body>

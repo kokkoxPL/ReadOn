@@ -72,7 +72,9 @@ a {
     position: absolute;
     left: -105%;
     top: -10%;
-    background: url("../images/colors.jpg");
+
+    background: linear-gradient(to right, #493240, #b4006c);
+
     background-repeat: no-repeat;
     background-size: cover;
     box-shadow: 0px 0px 30px 0px black;
@@ -85,17 +87,17 @@ a {
 
 span {
     font-weight: 700;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgb(148, 0, 111);
     color: purple;
     padding: 5px 10px;
 }
 
-@media screen and (min-width:1550px){
+@media screen and (min-width:1550px) {
 
     #image {
-    width: 500px;
-    height: 500px;
-    border-radius: 50%;
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
     }
 
     p {
@@ -106,165 +108,175 @@ span {
 
 
     .main {
-    width: 100%;
-    height: fit-content;
-    position: absolute;
-    top: 20%;
-    left: 0;
+        width: 100%;
+        height: fit-content;
+        position: absolute;
+        top: 20%;
+        left: 0;
 
-    display: grid;
-    grid-template-columns: 30% 65%;
-    column-gap: 40px;
-    justify-content: center;
-    align-items: center;
+        display: grid;
+        grid-template-columns: 30% 65%;
+        column-gap: 40px;
+        justify-content: center;
+        align-items: center;
     }
 }
 
-@media screen and (max-width:1549px){
+@media screen and (max-width:1549px) {
 
     #image {
-    width: 450px;
-    height: 450px;
-    border-radius: 50%;
+        width: 450px;
+        height: 450px;
+        border-radius: 50%;
     }
 
     p {
-        line-height: 25px;
+        line-height: 30px;
         font-size: 20px;
         font-weight: 500;
     }
 
-    h1, h2{
-        padding:  0 20px;
+    h1,
+    h2 {
+        padding: 0 20px;
         line-height: 40px;
     }
 
 
     .main {
-    width: 100%;
-    height: fit-content;
-    position: absolute;
-    top: 20%;
-    left: 0;
+        width: 100%;
+        height: fit-content;
+        position: absolute;
+        top: 20%;
+        left: 0;
 
-    display: grid;
-    grid-template-columns: 35% 60%;
-    column-gap: 40px;
-    justify-content: center;
-    align-items: center;
-    }
-}
-
-@media screen and (max-width:1199px){
-
-    #image {
-    width: 400px;
-    height: 400px;
-    border-radius: 50%;
-    }
-
-    p {
-        line-height: 25px;
-        font-size: 20px;
-        font-weight: 500;
-    }
-
-
-    .main {
-    width: 100%;
-    height: fit-content;
-    position: absolute;
-    top: 20%;
-    left: 0;
-
-    display: grid;
-    grid-template-columns: 35% 60%;
-    column-gap: 40px;
-    justify-content: center;
-    align-items: center;
-    }
-}
-
-@media screen and (max-width:1049px){
-
-    #image {
-    width: 500px;
-    height: 500px;
-    border-radius: 50%;
-    margin: auto;
-    }
-
-    p {
-        line-height: 25px;
-        font-size: 20px;
-        font-weight: 500;
-        padding: 30px;
-    }
-
-
-    .main {
-    width: 100%;
-    height: fit-content;
-    position: absolute;
-    top: 30%;
-    left: 0;
-
-    display: grid;
-    grid-template-columns: repeat(1, 100%);
-    grid-template-rows: repeat(2, fit-content);
-    row-gap: 40px;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
-    text-align: center;
-    }
-}
-
-@media screen and (max-width:599px){
-
-    #image {
-    width: 400px;
-    height: 400px;
-    border-radius: 50%;
-    margin: auto;
-    }
-
-    p {
-        line-height: 26px;
-        font-size: 20px;
-        font-weight: 500;
-        padding: 30px;
-    }
-}
-
-@media screen and (max-width:449px){
-
-    #image {
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    margin: auto;
-    }
-
-    p {
-        line-height: 26px;
-        font-size: 20px;
-        font-weight: 500;
-        padding: 30px;
+        display: grid;
+        grid-template-columns: 35% 60%;
+        column-gap: 40px;
+        justify-content: center;
+        align-items: center;
     }
 
     .toggle{
+        position: absolute;
+        top: 0;
+    }
+}
+
+@media screen and (max-width:1199px) {
+
+    #image {
+        width: 450px;
+        height: 450px;
+        border-radius: 50%;
+    }
+
+    p {
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+
+    .main {
+        width: 100%;
+        height: fit-content;
+        position: absolute;
+        top: 20%;
+        left: 0;
+
+        display: grid;
+        grid-template-columns: 40% 55%;
+        column-gap: 40px;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width:1049px) {
+
+    #image {
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        margin: auto;
+    }
+
+    p {
+        font-size: 20px;
+        font-weight: 500;
+        padding: 30px;
+        text-align: justify;
+        width: 80%;
+        margin: auto;
+    }
+
+
+    .main {
+        width: 100%;
+        height: fit-content;
+        position: absolute;
+        top: 200px;
+        left: 0;
+
+        display: grid;
+        grid-template-columns: repeat(1, 100%);
+        grid-template-rows: repeat(2, fit-content);
+        row-gap: 40px;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        text-align: center;
+    }
+
+    .toggle{
+        position: absolute;
+        top: -40px;
+    }
+}
+
+@media screen and (max-width:599px) {
+
+    #image {
+        width: 400px;
+        height: 400px;
+        border-radius: 50%;
+        margin: auto;
+    }
+
+    p {
+        font-size: 18px;
+        font-weight: 500;
+        padding: 30px;
+    }
+}
+
+@media screen and (max-width:449px) {
+
+    #image {
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        margin: auto;
+    }
+
+    p {
+        font-size: 20px;
+        font-weight: 500;
+        padding: 30px;
+    }
+
+    .toggle {
         padding-bottom: 20%;
     }
 }
 
-@media screen and (max-width:349px){
+@media screen and (max-width:349px) {
 
     #image {
-    width: 250px;
-    height: 250px;
-    border-radius: 50%;
-    margin: auto;
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        margin: auto;
     }
 
     p {
@@ -274,7 +286,7 @@ span {
         padding: 30px;
     }
 
-    .toggle{
+    .toggle {
         padding-bottom: 20%;
     }
 }
