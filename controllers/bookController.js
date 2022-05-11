@@ -1,4 +1,3 @@
-const { query } = require("express");
 const Book = require("../models/book");
 const Tag = require("../models/tag");
 
@@ -25,7 +24,7 @@ const findTags = () => {
 const findBookNumber = (search) => {
     return new Promise((resolve, reject) => {
         Book.count(search)
-            .then((result) => resolve(result))
+            .then((result) => resolve(result != 0 ? result : 1))
             .catch((err) => reject(err))
     })
 }
@@ -42,7 +41,7 @@ const find = async (page, search = {}) => {
             bookNumber: await bookNumber,
         }
     } catch (err) {
-        return err;
+        throw err;
     }
 }
 
@@ -61,12 +60,11 @@ const post_books = (req, res) => {
 const get_books_title = async (req, res) => {
     const currentPage = parseInt(req.query.page) || 1;
     const reg = new RegExp(req.query.search, "i");
-    const tagsReg = req.query.tags.split(",");
 
     let search = { $or: [{ title: { $in: reg } }, { author: { $in: reg } }] };
 
     if (req.query.tags != "none")
-        Object.assign(search, { tags: { $all: tagsReg } });
+        Object.assign(search, { tags: { $all: req.query.tags.split(",") } });
 
     const { books, tags, bookNumber } = await find(currentPage, search).catch((err) => res.render("404", { err }));
     const pages = Math.ceil(bookNumber / 12);
