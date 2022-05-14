@@ -38,7 +38,7 @@
 
 		<div class="main">
 			<p class="textMain">Lista dostępnych książek</p>
-			<form style="text-align: center;" action="/book" method="post">
+			<form style="text-align: center;" action="/books" method="post">
 				<input type="text" name="title" placeholder="Wpisz nazwę książki" id="bookName"/><br>
 	
 				<input type="submit" value="Szukaj" />
@@ -118,6 +118,7 @@
 			<div class="pages">
 				<div class="previous">
 					<% if (currentPage != 1) { %>
+						<a href="/?page=<%= 1 %>"><button>&#60;&#60;</button></a>
 						<a href="/?page=<%= currentPage - 1 %>"><button>&#60;</button></a>
 					<% } %>
 				</div>
@@ -147,6 +148,7 @@
 				<div class="next">
 					<% if (currentPage != pages) { %>
 						<a href="/?page=<%= currentPage + 1 %>"><button>&#62;</button></a>
+						<a href="/?page=<%= pages %>"><button>&#62;&#62;</button></a>
 					<% } %>
 				</div>
 			</div>
@@ -157,7 +159,7 @@
 					const pages = document.getElementsByClassName('pages')[0].children;
 					for (let i = 0; i < pages.length; i++) {
 						for (let j = 0; j < pages[i].children.length; j++) {
-							let href = pages[i].children[j].href.slice(-1);
+							const href = pages[i].children[j].href.slice(-1);
 							param = param.replace(/.page../, '');
 							pages[i].children[j].href = `/books?${param}&page=${href}`;
 						}

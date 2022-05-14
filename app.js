@@ -8,7 +8,7 @@ const cookieParser = require("cookie-parser");
 const crypto = require("crypto");
 const adminRoutes = require("./routes/adminRoutes");
 const bookRoutes = require("./routes/bookRoutes");
-const Log = require("./models/log");
+const Error = require("./models/error");
 const app = express();
 
 const hash = (password) => crypto.createHash("sha256").update(password).digest("base64");
@@ -32,11 +32,7 @@ app.use(cookieParser());
 app.use((req, res, next) => {
     req.isVerified = req.cookies.access_token == hash(process.env.ADMIN_PASSWORD);
     req.msg = req.query.msg && msgs[req.query.msg] ? msgs[req.query.msg] : "";
-    req.log = (type, data) => {
-        const log = new Log({ type, data, ip: req.headers["x-forwarded-for"] || req.socket.remoteAddress });
-        log.save();
-    };
-    next();
+    next()
 });
 
 app.set("view engine", "ejs");
@@ -45,6 +41,9 @@ app.use(bookRoutes);
 
 app.use("/admin", adminRoutes);
 
-app.use((req, res) => {
+app.use((err, req, res, next) => {
+    console.log(err);
+    const error = new Error({ path: req.originalUrl, err });
+    error.save();
     res.render("404");
 });

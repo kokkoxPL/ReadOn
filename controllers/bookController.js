@@ -29,28 +29,23 @@ const findBookNumber = (search) => {
     })
 }
 
-const find = async (page, search = {}) => {
-    try {
-        const books = findBooks(page, search);
-        const tags = findTags();
-        const bookNumber = findBookNumber(search);
+const find = async (page, search) => {
+    const books = findBooks(page, search);
+    const tags = findTags();
+    const bookNumber = findBookNumber(search);
 
-        return {
-            books: await books,
-            tags: await tags,
-            bookNumber: await bookNumber,
-        }
-    } catch (err) {
-        throw err;
+    return {
+        books: await books,
+        tags: await tags,
+        bookNumber: await bookNumber,
     }
 }
 
-const get_index = async (req, res) => {
+const get_index = async (req, res, next) => {
     const currentPage = parseInt(req.query.page) || 1;
-    const { books, tags, bookNumber } = await find(currentPage).catch((err) => res.render("404", { err }));
-    const pages = Math.ceil(bookNumber / 12);
-
-    res.render("index", { books, tags, pages, currentPage });
+    find(currentPage, {})
+        .then((result) => res.render("index", { books: result.books, tags: result.tags, pages: Math.ceil(result.bookNumber / 12), currentPage }))
+        .catch((err) => next(err));
 };
 
 const post_books = (req, res) => {
@@ -66,14 +61,16 @@ const get_books_title = async (req, res) => {
     if (req.query.tags != "none")
         Object.assign(search, { tags: { $all: req.query.tags.split(",") } });
 
-    const { books, tags, bookNumber } = await find(currentPage, search).catch((err) => res.render("404", { err }));
-    const pages = Math.ceil(bookNumber / 12);
+    find(currentPage, search)
+        .then((result) => res.render("index", { books: result.books, tags: result.tags, pages: Math.ceil(result.bookNumber / 12), currentPage }))
+        .catch((err) => next(err));
 
-    res.render("index", { books, tags, pages, currentPage });
 };
 
 const get_book_id = (req, res) => {
-    Book.findById(req.params.id).then((result) => res.render("book", { book: result }));
+    Book.findById(req.params.id)
+        .then((result) => res.render("book", { book: result }))
+        .catch((err) => next(err));
 };
 
 module.exports = {

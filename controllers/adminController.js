@@ -1,6 +1,6 @@
 const Book = require("../models/book");
 const Tag = require("../models/tag");
-const Log = require("../models/log");
+const Error = require("../models/error");
 const fetch = require("node-fetch");
 const formData = require("form-data");
 const crypto = require("crypto");
@@ -32,14 +32,19 @@ async function deleteImageFromImgur(deleteHash) {
     return json;
 }
 
-const get_admin = (req, res) => {
+const is_admin = (req, res, next) => {
     if (req.isVerified) {
-        Book.find()
-            .sort({ title: 1 })
-            .then((result) => res.render("admin", { books: result }))
-            .catch((err) => res.render("404", { err }));
-    } else
+        next();
+    } else {
         res.redirect("/admin/login");
+    }
+};
+
+const get_admin = (req, res) => {
+    Book.find()
+        .sort({ title: 1 })
+        .then((result) => res.render("admin", { books: result }))
+        .catch((err) => next(err));
 };
 
 const get_admin_login = (req, res) => {
@@ -61,134 +66,121 @@ const post_admin_login = (req, res) => {
 };
 
 const get_admin_new_book = (req, res) => {
-    if (req.isVerified) {
-        Tag.find()
-            .sort({ name: 1 })
-            .then((result) => res.render("adminNew", { msg: req.msg, tags: result }))
-            .catch((err) => res.render("404", { err }));
-    } else
-        res.redirect("/admin/login");
+    Tag.find()
+        .sort({ name: 1 })
+        .then((result) => res.render("adminNew", { msg: req.msg, tags: result }))
+        .catch((err) => next(err));
 };
 
 const post_admin_new_book = async (req, res) => {
-    if (req.isVerified) {
-        const data = req.body;
+    const data = req.body;
 
-        if (req.file) {
-            const buffer = req.file.buffer;
-            const imgurResponse = await uploadImageToImgur(buffer);
+    if (req.file) {
+        const buffer = req.file.buffer;
+        const imgurResponse = await uploadImageToImgur(buffer);
 
-            if (imgurResponse.success === true) {
-                data.imgLink = imgurResponse.data.link;
-                data.imgDeleteHash = imgurResponse.data.deletehash;
-            } else
-                return res.redirect("/admin/new?msg=3");
+        if (imgurResponse.success === true) {
+            data.imgLink = imgurResponse.data.link;
+            data.imgDeleteHash = imgurResponse.data.deletehash;
         } else
-            data.imgLink = "https://upload.wikimedia.org/wikipedia/commons/c/c8/Cards-Blank.svg";
-
-        const book = new Book(data);
-
-        book.save()
-            .then((result) => res.redirect("/admin/new?msg=1"))
-            .catch((err) => res.render("404", { err }));
+            return res.redirect("/admin/new?msg=3");
     } else
-        res.redirect("/login");
+        data.imgLink = "https://upload.wikimedia.org/wikipedia/commons/c/c8/Cards-Blank.svg";
+
+    const book = new Book(data);
+
+    book.save()
+        .then((result) => res.redirect("/admin/new?msg=1"))
+        .catch((err) => next(err));
 };
 
 const get_admin_edit_books = (req, res) => {
-    if (req.isVerified) {
-        Book.find()
-            .then((result) => res.render("adminEdit", { books: result, msg: req.msg }))
-            .catch((err) => res.render("404", { err }));
-    } else
-        res.redirect("/admin/login");
+    Book.find()
+        .then((result) => res.render("adminEdit", { books: result, msg: req.msg }))
+        .catch((err) => next(err));
 };
 
 const get_admin_edit_id_book = (req, res) => {
-    if (req.isVerified) {
-        Book.findById(req.params.id)
-            .then((result) => {
-                Tag.find()
-                    .sort({ name: 1 })
-                    .then((resultTags) => res.render("adminEditBook", { msg: req.msg, book: result, tags: resultTags }))
-                    .catch((err) => res.render("404", { err }));
-            })
-            .catch((err) => res.render("404", { err }));
-    }
+    Book.findById(req.params.id)
+        .then((result) => {
+            Tag.find()
+                .sort({ name: 1 })
+                .then((resultTags) => res.render("adminEditBook", { msg: req.msg, book: result, tags: resultTags }))
+                .catch((err) => next(err));
+        })
+        .catch((err) => next(err));
 };
 
 const post_admin_edit_id_book = async (req, res) => {
-    if (req.isVerified) {
-        const data = req.body;
+    const data = req.body;
 
-        if (req.file) {
-            const buffer = req.file.buffer;
-            const imgurResponse = await uploadImageToImgur(buffer);
+    if (req.file) {
+        const buffer = req.file.buffer;
+        const imgurResponse = await uploadImageToImgur(buffer);
 
-            if (imgurResponse.success === true) {
-                data.imgLink = imgurResponse.data.link;
-                data.imgDeleteHash = imgurResponse.data.deletehash;
-            } else
-                return res.redirect("/admin/edit?msg=3");
-        }
-        Book.findOneAndUpdate({ _id: req.params.id }, data)
-            .then((previousResult) => {
-                res.redirect(`/admin/edit/${req.params.id}?msg=2`);
-                req.log("book_edited", { from: previousResult, to: data });
-
-                if (previousResult.imgDeleteHash && req.file) {
-                    deleteImageFromImgur(previousResult.imgDeleteHash).then((result) => {
-                        if (result.success === false)
-                            console.log("Couldn't delete image after edit");
-                    });
-                }
-            })
-            .catch((err) => res.render("404", { err }));
+        if (imgurResponse.success === true) {
+            data.imgLink = imgurResponse.data.link;
+            data.imgDeleteHash = imgurResponse.data.deletehash;
+        } else
+            return res.redirect("/admin/edit?msg=3");
     }
+    Book.findOneAndUpdate({ _id: req.params.id }, data)
+        .then((previousResult) => {
+            res.redirect(`/admin/edit/${req.params.id}?msg=2`);
+
+            if (previousResult.imgDeleteHash && req.file) {
+                deleteImageFromImgur(previousResult.imgDeleteHash).then((result) => {
+                    if (result.success === false)
+                        console.log("Couldn't delete image after edit");
+                });
+            }
+        })
+        .catch((err) => res.render("404", { err }));
 };
 
 const get_admin_delete_book = (req, res) => {
-    if (req.isVerified)
-        Book.find().then((result) => res.render("adminDelete", { books: result }));
+    Book.find()
+        .then((result) => res.render("adminDelete", { books: result }))
+        .catch((err) => next(err));
 };
 
 const post_admin_delete_book = (req, res) => {
-    if (req.isVerified) {
-        Book.findById(req.body.id).then((result) => {
-            if (result.imgDeleteHash) {
-                deleteImageFromImgur(result.imgDeleteHash).then((result) => {
-                    if (result.success === false)
-                        console.log("Couldn't delete image");
-                });
-            }
-            Book.findByIdAndDelete(req.body.id).then(() => res.redirect("/admin/delete?msg=1"));
-        });
-    }
+    Book.findById(req.body.id).then((result) => {
+        if (result.imgDeleteHash) {
+            deleteImageFromImgur(result.imgDeleteHash).then((result) => {
+                if (result.success === false)
+                    console.log("Couldn't delete image");
+            });
+        }
+        Book.findByIdAndDelete(req.body.id)
+            .then(() => res.redirect("/admin/delete?msg=1"))
+            .catch((err) => next(err));
+    });
 };
 
 const get_admin_tags = (req, res) => {
-    if (req.isVerified)
-        Tag.find().then((results) => res.render("tagNew", { tags: results }));
+    Tag.find().then((results) => res.render("tagNew", { tags: results }));
 };
 
 const post_admin_tags = (req, res) => {
-    if (req.isVerified) {
-        const { tagName } = req.body;
-        const tag = new Tag({ name: tagName });
-        tag.save().then(() => res.redirect("/admin/tags"));
-    }
+    const { tagName } = req.body;
+    const tag = new Tag({ name: tagName });
+    tag.save()
+        .then(() => res.redirect("/admin/tags"))
+        .catch((err) => next(err));
 };
 
 const post_admin_tags_delete = (req, res) => {
-    if (req.isVerified) {
-        const { id } = req.body;
-        Tag.findByIdAndDelete(id).then(() => res.redirect("/admin/tags"));
-    }
+    const { id } = req.body;
+    Tag.findByIdAndDelete(id)
+        .then(() => res.redirect("/admin/tags"))
+        .catch((err) => next(err));
 };
 
-const get_admin_logs = (req, res) => {
-    if (req.isVerified)
-        Log.find().then((result) => res.render("logs", { logs: result }));
+const get_admin_error_logs = (req, res) => {
+    Error.find()
+        .then((result) => res.render("errors", { errors: result }))
+        .catch((err) => next(err));
 };
 
 const get_admin_logout = (req, res) => {
@@ -197,6 +189,7 @@ const get_admin_logout = (req, res) => {
 };
 
 module.exports = {
+    is_admin,
     get_admin,
     get_admin_login,
     post_admin_login,
@@ -210,6 +203,6 @@ module.exports = {
     get_admin_tags,
     post_admin_tags,
     post_admin_tags_delete,
-    get_admin_logs,
+    get_admin_error_logs,
     get_admin_logout,
 };
