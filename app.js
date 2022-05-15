@@ -41,9 +41,13 @@ app.use(bookRoutes);
 
 app.use("/admin", adminRoutes);
 
+app.get("/404", (req, res) => {
+    res.status(404).render("404");
+});
+
 app.use((err, req, res, next) => {
     console.log(err);
     const error = new Error({ path: req.originalUrl, err });
     error.save();
-    res.render("404");
+    res.status(404).render("404");
 });
