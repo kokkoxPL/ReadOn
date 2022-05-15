@@ -46,8 +46,10 @@ app.get("/404", (req, res) => {
 });
 
 app.use((err, req, res, next) => {
-    console.log(err);
-    const error = new Error({ path: req.originalUrl, err });
-    error.save();
+    if (err != null) {
+        console.log(err);
+        const error = new Error({ path: req.originalUrl, err });
+        error.save();
+    }
     res.status(404).render("404");
 });
