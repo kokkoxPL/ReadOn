@@ -9,6 +9,7 @@ const crypto = require("crypto");
 const adminRoutes = require("./routes/adminRoutes");
 const bookRoutes = require("./routes/bookRoutes");
 const Error = require("./models/error");
+const req = require("express/lib/request");
 const app = express();
 
 const hash = (password) => crypto.createHash("sha256").update(password).digest("base64");
@@ -46,10 +47,12 @@ app.get("/404", (req, res) => {
 });
 
 app.use((err, req, res, next) => {
-    if (err != null) {
-        console.log(err);
-        const error = new Error({ path: req.originalUrl, err });
-        error.save();
-    }
-    res.status(404).render("404");
+    console.log(err);
+    const error = new Error({ path: req.originalUrl, err });
+    error.save();
+    res.status(404).render("404", { msg: err.message });
+});
+
+app.use((req, res) => {
+    res.status(404).render("404", { msg: "Nie znaleziono strony" });
 });
