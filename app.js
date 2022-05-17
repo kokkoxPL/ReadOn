@@ -1,15 +1,14 @@
 require("dotenv").config();
-const compression = require("compression");
-const express = require("express");
-const mongoose = require("mongoose");
+const crypto = require("crypto");
 const path = require("path");
+const express = require("express");
+const compression = require("compression");
+const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-const crypto = require("crypto");
 const adminRoutes = require("./routes/adminRoutes");
 const bookRoutes = require("./routes/bookRoutes");
 const Error = require("./models/error");
-const req = require("express/lib/request");
 const app = express();
 
 const hash = (password) => crypto.createHash("sha256").update(password).digest("base64");
@@ -41,10 +40,6 @@ app.set("view engine", "ejs");
 app.use(bookRoutes);
 
 app.use("/admin", adminRoutes);
-
-app.get("/404", (req, res) => {
-    res.status(404).render("404");
-});
 
 app.use((err, req, res, next) => {
     console.log(err);

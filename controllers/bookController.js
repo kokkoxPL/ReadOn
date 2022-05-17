@@ -49,12 +49,12 @@ const get_index = async (req, res, next) => {
 };
 
 const post_books = (req, res) => {
-    res.redirect(`/books?search=${req.body.title}&tags=${req.body.tags != null ? req.body.tags : "none"}`);
+    res.redirect(`/books?search=${encodeURIComponent(req.body.title)}&tags=${req.body.tags != null ? req.body.tags : "none"}`);
 };
 
 const get_books_title = async (req, res) => {
     const currentPage = parseInt(req.query.page) || 1;
-    const reg = new RegExp(req.query.search, "i");
+    const reg = new RegExp(req.query.search.replace(/[^\w\s]/gi, ''), "i");
 
     let search = { $or: [{ title: { $in: reg } }, { author: { $in: reg } }] };
 

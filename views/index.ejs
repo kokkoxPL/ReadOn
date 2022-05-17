@@ -155,13 +155,12 @@
 
 			<script>
 				if (new URLSearchParams(location.search).has('tags')) {
-					let param = decodeURIComponent(new URLSearchParams(location.search).toString());
+					let param = new URLSearchParams(location.search);
 					const pages = document.getElementsByClassName('pages')[0].children;
 					for (let i = 0; i < pages.length; i++) {
 						for (let j = 0; j < pages[i].children.length; j++) {
-							const href = pages[i].children[j].href.slice(-1);
-							param = param.replace(/.page../, '');
-							pages[i].children[j].href = `/books?${param}&page=${href}`;
+							param.set('page', pages[i].children[j].href.slice(-1));
+							pages[i].children[j].href = `/books?${param.toString()}`;
 						}
 					}
 				}
