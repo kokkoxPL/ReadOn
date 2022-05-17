@@ -40,7 +40,7 @@ const is_admin = (req, res, next) => {
     }
 };
 
-const get_admin = (req, res) => {
+const get_admin = (req, res, next) => {
     Book.find()
         .sort({ title: 1 })
         .then((result) => res.render("admin", { books: result }))
@@ -65,14 +65,14 @@ const post_admin_login = (req, res) => {
     res.redirect("/admin");
 };
 
-const get_admin_new_book = (req, res) => {
+const get_admin_new_book = (req, res, next) => {
     Tag.find()
         .sort({ name: 1 })
         .then((result) => res.render("adminNew", { msg: req.msg, tags: result }))
         .catch((err) => next(err));
 };
 
-const post_admin_new_book = async (req, res) => {
+const post_admin_new_book = async (req, res, next) => {
     const data = req.body;
 
     if (req.file) {
@@ -94,13 +94,13 @@ const post_admin_new_book = async (req, res) => {
         .catch((err) => next(err));
 };
 
-const get_admin_edit_books = (req, res) => {
+const get_admin_edit_books = (req, res, next) => {
     Book.find()
         .then((result) => res.render("adminEdit", { books: result, msg: req.msg }))
         .catch((err) => next(err));
 };
 
-const get_admin_edit_id_book = (req, res) => {
+const get_admin_edit_id_book = (req, res, next) => {
     Book.findById(req.params.id)
         .then((result) => {
             Tag.find()
@@ -111,7 +111,7 @@ const get_admin_edit_id_book = (req, res) => {
         .catch((err) => next(err));
 };
 
-const post_admin_edit_id_book = async (req, res) => {
+const post_admin_edit_id_book = async (req, res, next) => {
     const data = req.body;
 
     if (req.file) {
@@ -135,16 +135,16 @@ const post_admin_edit_id_book = async (req, res) => {
                 });
             }
         })
-        .catch((err) => res.render("404", { err }));
+        .catch((err) => next(err));
 };
 
-const get_admin_delete_book = (req, res) => {
+const get_admin_delete_book = (req, res, next) => {
     Book.find()
         .then((result) => res.render("adminDelete", { books: result }))
         .catch((err) => next(err));
 };
 
-const post_admin_delete_book = (req, res) => {
+const post_admin_delete_book = (req, res, next) => {
     Book.findById(req.body.id).then((result) => {
         if (result.imgDeleteHash) {
             deleteImageFromImgur(result.imgDeleteHash).then((result) => {
@@ -158,11 +158,13 @@ const post_admin_delete_book = (req, res) => {
     });
 };
 
-const get_admin_tags = (req, res) => {
-    Tag.find().then((results) => res.render("tagNew", { tags: results }));
+const get_admin_tags = (req, res, next) => {
+    Tag.find()
+        .then((results) => res.render("tagNew", { tags: results }))
+        .catch((err) => next(err));
 };
 
-const post_admin_tags = (req, res) => {
+const post_admin_tags = (req, res, next) => {
     const { tagName } = req.body;
     const tag = new Tag({ name: tagName });
     tag.save()
@@ -170,14 +172,14 @@ const post_admin_tags = (req, res) => {
         .catch((err) => next(err));
 };
 
-const post_admin_tags_delete = (req, res) => {
+const post_admin_tags_delete = (req, res, next) => {
     const { id } = req.body;
     Tag.findByIdAndDelete(id)
         .then(() => res.redirect("/admin/tags"))
         .catch((err) => next(err));
 };
 
-const get_admin_error_logs = (req, res) => {
+const get_admin_error_logs = (req, res, next) => {
     Error.find()
         .then((result) => res.render("errors", { errors: result }))
         .catch((err) => next(err));

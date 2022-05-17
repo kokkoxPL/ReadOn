@@ -49,25 +49,32 @@ const get_index = async (req, res, next) => {
 };
 
 const post_books = (req, res) => {
-    res.redirect(`/books?search=${encodeURIComponent(req.body.title)}&tags=${req.body.tags != null ? req.body.tags : "none"}`);
+    const params = new URLSearchParams(req.body);
+
+    if (req.body.tags === undefined)
+        params.set("tags", "none");
+
+    res.redirect(`/books?${decodeURIComponent(params)}`);
 };
 
-const get_books_title = async (req, res) => {
+const get_books_title = async (req, res, next) => {
     const currentPage = parseInt(req.query.page) || 1;
-    const reg = new RegExp(req.query.search.replace(/[^\w\s]/gi, ''), "i");
 
-    let search = { $or: [{ title: { $in: reg } }, { author: { $in: reg } }] };
+    try {
+        const reg = new RegExp(req.query.search, "i");
 
-    if (req.query.tags != "none")
-        Object.assign(search, { tags: { $all: req.query.tags.split(",") } });
+        let search = { $or: [{ title: { $in: reg } }, { author: { $in: reg } }] };
 
-    find(currentPage, search)
-        .then((result) => res.render("index", { books: result.books, tags: result.tags, pages: Math.ceil(result.bookNumber / 12), currentPage }))
-        .catch((err) => next(err));
+        if (req.query.tags != "none")
+            Object.assign(search, { tags: { $all: req.query.tags.split(",") } });
 
+        find(currentPage, search).then((result) => res.render("index", { books: result.books, tags: result.tags, pages: Math.ceil(result.bookNumber / 12), currentPage }))
+    } catch (err) {
+        next(err);
+    }
 };
 
-const get_book_id = (req, res) => {
+const get_book_id = (req, res, next) => {
     Book.findById(req.params.id)
         .then((result) => res.render("book", { book: result }))
         .catch((err) => next(err));
