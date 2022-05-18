@@ -31,9 +31,9 @@
                                         background-repeat: no-repeat;"></div>
                 </div>
             <div class="content">
-                 <h1><span>Tytuł:</span> <%= book.title %></h1>
-                <h2><span>Autor:</span> <%= book.author %></h2>
-                <h2><span>Kategoria:</span> <%= book.tags %></h2>
+                 <h1><span>Tytuł:</span> <span class ="edited"><%= book.title %></span></h1>
+                <h2><span>Autor:</span> <span class ="edited"><%= book.author %></span></h2>
+                <h2><span>Kategoria:</span> <span class ="edited" id="categories"><%= book.tags %></span></h2>
                 <p class="desc"> <span>Opis :</span> <%= book.desc %></p>
             </div>
         </div>

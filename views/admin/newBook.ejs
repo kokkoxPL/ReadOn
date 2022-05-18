@@ -39,7 +39,7 @@
                     <input type="text" name="title" placeholder="Title" /><br />
                     <input type="text" name="author" placeholder="Author" /><br />
                     <textarea name="desc" cols="30" rows="10" placeholder="Description"></textarea><br />
-                    <input type="file" name="img" /><br />
+                    <input type="file" name="img" accept=".jpg,.jpeg,.png,.gif,.apng,.tiff" /><br />
                     <div class="tags">
                         <% tags.forEach(tag => { %>
                         <label for="<%= tag.name %>"

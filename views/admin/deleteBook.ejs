@@ -61,9 +61,7 @@
         <script>
             function burn(id) {
                 if (
-                    confirm(
-                        "are you really sure? like really, we wont be able to recover it anymore and youre gonna lose a book you loser"
-                    )
+                    confirm("Are you sure?")
                 ) {
                     fetch("/admin/delete", {
                         method: "POST",

@@ -45,9 +45,9 @@ app.use((err, req, res, next) => {
     console.log(err);
     const error = new Error({ path: req.originalUrl, err });
     error.save();
-    res.status(404).render("404", { msg: err.message });
+    res.status(500).render("errorPage", { msg: err.message, code: 500 });
 });
 
 app.use((req, res) => {
-    res.status(404).render("404", { msg: "Nie znaleziono strony" });
+    res.status(404).render("errorPage", { msg: "Nie znaleziono strony", code: 404 });
 });

@@ -43,7 +43,7 @@ const is_admin = (req, res, next) => {
 const get_admin = (req, res, next) => {
     Book.find()
         .sort({ title: 1 })
-        .then((result) => res.render("admin", { books: result }))
+        .then((result) => res.render("admin/home", { books: result }))
         .catch((err) => next(err));
 };
 
@@ -51,11 +51,11 @@ const get_admin_login = (req, res) => {
     if (req.isVerified)
         res.redirect("/admin");
     else
-        res.render("login");
+        res.render("admin/login");
 };
 
 const post_admin_login = (req, res) => {
-    const { password } = req.body;
+    const password = req.body["password"];
     if (!password)
         return res.sendStatus(400);
     if (password !== process.env.ADMIN_PASSWORD)
@@ -68,7 +68,7 @@ const post_admin_login = (req, res) => {
 const get_admin_new_book = (req, res, next) => {
     Tag.find()
         .sort({ name: 1 })
-        .then((result) => res.render("adminNew", { msg: req.msg, tags: result }))
+        .then((result) => res.render("admin/newBook", { msg: req.msg, tags: result }))
         .catch((err) => next(err));
 };
 
@@ -96,7 +96,7 @@ const post_admin_new_book = async (req, res, next) => {
 
 const get_admin_edit_books = (req, res, next) => {
     Book.find()
-        .then((result) => res.render("adminEdit", { books: result, msg: req.msg }))
+        .then((result) => res.render("admin/editBookSelector", { books: result, msg: req.msg }))
         .catch((err) => next(err));
 };
 
@@ -105,7 +105,7 @@ const get_admin_edit_id_book = (req, res, next) => {
         .then((result) => {
             Tag.find()
                 .sort({ name: 1 })
-                .then((resultTags) => res.render("adminEditBook", { msg: req.msg, book: result, tags: resultTags }))
+                .then((resultTags) => res.render("admin/editBook", { msg: req.msg, book: result, tags: resultTags }))
                 .catch((err) => next(err));
         })
         .catch((err) => next(err));
@@ -140,7 +140,7 @@ const post_admin_edit_id_book = async (req, res, next) => {
 
 const get_admin_delete_book = (req, res, next) => {
     Book.find()
-        .then((result) => res.render("adminDelete", { books: result }))
+        .then((result) => res.render("admin/deleteBook", { books: result }))
         .catch((err) => next(err));
 };
 
@@ -160,7 +160,7 @@ const post_admin_delete_book = (req, res, next) => {
 
 const get_admin_tags = (req, res, next) => {
     Tag.find()
-        .then((results) => res.render("tagNew", { tags: results }))
+        .then((results) => res.render("admin/tags", { tags: results }))
         .catch((err) => next(err));
 };
 
@@ -181,7 +181,7 @@ const post_admin_tags_delete = (req, res, next) => {
 
 const get_admin_error_logs = (req, res, next) => {
     Error.find()
-        .then((result) => res.render("errors", { errors: result }))
+        .then((result) => res.render("admin/errors", { errors: result }))
         .catch((err) => next(err));
 };
 
@@ -189,6 +189,12 @@ const get_admin_logout = (req, res) => {
     res.clearCookie("access_token");
     res.redirect("/");
 };
+
+const clear_logs = (req, res) => {
+    Error.deleteMany().then(() => {
+        res.redirect("/admin/logs")
+    })
+}
 
 module.exports = {
     is_admin,
@@ -207,4 +213,5 @@ module.exports = {
     post_admin_tags_delete,
     get_admin_error_logs,
     get_admin_logout,
+    clear_logs
 };

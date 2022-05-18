@@ -14,8 +14,22 @@ body {
     overflow-x: hidden;
 }
 
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: white;
+}
+
+::-webkit-scrollbar-thumb{
+    background: rgb(122, 71, 55);
+
+    border-radius: 10px;
+}
+
 span {
-    background: rgb(123, 31, 31);
+    background: crimson;
     padding: 10px 20px;
     border-radius: 15px;
     color: white;
@@ -57,7 +71,7 @@ input {
 input[type="text"] {
     border: none;
     background: none;
-    border-bottom: 1px solid purple;
+    border-bottom: 1px solid #2B3039ff;
     padding: 6px 10px;
     font-size: 18px;
     transition: 0.5s;
@@ -72,14 +86,14 @@ input[type="submit"] {
     font-size: 18px;
     background: none;
     border: none;
-    border: 1px solid purple;
+    border: 1px solid #2B3039ff;
     padding: 10px 30px;
 
     transition: 0.5s;
 }
 
 input[type="submit"]:hover {
-    background: purple;
+    background: #2B3039ff;
     color: white;
     border-radius: 0;
 }
@@ -88,7 +102,7 @@ input[type="button"] {
     font-size: 18px;
     background: none;
     border: none;
-    border: 1px solid purple;
+    border: 1px solid #2B3039ff;
     padding: 10px 30px;
 
     transition: 0.5s;
@@ -99,7 +113,7 @@ input[type="checkbox"] {
 }
 
 input[type="button"]:hover {
-    background: purple;
+    background: #2B3039ff;
     color: white;
     border-radius: 0;
 }
@@ -119,11 +133,11 @@ label {
 }
 
 label:hover {
-    background: rgb(36, 0, 104);
+    background: #8B4513;
 }
 
 .selected {
-    background: rgb(36, 0, 104);
+    background: #8B4513;
 }
 
 .book {
@@ -135,7 +149,7 @@ label:hover {
 }
 
 .book:hover {
-    background: rgb(71, 7, 71);
+    background: #093a29;
     border-radius: 20px 20px 0px 0px;
     color: white;
     box-shadow: 0px 0px 10px 0px black;
@@ -469,7 +483,7 @@ img {
         position: absolute;
         top: 100px;
         right: 0%;
-        background: rgba(43, 48, 57, 0.9);
+        background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
 
         border-radius: 10px 0px 0px 10px;
     }
@@ -483,7 +497,7 @@ img {
     }
 
     .menu a {
-        color: white;
+        color: #CFB53B;;
         margin: auto;
     }
 

@@ -43,6 +43,9 @@ const find = async (page, search) => {
 
 const get_index = async (req, res, next) => {
     const currentPage = parseInt(req.query.page) || 1;
+    if (currentPage < 0) {
+        return res.redirect("/?page=0")
+    }
     find(currentPage, {})
         .then((result) => res.render("index", { books: result.books, tags: result.tags, pages: Math.ceil(result.bookNumber / 12), currentPage }))
         .catch((err) => next(err));
@@ -61,11 +64,11 @@ const get_books_title = async (req, res, next) => {
     const currentPage = parseInt(req.query.page) || 1;
 
     try {
-        const reg = new RegExp(req.query.search, "i");
+        const reg = new RegExp(req.query.search.replace(/\W/g, ''), "i");
 
         let search = { $or: [{ title: { $in: reg } }, { author: { $in: reg } }] };
 
-        if (req.query.tags != "none")
+        if (req.query.tags && req.query.tags != "none")
             Object.assign(search, { tags: { $all: req.query.tags.split(",") } });
 
         find(currentPage, search).then((result) => res.render("index", { books: result.books, tags: result.tags, pages: Math.ceil(result.bookNumber / 12), currentPage }))

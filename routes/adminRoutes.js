@@ -37,4 +37,6 @@ router.get("/logs", adminController.get_admin_error_logs);
 
 router.get("/logout", adminController.get_admin_logout);
 
+router.post("/clearLogs", adminController.clear_logs)
+
 module.exports = router;

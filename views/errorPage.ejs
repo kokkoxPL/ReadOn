@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title><%= code %></title>
+		<style>
+			body {
+				text-align: center;
+				font-family:Verdana, Geneva, Tahoma, sans-serif;
+			}
+			h1 {
+				font-size: 500%;
+			}
+			a {
+				color: blue;
+			}
+			@media (prefers-color-scheme: dark) {
+				body {
+					background-color: #222;
+					color: white;
+				}
+				a {
+					color: lightblue;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<h1>👺 <%= code %> 👺</h1>
+		<h2><%= msg %></h2>
+		<h2><a href="/">Strona główna</a></h2>
+	</body>
+</html>

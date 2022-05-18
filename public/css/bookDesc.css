@@ -73,7 +73,7 @@ a {
     left: -105%;
     top: -10%;
 
-    background: linear-gradient(to right, #493240, #b4006c);
+    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
 
     background-repeat: no-repeat;
     background-size: cover;
@@ -89,7 +89,21 @@ span {
     font-weight: 700;
     border-bottom: 1px solid rgb(148, 0, 111);
     color: purple;
-    padding: 5px 10px;
+    padding: 1px 10px;
+}
+
+.edited{
+    color: black;
+    border: none;
+}
+#categories{
+    font-weight: 500;
+    border: none;
+    color: black;
+}
+
+p{
+    text-align: justify;
 }
 
 @media screen and (min-width:1550px) {
@@ -101,6 +115,7 @@ span {
     }
 
     p {
+        width: 95%;
         line-height: 25px;
         font-size: 20px;
         font-weight: 500;
@@ -131,10 +146,11 @@ span {
     }
 
     p {
-        line-height: 30px;
+        width: 95%;
+        line-height: 25px;
         font-size: 20px;
         font-weight: 500;
-    }
+    }   
 
     h1,
     h2 {
