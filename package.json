@@ -1,6 +1,6 @@
 {
     "name": "readon",
-    "version": "0.4.7",
+    "version": "0.6.0",
     "description": "Library",
     "main": "app.js",
     "scripts": {

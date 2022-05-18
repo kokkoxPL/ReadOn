@@ -92,17 +92,17 @@ span {
     padding: 1px 10px;
 }
 
-.edited{
+.edited {
     color: black;
     border: none;
 }
-#categories{
+#categories {
     font-weight: 500;
     border: none;
     color: black;
 }
 
-p{
+p {
     text-align: justify;
 }
 
@@ -158,7 +158,6 @@ p{
         line-height: 40px;
     }
 
-
     .main {
         width: 100%;
         height: fit-content;
@@ -192,7 +191,6 @@ p{
         font-weight: 500;
     }
 
-
     .main {
         width: 100%;
         height: fit-content;
@@ -225,7 +223,6 @@ p{
         width: 80%;
         margin: auto;
     }
-
 
     .main {
         width: 100%;

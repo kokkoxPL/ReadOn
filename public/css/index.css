@@ -174,7 +174,6 @@ img {
     aspect-ratio: 9/13;
 }
 
-
 .header {
     background: url("/images/mainBackground.webp");
     background-repeat: no-repeat;
@@ -368,6 +367,7 @@ img {
 }
 
 @media screen and (max-width:1599px) {
+
     .bookList {
         display: grid;
         grid-template-columns: repeat(4, 300px);
@@ -389,13 +389,13 @@ img {
         border-radius: 20px 20px 0px 0px;
     }
 
-
     .toggleMenu {
         display: none;
     }
 }
 
 @media screen and (max-width:1349px) {
+
     .bookList {
         display: grid;
         grid-template-columns: repeat(4, 280px);
@@ -413,7 +413,6 @@ img {
         text-align: center;
         font-size: 32px;
     }
-
 }
 
 @media screen and (max-width:1249px) {
