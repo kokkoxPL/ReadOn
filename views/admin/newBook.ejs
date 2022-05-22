@@ -11,21 +11,34 @@
     </head>
     <body>
         <div class="header">
-            <div class="menu">
-                <ul>
-                    <li><a href="/admin">Strona główna</a></li>
-
-                    <li><a href="/admin/new">Dodaj książkę</a></li>
-
-                    <li><a href="/admin/edit">Edytuj książkę</a></li>
-
-                    <li><a href="/admin/delete">Usuń książkę</a></li>
-
-                    <li><a href="/admin/tags">Zarządzaj tagami</a></li>
-
-                    <li><a href="/admin/logout">Wyloguj się</a></li>
-                </ul>
+            <div class="icon-menu" id="menuIcon">
+                <div class="mEl1, mEl"></div>
+                <div class="mEl2, mEl"></div>
+                <div class="mEl3"></div>
             </div>
+            <div class="menu">
+                <div class="menuList" id="menuList" style="display: none">
+                    <div class="toggleMenu">
+                        <ul>
+                            <li><a href="/">Strona główna</a></li>
+
+                            <li><a href="/admin/new">Dodaj książkę</a></li>
+
+                            <li><a href="/admin/edit">Edytuj książkę</a></li>
+
+                            <li><a href="/admin/delete">Usuń książkę</a></li>
+
+                            <li><a href="/admin/tags">Zarządzaj tagami</a></li>
+
+                            <li><a href="/admin/logout">Wyloguj się</a></li>
+                        </ul>
+                    </div>
+                    <div class="border"></div>
+                    <div class="menuChild"></div>
+                </div>
+            </div>
+
+            <script src="/js/menuAnimation.js"></script>
 
             <div class="header-content">
                 <% if (msg) { %>

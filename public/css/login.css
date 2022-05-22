@@ -20,7 +20,7 @@ body {
     position: absolute;
     top: -8px;
     left: -8px;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 .background{

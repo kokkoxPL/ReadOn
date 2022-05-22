@@ -1,66 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>READ ON!</title>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>READ ON!</title>
 
-		<link rel="stylesheet" href="/css/index.css" />
-	</head>
-	<body>
-		<div class="header">
-			<div class="menu">
-				<ul>
-					<li><a href="/">Strona główna</a></li>
+        <link rel="stylesheet" href="/css/index.css" />
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.js"></script>
+    </head>
+    <body>
+        <div class="header">
+            <div class="icon-menu" id="menuIcon">
+                <div class="mEl1, mEl"></div>
+                <div class="mEl2, mEl"></div>
+                <div class="mEl3"></div>
+            </div>
+            <div class="menu">
+                <div class="menuList" id="menuList" style="display: none">
+                    <div class="toggleMenu">
+                        <ul>
+                            <li><a href="/">Strona główna</a></li>
 
-					<li><a href="/admin/new">Dodaj książkę</a></li>
+                            <li><a href="/admin/new">Dodaj książkę</a></li>
 
-					<li><a href="/admin/edit">Edytuj książkę</a></li>
-					
-					<li><a href="/admin/delete">Usuń książkę</a></li>
+                            <li><a href="/admin/edit">Edytuj książkę</a></li>
 
-					<li><a href="/admin/tags">Zarządzaj tagami</a></li>
+                            <li><a href="/admin/delete">Usuń książkę</a></li>
 
-					<li><a href="/admin/logout">Wyloguj się</a></li>
-				</ul>
-			</div>
+                            <li><a href="/admin/tags">Zarządzaj tagami</a></li>
 
-			<div class="header-content">
-				<div class="title">
-					<h2>READ <span>ON!</span></h1>
-				</div>
-				<div class="title-content">
-					<p id="titleText"></p>
-				</div>
-			</div>
-		</div>
+                            <li><a href="/admin/logout">Wyloguj się</a></li>
+                        </ul>
+                    </div>
+                    <div class="border"></div>
+                    <div class="menuChild"></div>
+                </div>
+            </div>
 
-		<div class="main">
-			<p class="textMain">Lista dostępnych książek</p>
-			<div class="bookList">
-				<% books.forEach(book => { %>
-				<div class="book" id="book">
-					<div class="image" id="image">
-						<img src="<%= book.imgLink %>" class="img" />
-					</div>
+            <div class="header-content">
+                <div class="title">
+                    <h2 id="readText">READ <span id="onText">ON!</span></h2>
+                </div>
+                <div class="title-content">
+                    <p id="titleText"></p>
+                </div>
+            </div>
+        </div>
+        <script src="/js/menuAnimation.js"></script>
+        <div class="main">
+            <p class="textMain">Lista dostępnych książek</p>
+            <div class="bookList">
+                <% books.forEach(book => { %>
+                <div class="book" id="book">
+                    <div class="image" id="image">
+                        <img src="<%= book.imgLink %>" class="img" />
+                    </div>
 
-					<div class="book-content">
-						<div class="book-title" id="bookTitle">
-							<p><%= book.title %></p>
-						</div>
+                    <div class="book-content">
+                        <div class="book-title" id="bookTitle">
+                            <p><%= book.title %></p>
+                        </div>
 
-						<div class="author" id="author">
-							<p><%= book.author %></p>
-						</div>
-						<div class="description" style="display: none">
-							<p id="bookDesc" class="bookDesc"><%= book.desc %></p>
-						</div>
-					</div>
-				</div>
-				<% });%>
-			</div>
-		</div>
-		<script src="/js/index.js"></script>
-	</body>
+                        <div class="author" id="author">
+                            <p><%= book.author %></p>
+                        </div>
+                        <div class="description" style="display: none">
+                            <p id="bookDesc" class="bookDesc"><%= book.desc %></p>
+                        </div>
+                    </div>
+                </div>
+                <% });%>
+            </div>
+        </div>
+        <script src="/js/index.js"></script>
+    </body>
 </html>

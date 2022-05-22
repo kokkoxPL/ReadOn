@@ -5,36 +5,49 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title><%= book.author %> - <%= book.title %></title>
-        <link rel="stylesheet" href="/css/bookDesc.css">
+        <link rel="stylesheet" href="/css/bookDesc.css" />
 
         <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.js"></script>
         <script src="/js/bookDesc.js"></script>
     </head>
     <body>
-		<div class="header">
-			<div class="menu">
-				<ul>
-					<li><a href="/admin/login">Zaloguj się</a></li>
+        <div class="header">
+            <!-- <i class="icon-menu" id="menuIcon"></i> -->
+            <div class="icon-menu" id="menuIcon">
+                <div class="mEl1, mEl"></div>
+                <div class="mEl2, mEl"></div>
+                <div class="mEl3"></div>
+            </div>
+            <div class="menu">
+                <div class="menuList" id="menuList" style="display: none">
+                    <div class="toggleMenu">
+                        <ul>
+                            <li><a href="/">Strona główna</a></li>
 
-					<li><a href="/">Strona główna</a></li>
-				</ul>
-			</div>
-			</div>
-		</div>
-
-		<div class="main" id="main">
-            <div class="toggle" id="toggle"></div>
-              <div class="image">
-                                <div id="image" 
-                                style= "background: url('<%= book.imgLink %>');
-                                        background-size: cover;
-                                        background-repeat: no-repeat;"></div>
+                            <li><a href="/admin/login">Zaloguj się</a></li>
+                        </ul>
+                    </div>
+                    <div class="border"></div>
+                    <div class="menuChild"></div>
                 </div>
+            </div>
+        </div>
+
+        <script src="/js/menuAnimation.js"></script>
+
+        <div class="main" id="main">
+            <div class="toggle" id="toggle"></div>
+            <div class="image">
+                <div
+                    id="image"
+                    style="background: url('<%= book.imgLink %>'); background-size: cover; background-repeat: no-repeat"
+                ></div>
+            </div>
             <div class="content">
-                 <h1><span>Tytuł:</span> <span class ="edited"><%= book.title %></span></h1>
-                <h2><span>Autor:</span> <span class ="edited"><%= book.author %></span></h2>
-                <h2><span>Kategoria:</span> <span class ="edited" id="categories"><%= book.tags %></span></h2>
-                <p class="desc"> <span>Opis :</span> <%= book.desc %></p>
+                <h1><span>Tytuł:</span> <span class="edited"><%= book.title %></span></h1>
+                <h2><span>Autor:</span> <span class="edited"><%= book.author %></span></h2>
+                <h2><span>Kategoria:</span> <span class="edited" id="categories"><%= book.tags %></span></h2>
+                <p class="desc"><span>Opis :</span> <%= book.desc %></p>
             </div>
         </div>
     </body>

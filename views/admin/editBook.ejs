@@ -7,32 +7,45 @@
         <title>Edytuj książkę</title>
         <link rel="stylesheet" href="/css/index.css" />
         <link rel="stylesheet" href="/css/admin.css" />
-		<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.js"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.js"></script>
     </head>
     <body>
         <div class="header">
-            <div class="menu">
-                <ul>
-                    <li><a href="/">Strona główna</a></li>
-
-                    <li><a href="/admin/new">Dodaj książkę</a></li>
-
-                    <li><a href="/admin/edit">Edytuj książkę</a></li>
-
-                    <li><a href="/admin/delete">Usuń książkę</a></li>
-
-					<li><a href="/admin/tags">Zarządzaj tagami</a></li>
-
-					<li><a href="/admin/logout">Wyloguj się</a></li>
-                </ul>
+            <div class="icon-menu" id="menuIcon">
+                <div class="mEl1, mEl"></div>
+                <div class="mEl2, mEl"></div>
+                <div class="mEl3"></div>
             </div>
+            <div class="menu">
+                <div class="menuList" id="menuList" style="display: none">
+                    <div class="toggleMenu">
+                        <ul>
+                            <li><a href="/">Strona główna</a></li>
+
+                            <li><a href="/admin/new">Dodaj książkę</a></li>
+
+                            <li><a href="/admin/edit">Edytuj książkę</a></li>
+
+                            <li><a href="/admin/delete">Usuń książkę</a></li>
+
+                            <li><a href="/admin/tags">Zarządzaj tagami</a></li>
+
+                            <li><a href="/admin/logout">Wyloguj się</a></li>
+                        </ul>
+                    </div>
+                    <div class="border"></div>
+                    <div class="menuChild"></div>
+                </div>
+            </div>
+
+            <script src="/js/menuAnimation.js"></script>
 
             <div class="header-content">
                 <% if (msg) { %>
-                    <h1><%= msg %></h1>
-                    <script>
-                        window.history.pushState({}, document.title, window.location.pathname);
-                    </script>
+                <h1><%= msg %></h1>
+                <script>
+                    window.history.pushState({}, document.title, window.location.pathname);
+                </script>
                 <% } %>
                 <h1>Zmień <%= book.title %></h1>
                 <form action="/admin/edit/<%= book._id %>" method="post" enctype="multipart/form-data">
@@ -42,10 +55,22 @@
                     <input type="file" name="img" accept=".jpg,.jpeg,.png,.gif,.apng,.tiff" /><br />
                     <div class="tags">
                         <% tags.forEach(tag => { %>
-                            <label for="<%= tag.name %>"><%= tag.name %>
-                                <input type="checkbox" class="tag" name="tags" id="<%= tag.name %>" value="<%= tag.name %>"<% if(book.tags.includes(tag.name)) { %> checked <% } %> />
-                            </label>
-                            <br />
+                        <label for="<%= tag.name %>"
+                            ><%= tag.name %>
+                            <input
+                                type="checkbox"
+                                class="tag"
+                                name="tags"
+                                id="<%= tag.name %>"
+                                value="<%= tag.name %>"
+                                <%
+                                if(book.tags.includes(tag.name))
+                                {
+                                %
+                            />
+                            checked <% } %> />
+                        </label>
+                        <br />
                         <% }) %>
                     </div>
                     <button type="submit">Zmień Książkę</button>
@@ -53,17 +78,17 @@
             </div>
         </div>
         <script>
-            $(document).ready(function(){
-                $(".tag").each(function() {
+            $(document).ready(function () {
+                $(".tag").each(function () {
                     if (this.checked) {
                         $(this).parent().addClass("selected");
                     }
-                })
+                });
 
-                $(".tag").click(function() {
+                $(".tag").click(function () {
                     $(this).parent().toggleClass("selected");
                 });
-            })
+            });
         </script>
     </body>
 </html>

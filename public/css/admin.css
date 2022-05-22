@@ -28,7 +28,7 @@ h1{
     margin: auto;
     text-align: center;
     position: absolute;
-    top: 30%;
+    top: 10%;
 }
 
 span {
@@ -50,16 +50,22 @@ a {
     color: unset;
 }
 
-.menu {
-    position: absolute;
-    right: 0;
-    width: 100%;
-    height: 100px;
-    background: rgba(255, 255, 255, 0.2);
+.menu a {
+    text-decoration: none;
+    color: #996515;
+    font-size: 30px;
+    font-weight: 700;
+    transition: 0.5s;
+    padding: 10px 20px;
+
+}
+
+.menu a:hover {
+    letter-spacing: 3px;
+    color: rgb(255, 255, 255);
 }
 
 .menu ul {
-    display: flex;
     position: absolute;
     right: 2%;
 }
@@ -69,23 +75,65 @@ a {
     list-style: none;
 }
 
-.menu a {
-    text-decoration: none;
-    color: black;
-    font-size: 20px;
-    font-weight: 700;
-    transition: 0.5s;
-    padding: 10px 20px;
+.icon-menu {
+    font-size: 50px;
+    padding: 20px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #996515;
+
+    z-index: 2;
+
+    transition: all 0.5s;
 }
 
-.menu a:hover {
-    letter-spacing: 3px;
-    color: rgb(66, 21, 21);
+.menuChild{
+    /* font-size: 60px;
+    text-align: center;
+
+    position: relative;
+    top: 50%;
+    transform: translateY(-20%); */
+
+
+    width: 59%;
+    height: 100%;
+    position: absolute;
+    top:0;
+    right: 0;
+    background: url("https://zieloniwpodrozy.pl/wp-content/uploads/2015/06/Zdj%C4%99cie-wykonane-o-%C5%9Bwicie-na-Po%C5%82oninie-Cary%C5%84skiej-podczas-naszej-kr%C3%B3tkiej-wycieczki-w-Bieszczady..jpg");
+    background-position: 51%;
+    background-repeat: no-repeat;
+    background-size: cover ;
+}
+.border{
+    width: 100%;
+    height: 90%;
+    background-color: #996515;
 }
 
-.menu li:hover {
-    border-bottom: 2px solid white;
-    margin-bottom: 10px;
+.menuList {
+    display: grid;
+    grid-template-columns: 40% 2px 59%;
+    width: 100%;
+    height: 100%;
+    padding: 50px 10px;
+    position: absolute;
+    top: 0;
+    right: 0%;
+    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+
+    z-index: 1;
+    border-radius: 10px 0px 0px 10px;
+}
+
+.menuList ul{
+    text-align: center;
+    position: relative;
+    top:50%;
+    transform: translateY(-70%);
+
 }
 
 input[type="text"], input[type="file"], textarea{

@@ -35,7 +35,7 @@ $(document).ready(function () {
             transition: '0.5s'
         })
         $('span').css({
-            color: 'purple',
+            color: '#996515',
             borderColor: 'black'
         })
 

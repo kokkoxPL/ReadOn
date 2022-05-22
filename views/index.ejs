@@ -1,191 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>READ ON!</title>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>READ ON!</title>
 
-		<link rel="stylesheet" href="/css/index.css" />
-		<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.js"></script>
+        <link rel="stylesheet" href="/css/index.css" />
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.js"></script>
+    </head>
+    <body>
+        <div class="header">
+            <div class="icon-menu" id="menuIcon">
+                <div class="mEl1, mEl"></div>
+                <div class="mEl2, mEl"></div>
+                <div class="mEl3"></div>
+            </div>
+            <div class="menu">
+                <div class="menuList" id="menuList" style="display: none">
+                    <div class="toggleMenu">
+                        <ul>
+                            <li><a href="/">Strona główna</a></li>
 
-		<link rel="stylesheet" href="/fontello/css/fontello.css" />
-	</head>
-	<body>
-		<div class="header">
-			<div class="menu">
-				<div class="toggleMenu">
-					<i class="icon-menu" id="menuIcon"></i>
-				</div>
-				<div class="menuList" id="menuList">
-					<ul>
-						<li><a href="/admin/login">Zaloguj się</a></li>
+                            <li><a href="/admin/login">Zaloguj się</a></li>
+                        </ul>
+                    </div>
+                    <div class="border"></div>
+                    <div class="menuChild"></div>
+                </div>
+            </div>
 
-						<li><a href="/">Strona główna</a></li>
-					</ul>
-				</div>
-			</div>
+            <div class="header-content">
+                <div class="title">
+                    <h2 id="readText">READ <span id="onText">ON!</span></h2>
+                </div>
+                <div class="title-content">
+                    <p id="titleText"></p>
+                </div>
+            </div>
+        </div>
 
-			<div class="header-content">
-				<div class="title">
-					<h2 id="readText">READ <span id="onText">ON!</span></h1>
-				</div>
-				<div class="title-content">
-					<p id="titleText"></p>
-				</div>
-			</div>
-		</div>
+        <div class="main">
+            <p class="textMain">Lista dostępnych książek</p>
+            <form style="text-align: center" action="/books" method="post">
+                <input type="text" name="search" placeholder="Wpisz nazwę książki" id="bookName" /><br />
 
-		<div class="main">
-			<p class="textMain">Lista dostępnych książek</p>
-			<form style="text-align: center;" action="/books" method="post">
-				<input type="text" name="search" placeholder="Wpisz nazwę książki" id="bookName"/><br>
-	
-				<input type="submit" value="Szukaj" />
-				<input type="button" value="Wybierz kategorię" id="categoryButton"/>
-				<div class="tags" id="tags" style="display: none;">
-					<% tags.forEach(tag => { %>
-					<label for="<%= tag.name %>" ><%= tag.name %><input type="checkbox" name="tags" class="tag" id="<%= tag.name %>" value="<%= tag.name %>"/></label>
-					<% }) %>
-				</div>
-			</form>
+                <input type="submit" value="Szukaj" />
+                <input type="button" value="Wybierz kategorię" id="categoryButton" />
+                <div class="tags" id="tags" style="display: none">
+                    <% tags.forEach(tag => { %>
+                    <label for="<%= tag.name %>"
+                        ><%= tag.name %><input
+                            type="checkbox"
+                            name="tags"
+                            class="tag"
+                            id="<%= tag.name %>"
+                            value="<%= tag.name %>"
+                    /></label>
+                    <% }) %>
+                </div>
+            </form>
 
-			<script>
-				$(document).ready(function(){
-					$("#categoryButton").click(function(){
-						$("#tags").toggle(500);
-					})
-					
-					$(".tag").click(function() {
-						$(this).parent().toggleClass("selected");
-					});
+            <script>
+                $(document).ready(function () {
+                    $("#categoryButton").click(function () {
+                        $("#tags").toggle(500);
+                    });
 
-					$("#bookName").click(function(){
-                            $("#bookName").css({
-							backgroundColor: 'purple',
-							color: 'white'
-						})
-					})
+                    $(".tag").click(function () {
+                        $(this).parent().toggleClass("selected");
+                    });
+                });
+            </script>
 
-					$("#bookName").mouseover(function(){
-						$("#bookName").css({
-						borderColor: 'purple',
-						borderWidth: '1px',
-						borderStyle: 'solid',
-						borderRadius: '10px',
-						color: 'white',
-						transition: '0.5s'
-						})
-					})
+            <script src="/js/menuAnimation.js"></script>
 
-					$(document).ready(function(){
-						$("#menuIcon").click(function(){
-							$("#menuList").toggle(500)
-						})
-					})
-				})
-			</script>
+            <div class="bookList">
+                <% books.forEach(book => { %>
+                <a href="/book/<%= book._id %>">
+                    <div class="book" id="book">
+                        <div class="image" id="image">
+                            <img src="<%= book.imgLink %>" class="img" alt="Book cover" />
+                        </div>
 
-			<div class="bookList">
-				<% books.forEach(book => { %>
-					<a href="/book/<%= book._id %>">
-						<div class="book" id="book">
-							<div class="image" id="image">
-								<img src="<%= book.imgLink %>" class="img" alt="Book cover" />
-							</div>
-			
-							<div class="book-content">
-								<div class="book-title" id="bookTitle">
-									<p><%= book.title %></p>
-								</div>
-			
-								<div class="author" id="author">
-									<p><%= book.author %></p>
-								</div>
-								<div class="description" id="description" style="display: none">
-									<p id="bookDesc" class="bookDesc"><%= book.desc %></p>
-								</div>
+                        <div class="book-content">
+                            <div class="book-title" id="bookTitle">
+                                <p><%= book.title %></p>
+                            </div>
 
-								<div class="category" id="category">
-									<p><%= book.tags.length < 4 ? book.tags : book.tags.slice(0, 3) + ",..."  %></p>
-								</div>
-							</div>
-						</div>
-					</a>
-				<% });%>
-			</div>
+                            <div class="author" id="author">
+                                <p><%= book.author %></p>
+                            </div>
+                            <div class="description" id="description" style="display: none">
+                                <p id="bookDesc" class="bookDesc"><%= book.desc %></p>
+                            </div>
 
-			<div class="pages">
-				<div class="previous">
-					<% if (currentPage != 1) { %>
-						<a href="/?page=<%= 1 %>"><button>&#60;&#60;</button></a>
-						<a href="/?page=<%= currentPage - 1 %>"><button>&#60;</button></a>
-					<% } %>
-				</div>
+                            <div class="category" id="category">
+                                <p><%= book.tags.length < 4 ? book.tags : book.tags.slice(0, 3) + ",..." %></p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <% });%>
+            </div>
 
-				<div class="pagesList">
-					<% if (pages <= 5) {%>
-						<% for (let i = 1; i <= pages; i++) { %> 
-							<a href="/?page=<%= i %>"><button><%= i %></button></a>
-						<% } %>
-					<% } else { %>
-						<% if (currentPage <= 2) { %>
-							<% for (let i = 1; i <= 5; i++) { %> 
-								<a href="/?page=<%= i %>"><button><%= i %></button></a>
-							<% } %>
-						<% } else if(currentPage >= pages - 2) { %>
-							<% for (let i = pages - 4; i <= pages; i++) { %> 
-								<a href="/?page=<%= i %>"><button><%= i %></button></a>
-							<% } %>
-						<% } else { %>
-							<% for (let i = currentPage - 2; i <= currentPage + 2; i++) { %> 
-								<a href="/?page=<%= i %>"><button><%= i %></button></a>
-							<% } %>
-						<% } %> 
-					<% } %>
-				</div>
+            <div class="pages">
+                <div class="previous">
+                    <% if (currentPage != 1) { %>
+                    <a href="/?page=<%= 1 %>"><button>&#60;&#60;</button></a>
+                    <a href="/?page=<%= currentPage - 1 %>"><button>&#60;</button></a>
+                    <% } %>
+                </div>
 
-				<div class="next">
-					<% if (currentPage != pages) { %>
-						<a href="/?page=<%= currentPage + 1 %>"><button>&#62;</button></a>
-						<a href="/?page=<%= pages %>"><button>&#62;&#62;</button></a>
-					<% } %>
-				</div>
-			</div>
+                <div class="pagesList">
+                    <% if (pages <= 5) {%> <% for (let i = 1; i <= pages; i++) { %>
+                    <a href="/?page=<%= i %>"><button><%= i %></button></a>
+                    <% } %> <% } else { %> <% if (currentPage <= 2) { %> <% for (let i = 1; i <= 5; i++) { %>
+                    <a href="/?page=<%= i %>"><button><%= i %></button></a>
+                    <% } %> <% } else if(currentPage >= pages - 2) { %> <% for (let i = pages - 4; i <= pages; i++) { %>
+                    <a href="/?page=<%= i %>"><button><%= i %></button></a>
+                    <% } %> <% } else { %> <% for (let i = currentPage - 2; i <= currentPage + 2; i++) { %>
+                    <a href="/?page=<%= i %>"><button><%= i %></button></a>
+                    <% } %> <% } %> <% } %>
+                </div>
 
-			<script>
-				if (new URLSearchParams(location.search).has('tags')) {
-					let param = new URLSearchParams(location.search);
-					const pages = document.getElementsByClassName('pages')[0].children;
-					for (let i = 0; i < pages.length; i++) {
-						for (let j = 0; j < pages[i].children.length; j++) {
-							param.set('page', pages[i].children[j].href.slice(-1));
-							pages[i].children[j].href = `/books?${param}`;
-						}
-					}
-				}
+                <div class="next">
+                    <% if (currentPage != pages) { %>
+                    <a href="/?page=<%= currentPage + 1 %>"><button>&#62;</button></a>
+                    <a href="/?page=<%= pages %>"><button>&#62;&#62;</button></a>
+                    <% } %>
+                </div>
+            </div>
 
-				if (new URLSearchParams(location.search).toString())
-					var main = document.getElementsByClassName('main')[0].scrollIntoView({behavior: "smooth"});
-			</script>
-		</div>
-		<script src="/js/index.js"></script>
-		<script src="/js/konami.js"></script>
-		<script>
-			new Konami(() => {
-				document.getElementById("readText").innerHTML = "BOOK <span id='onText'>HUB</span>";
-				setTimeout(() => document.getElementById("onText").style.backgroundColor = "#FFA31A", 1);
-				var intro = new Audio("/music/intro.mp3")
-				intro.volume = 0.4;
-				intro.play();
-				intro.onended = () => {
-					var music = new Audio("/music/metal-gear-rising.mp3");
-					music.volume = 0.4;
-					music.play();
-				}
-			})
-		</script>
-	</body>
+            <script>
+                if (new URLSearchParams(location.search).has("tags")) {
+                    let param = new URLSearchParams(location.search);
+                    const pages = document.getElementsByClassName("pages")[0].children;
+                    for (let i = 0; i < pages.length; i++) {
+                        for (let j = 0; j < pages[i].children.length; j++) {
+                            param.set("page", pages[i].children[j].href.slice(-1));
+                            pages[i].children[j].href = `/books?${param}`;
+                        }
+                    }
+                }
+
+                if (new URLSearchParams(location.search).toString())
+                    var main = document.getElementsByClassName("main")[0].scrollIntoView({ behavior: "smooth" });
+            </script>
+        </div>
+        <script src="/js/index.js"></script>
+        <script src="/js/konami.js"></script>
+        <script>
+            new Konami(() => {
+                document.getElementById("readText").innerHTML = "BOOK <span id='onText'>HUB</span>";
+                setTimeout(() => (document.getElementById("onText").style.backgroundColor = "#FFA31A"), 1);
+                var intro = new Audio("/music/intro.mp3");
+                intro.volume = 0.4;
+                intro.play();
+                intro.onended = () => {
+                    var music = new Audio("/music/metal-gear-rising.mp3");
+                    music.volume = 0.4;
+                    music.play();
+                };
+            });
+        </script>
+    </body>
 </html>
 <!--       _                                                 _
        .__(.)< (MEOW)    (Vote Sweden at ESC ⭐ CORNELIA) >(.)__.
