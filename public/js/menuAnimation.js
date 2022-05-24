@@ -3,27 +3,24 @@ $(document).ready(function () {
         var click = $(this).data("clicks");
         $("#menuList").toggle(500);
         if (click) {
-            $("#menuIcon").css({
-                color: "#996515",
-            });
             $("#menuIcon").mouseover(function () {
             $(".mEl").css({
-                    background: "black",
+                    background: "#A0522D",
                     transition: '0.5s'
                 });
 
                 $(".mEl3").css({
-                    background: "black",
+                    background: "#A0522D",
                     transition: '0.5s'
                 });
         });
             $("#menuIcon").mouseout(function () {
                 $(".mEl").css({
-                    background: "#996515",
+                    background: "#A0522D",
                 });
 
                 $(".mEl3").css({
-                    background: "#996515",
+                    background: "#A0522D",
                     transition: '0.5s'
                 });
             });
@@ -43,11 +40,11 @@ $(document).ready(function () {
         });
             $("#menuIcon").mouseout(function () {
                 $(".mEl").css({
-                    background: "black",
+                    background: "#B10000",
                 });
 
                 $(".mEl3").css({
-                    background: "black",
+                    background: "#B10000",
                     transition: '0.5s'
                 });
             });
