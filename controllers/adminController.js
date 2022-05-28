@@ -1,11 +1,11 @@
 const Book = require("../models/book");
 const Tag = require("../models/tag");
 const Error = require("../models/error");
+const User = require("../models/user");
 const fetch = require("node-fetch");
 const formData = require("form-data");
-const crypto = require("crypto");
-
-const hash = (password) => crypto.createHash("sha256").update(password).digest("base64");
+const jwt = require("jsonwebtoken")
+const bcrypt = require("bcrypt");
 
 async function uploadImageToImgur(buffer) {
     const data = new formData();
@@ -33,12 +33,16 @@ async function deleteImageFromImgur(deleteHash) {
 }
 
 const is_admin = (req, res, next) => {
-    if (req.isVerified) {
+    const token = req.cookies.access_token;
+    if (!token)
+        return res.redirect("/admin/login");
+
+    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+        if (err)
+            return res.redirect("/admin/login");
         next();
-    } else {
-        res.redirect("/admin/login");
-    }
-};
+    });
+}
 
 const get_admin = (req, res, next) => {
     Book.find()
@@ -47,22 +51,28 @@ const get_admin = (req, res, next) => {
         .catch((err) => next(err));
 };
 
-const get_admin_login = (req, res) => {
-    if (req.isVerified)
-        res.redirect("/admin");
-    else
-        res.render("admin/login");
+const get_admin_login = (req, res, next) => {
+    const token = req.cookies.access_token;
+    if (!token)
+        return res.render("admin/login");
+
+    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+        if (!err)
+            return res.redirect("/admin");
+    });
 };
 
 const post_admin_login = (req, res) => {
-    const password = req.body["password"];
-    if (!password)
-        return res.sendStatus(400);
-    if (password !== process.env.ADMIN_PASSWORD)
-        return res.sendStatus(401);
-
-    res.cookie("access_token", hash(password));
-    res.redirect("/admin");
+    User.findOne({ login: req.body.login })
+        .then((user) => {
+            if (user && bcrypt.compareSync(req.body.password, user.password)) {
+                const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: "24h" });
+                res.cookie("access_token", token);
+                res.redirect("/admin");
+            } else
+                return res.status(404).send({ message: "User Not found." });
+        })
+        .catch(err => res.status(500).send({ message: err.message }));
 };
 
 const get_admin_new_book = (req, res, next) => {

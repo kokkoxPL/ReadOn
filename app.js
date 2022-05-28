@@ -1,14 +1,13 @@
+const adminRoutes = require("./routes/adminRoutes");
+const bookRoutes = require("./routes/bookRoutes");
+const Error = require("./models/error");
 require("dotenv").config();
-const crypto = require("crypto");
 const path = require("path");
 const express = require("express");
 const compression = require("compression");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-const adminRoutes = require("./routes/adminRoutes");
-const bookRoutes = require("./routes/bookRoutes");
-const Error = require("./models/error");
 const app = express();
 
 const hash = (password) => crypto.createHash("sha256").update(password).digest("base64");
@@ -30,7 +29,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use((req, res, next) => {
-    req.isVerified = req.cookies.access_token == hash(process.env.ADMIN_PASSWORD);
     req.msg = req.query.msg && msgs[req.query.msg] ? msgs[req.query.msg] : "";
     next()
 });

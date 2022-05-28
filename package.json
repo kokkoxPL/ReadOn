@@ -1,6 +1,6 @@
 {
     "name": "readon",
-    "version": "0.7.1",
+    "version": "0.7.2",
     "description": "Library",
     "main": "app.js",
     "scripts": {
@@ -11,6 +11,7 @@
     "author": "@everyone",
     "license": "MIT",
     "dependencies": {
+        "bcrypt": "^5.0.1",
         "body-parser": "^1.20.0",
         "compression": "^1.7.4",
         "cookie-parser": "^1.4.6",
@@ -18,6 +19,7 @@
         "ejs": "^3.0.2",
         "express": "^4.17.3",
         "form-data": "^4.0.0",
+        "jsonwebtoken": "^8.5.1",
         "mongoose": "^6.2.10",
         "multer": "^1.4.4",
         "node-fetch": "^2.6.7"
