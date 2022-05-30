@@ -107,7 +107,7 @@ p {
     .login {
         background: white;
         text-align: center;
-        border-left: 1px solid #7a3b96;
+        border-left: 2px solid #7a3b96;
         border-radius: 0 30px 30px 0;
     }
 
@@ -119,6 +119,12 @@ p {
     h1{
         font-weight: 500;
         color: white;
+    }
+
+    .form{
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
     }
 }
 
@@ -136,11 +142,10 @@ p {
         display: grid;
         grid-template-columns: 40% 60%;
     }
-
     .login {
         background: white;
         text-align: center;
-        border-left: 1px solid #7a3b96;
+        border-left: 2px solid #7a3b96;
         border-radius: 0 30px 30px 0;
     }
 
@@ -152,6 +157,11 @@ p {
     h1{
         font-weight: 500;
         color: white;
+    }
+    .form{
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
     }
 }
 
@@ -185,6 +195,11 @@ p {
 
     h1{
         font-size: 20px;
+    }
+    .form{
+        position: relative;
+        top: 50%;
+        transform: translateY(2%);
     }
 }
 

@@ -38,13 +38,17 @@ const is_admin = (req, res, next) => {
         return res.redirect("/admin/login");
 
     jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-        if (err)
-            return res.redirect("/admin/login");
-        console.log(decoded.exp - Math.round(Date.now() / 1000) < 30);
+        // if (err) {
+        //     if (err.name = 'TokenExpiredError') {
+        //         const newToken = jwt.sign({id: }, process.env.JWT_SECRET, { expiresIn: '2s' });
+        //         res.cookie("access_token", newToken);
+        //         return res.redirect("/admin");
+        //     }
+        //     return res.redirect("/admin/login");
+        // }
         if (decoded.exp - Math.round(Date.now() / 1000) < 30) {
-            const newToken = jwt.sign({login: decoded.login}, process.env.JWT_SECRET, { expiresIn: '2h' });
+            const newToken = jwt.sign({id: decoded.id}, process.env.JWT_SECRET, { expiresIn: '2s' });
             res.cookie("access_token", newToken);
-            res.redirect("/admin");
         }
         next();
     });
@@ -63,23 +67,32 @@ const get_admin_login = (req, res, next) => {
         return res.render("admin/login");
 
     jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-        if (err)
-            return res.redirect("/admin/login");
+        // if (err) {
+        //     if (err.name = 'TokenExpiredError') {
+        //         const newToken = jwt.sign({id: dec.id}, process.env.JWT_SECRET, { expiresIn: '2s' });
+        //         res.cookie("access_token", newToken);
+        //         return res.redirect("/admin");
+        //     }
+        //     return res.redirect("/admin/login");
+        // }
             
         if (decoded.exp - Math.round(Date.now() / 1000) < 30) {
-            const newToken = jwt.sign({login: decoded.login}, process.env.JWT_SECRET, { expiresIn: '2h' });
+            const newToken = jwt.sign({id: decoded.id}, process.env.JWT_SECRET, { expiresIn: '2s' });
             res.cookie("access_token", newToken);
-            res.redirect("/admin");
         }
         return res.redirect("/admin");
     });
 };
 
 const post_admin_login = (req, res) => {
+    if (req.cookies.access_token) {
+        return res.redirect("/admin");
+    }
+    
     User.findOne({ login: req.body.login })
         .then((user) => {
             if (user && bcrypt.compareSync(req.body.password, user.password)) {
-                const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '2h' });
+                const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '2s' });
                 res.cookie("access_token", token);
                 res.redirect("/admin");
             } else
