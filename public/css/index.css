@@ -1,5 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Indie+Flower&family=Shadows+Into+Light&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light+Two&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
 
 :root {
     /* CSS HEX */
@@ -26,7 +27,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb{
-    background: rgb(54, 54, 54);
+    background: #3d0c02;
 
     border-radius: 10px;
 }
@@ -36,13 +37,14 @@ body {
 }
 
 span {
-    /* background: rgb(160,120,90); */
-    background: #ddc09d;
+      background: #3d0c02;  
+    /* background: #ddc09d; */
+    /* background: crimson; */
     padding: 10px 20px;
     border-radius: 10px;
     transition: 1s;
-    font-weight: 600;
     letter-spacing: 2px;
+    color: white;
 }
 
 a {
@@ -52,14 +54,15 @@ a {
 
 .menu a {
     text-decoration: none;
-    color: #996515;
+    color: black;
     transition: 0.5s;
     padding: 10px 20px;
 }
 
 .menu a:hover {
-    letter-spacing: 3px;
-    color: rgb(255, 255, 255);
+    letter-spacing: 4px;
+    /* color: darkred; */
+    color: #704214;
 }
 
 .menu li {
@@ -115,7 +118,7 @@ a {
     text-align: center;
     position: relative;
     top:70%;
-    transform: translateY(-70%);
+    transform: translateY(-85%);
 }
 
 form {
@@ -171,13 +174,13 @@ input[type="checkbox"] {
 }
 
 input[type="button"]:hover {
-    background: #30351f;
+    background: #4e0000;
     color: white;
     border-radius: 0;
 }
 
 label {
-    background: #30351f;
+    background: #4e0000;
     width: max-content;
     color: white;
     padding: 10px 20px;
@@ -250,12 +253,10 @@ img {
     text-align: center;
     font-size: 40px;
     font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
 }
 
 .title-content {
     font-size: 30px;
-    color: white;
     width: 80%;
     margin: auto;
     text-align: center;
@@ -263,15 +264,19 @@ img {
     min-height: fit-content;
     border-radius: 20px;
     position: absolute;
-    top: 100%;
+    top: 70%;
     left: 15%;
-    font-family: 'Dancing Script';
+    font-family: 'Shadows Into Light Two', cursive;
+    letter-spacing: 5px;
+    font-weight: 900;
+    /* background: rgba(255,255,255,0.3); */
+    color: white;
 }
 
 .header-content {
     width: 50%;
     position: absolute;
-    top: 60%;
+    top: 50%;
     right: 2%;
 }
 
@@ -374,7 +379,7 @@ img {
     border: 2px solid black;
     padding: 2px;
     border-radius: 50%;
-    background: rgb(71, 7, 71);
+    background: #6f3a02;
     color: white;
 }
 
@@ -410,8 +415,7 @@ img {
         position: absolute;
         top: 0;
         right: 0;
-        background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-    
+        background: linear-gradient(to bottom, #C19A6B 0%, #B28B5C 100%);
         z-index: 1;
         border-radius: 10px 0px 0px 10px;
     }
@@ -422,7 +426,7 @@ img {
         position: absolute;
         top:0;
         right: 0;
-        background: url("https://zieloniwpodrozy.pl/wp-content/uploads/2015/06/Zdj%C4%99cie-wykonane-o-%C5%9Bwicie-na-Po%C5%82oninie-Cary%C5%84skiej-podczas-naszej-kr%C3%B3tkiej-wycieczki-w-Bieszczady..jpg");
+        background: url("https://i.pinimg.com/originals/24/3c/1d/243c1d709182329320633deb19f207b3.jpg");
         background-position: 51%;
         background-repeat: no-repeat;
         background-size: cover ;
@@ -431,7 +435,7 @@ img {
     .border{
         width: 100%;
         height: 90%;
-        background-color: #996515;
+        background-color: #704214;
     }
 
     .menu a{
@@ -473,7 +477,7 @@ img {
         position: absolute;
         top: 0;
         right: 0;
-        background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+        background: linear-gradient(to bottom, #C19A6B 0%, #B28B5C 100%);
     
         z-index: 1;
         border-radius: 10px 0px 0px 10px;
@@ -485,7 +489,7 @@ img {
         position: absolute;
         top:0;
         right: 0;
-        background: url("https://zieloniwpodrozy.pl/wp-content/uploads/2015/06/Zdj%C4%99cie-wykonane-o-%C5%9Bwicie-na-Po%C5%82oninie-Cary%C5%84skiej-podczas-naszej-kr%C3%B3tkiej-wycieczki-w-Bieszczady..jpg");
+        background: url("https://i.pinimg.com/originals/24/3c/1d/243c1d709182329320633deb19f207b3.jpg");
         background-position: 51%;
         background-repeat: no-repeat;
         background-size: cover ;
@@ -494,7 +498,7 @@ img {
     .border{
         width: 100%;
         height: 90%;
-        background-color: #996515;
+        background-color: #704214;
     }
 
     .menu a{
@@ -621,7 +625,7 @@ img {
         position: absolute;
         top: 0;
         right: 0;
-        background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+        background: linear-gradient(to bottom, #C19A6B 0%, #B28B5C 100%);
     
         z-index: 1;
         border-radius: 10px 0px 0px 10px;
@@ -633,7 +637,7 @@ img {
         position: absolute;
         top:46%;
         right: 0;
-        background: url("https://zieloniwpodrozy.pl/wp-content/uploads/2015/06/Zdj%C4%99cie-wykonane-o-%C5%9Bwicie-na-Po%C5%82oninie-Cary%C5%84skiej-podczas-naszej-kr%C3%B3tkiej-wycieczki-w-Bieszczady..jpg");
+        background: url("https://i.pinimg.com/originals/24/3c/1d/243c1d709182329320633deb19f207b3.jpg");
         background-position: 51%;
         background-repeat: no-repeat;
         background-size: cover ;
@@ -642,7 +646,7 @@ img {
     .border{
         width: 100%;
         height: 90%;
-        background-color: #996515;
+        background-color: #704214;
     }
 }
 
@@ -699,7 +703,7 @@ img {
         position: absolute;
         top: 0;
         right: 0;
-        background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+        background: linear-gradient(to bottom, #C19A6B 0%, #B28B5C 100%);
     
         z-index: 1;
         border-radius: 10px 0px 0px 10px;
@@ -711,7 +715,7 @@ img {
         position: absolute;
         top:51%;
         right: 0;
-        background: url("https://zieloniwpodrozy.pl/wp-content/uploads/2015/06/Zdj%C4%99cie-wykonane-o-%C5%9Bwicie-na-Po%C5%82oninie-Cary%C5%84skiej-podczas-naszej-kr%C3%B3tkiej-wycieczki-w-Bieszczady..jpg");
+        background: url("https://i.pinimg.com/originals/24/3c/1d/243c1d709182329320633deb19f207b3.jpg");        
         background-position: 51%;
         background-repeat: no-repeat;
         background-size: cover ;
@@ -720,6 +724,6 @@ img {
     .border{
         width: 100%;
         height: 90%;
-        background-color: #996515;
+        background-color: #704214;
     }
 }

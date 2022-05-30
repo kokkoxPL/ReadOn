@@ -28,8 +28,7 @@ input[type="text"], input[type="file"], textarea{
 input[type="file"]::-webkit-file-upload-button{
     background: none;
     border: none;
-    background: var(--gray);
-    border: 2px solid var(--gray);
+    background: #4caf50;
     color: white;
     padding: 5px 20px;
     border-radius: 20px;
@@ -38,7 +37,6 @@ input[type="file"]::-webkit-file-upload-button{
 }
 
 input[type="file"]::-webkit-file-upload-button:hover{
-    background: var(--gray);
     border-radius:0;
 }
 
@@ -143,4 +141,7 @@ button:hover {
     width: 100%;
     height: 100%;
     text-align: center;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
