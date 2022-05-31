@@ -40,7 +40,7 @@ const is_admin = (req, res, next) => {
     jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
         if (err) {
             res.clearCookie("access_token");
-            return res.redirect("/admin/login");
+            return res.redirect("/admin/login?msg=5");
         }
         next();
     });
@@ -56,7 +56,7 @@ const get_admin = (req, res, next) => {
 const get_admin_login = (req, res, next) => {
     const token = req.cookies.access_token;
     if (!token)
-        return res.render("admin/login");
+        return res.render("admin/login", {msg: req.msg});
 
     jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
         if (err) {
@@ -67,7 +67,7 @@ const get_admin_login = (req, res, next) => {
     });
 };
 
-const post_admin_login = (req, res) => {
+const post_admin_login = (req, res, next) => {
     User.findOne({ login: req.body.login })
         .then((user) => {
             if (user && bcrypt.compareSync(req.body.password, user.password)) {
@@ -75,7 +75,7 @@ const post_admin_login = (req, res) => {
                 res.cookie("access_token", token);
                 return res.redirect("/admin");
             }
-            return res.redirect("/admin/login");
+            return res.redirect("/admin/login?msg=4");
         })
         .catch(err => next(err));
 };
@@ -146,7 +146,8 @@ const post_admin_edit_id_book = async (req, res, next) => {
             if (previousResult.imgDeleteHash && req.file) {
                 deleteImageFromImgur(previousResult.imgDeleteHash).then((result) => {
                     if (result.success === false)
-                        console.log("Couldn't delete image after edit");
+                        new Error({path: "<Book edit>", err: "Couldn't delete image after edit"}).save()
+                        // console.log("Couldn't delete image after edit");
                 });
             }
         })

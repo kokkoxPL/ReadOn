@@ -2,4 +2,4 @@ User-Agent: *
 Allow: /
 Allow: /book/
 Disallow: /books/
-Disallow: /admin/
+Disallow: /admin/*
