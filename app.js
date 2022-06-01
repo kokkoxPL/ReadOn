@@ -18,9 +18,11 @@ mongoose
     .catch((err) => console.log(err));
 
 const msgs = {
-    1: "Successfully printed a book",
-    2: "Successfully reprinted a book",
+    1: "Successfully added a book",
+    2: "Successfully edited a book",
     3: "Book cover couldn't be uploaded",
+    4: "Incorrect username or password 👺",
+    5: "Please log in again 🌵"
 };
 
 app.use(compression());
