@@ -93,7 +93,6 @@ a {
     top: 28%;
     left: 55%;
     transform: translateX(-40%);
-
 }
 
 .mEl{
@@ -108,17 +107,19 @@ a {
     background: #A0522D;
     border-radius: 6px;
     transition: 0.5s;
+    margin-left:18px ;
 }
 
 .icon-menu:hover .mEl3{
     width: 35px;
+    margin-left: 0;
 }
 
 .menuList ul{
     text-align: center;
     position: relative;
-    top:70%;
-    transform: translateY(-85%);
+    top:50%;
+    transform: translateY(-40%);
 }
 
 form {
@@ -577,6 +578,18 @@ img {
         font-size: 20px;
         padding-bottom: 5%;
     }
+
+    .header{
+        background-position: 90%;
+    }
+
+    .header-content{
+        width: 100%;
+        position: relative;
+        top: 30%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }
 
 @media screen and (max-width:999px) {
@@ -663,6 +676,16 @@ img {
 
         font-size: 20px;
         padding-bottom: 5%;
+    }
+
+    .header{
+        background-position: 60%;
+    }
+
+    .header-content{
+        width: 100%;
+        position: relative;
+        top: 43%;
     }
 }
 

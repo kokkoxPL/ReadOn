@@ -10,19 +10,21 @@ $(document).ready(function () {
             color: 'white',
             borderStyle: 'solid',
             borderWidth: '1px',
-            borderColor: '#996515',
+            borderColor: 'black',
             borderTop: 'none',
             borderLeft: 'none',
             borderRight: 'none',
+            letterSpacing: '2px',
+            transition : '0.5s'
         })
 
         $('p').css({
-            color: '#CFB53B',
+            color: 'black',
             transition: '0.5s'
         })
 
         $('.edited').css({
-            color: '#996515',
+            color: 'black',
             transition: '0.5s',
             border: 'none'
         })
@@ -36,7 +38,9 @@ $(document).ready(function () {
         })
         $('span').css({
             color: '#996515',
-            borderColor: 'black'
+            borderColor: 'black',
+            letterSpacing: '0px',
+            transition : '0.5s'
         })
 
         $('p').css({

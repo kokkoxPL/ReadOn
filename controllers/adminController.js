@@ -67,7 +67,7 @@ const get_admin_login = (req, res, next) => {
     });
 };
 
-const post_admin_login = (req, res) => {
+const post_admin_login = (req, res, next) => {
     User.findOne({ login: req.body.login })
         .then((user) => {
             if (user && bcrypt.compareSync(req.body.password, user.password)) {

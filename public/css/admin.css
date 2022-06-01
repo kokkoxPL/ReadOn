@@ -145,3 +145,53 @@ button:hover {
     top: 50%;
     transform: translateY(-50%);
 }
+h1{
+    position: absolute;
+    top: 90%;
+    left: 25%;
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.addForm h1{
+    position: relative;
+    top: -10%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@media screen and (max-width:1050px) {
+
+    .addForm{
+        position: relative;
+        transform: translateY(-10%);
+    }
+}
+
+@media screen and (max-width:719px) {
+
+    .addForm{
+        position: relative;
+        transform: translateY(-40%);
+    }
+}
+
+@media screen and (max-width: 600px){
+    input[type="text"], input[type="file"], textarea{
+        width: 400px;
+    }
+
+    button {
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 450px){
+    input[type="text"], input[type="file"], textarea{
+        width: 300px;
+    }
+
+    button {
+        width: 300px;
+    }
+}

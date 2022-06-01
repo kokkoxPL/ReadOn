@@ -19,7 +19,6 @@ a {
 
 .menu a {
     text-decoration: none;
-    color: #996515;
     font-size: 30px;
     font-weight: 700;
     transition: 0.5s;
@@ -28,8 +27,9 @@ a {
 }
 
 .menu a:hover {
-    letter-spacing: 3px;
-    color: rgb(255, 255, 255);
+    letter-spacing: 4px;
+    /* color: darkred; */
+    color: #704214;
 }
 
 .menu ul {
@@ -73,15 +73,27 @@ a {
 .icon-menu{
     width: 50px;
     height: 50px;
-    display: grid;
-    grid-template-columns: repeat(1, 40px);
-    grid-template-rows: repeat(3, 6px);
-    row-gap: 5px;
     z-index: 2;
     position: absolute;
     top: 2%;
     right: 2%;
+
+    border-radius: 50%;
+
 }
+
+.blocks{
+    display: grid;
+    grid-template-columns: repeat(1, 35px);
+    grid-template-rows: repeat(3, 5px);
+    row-gap: 4px;
+    position: relative;
+    top: 28%;
+    left: 55%;
+    transform: translateX(-40%);
+}
+
+
 
 .mEl{
     background: #996515;
@@ -89,21 +101,24 @@ a {
     border-radius: 6px;
 }
 .mEl3{
-    width: 20px;
-    background: #996515;
+    width: 17px;
+    /* background: #DAA520; */
+    background: #A0522D;
     border-radius: 6px;
     transition: 0.5s;
+    margin-left:18px ;
 }
 
 .icon-menu:hover .mEl3{
-    width: 40px;
+    width: 35px;
+    margin-left: 0;
 }
 
 .menuList ul{
     text-align: center;
     position: relative;
     top:50%;
-    transform: translateY(-70%);
+    transform: translateY(-40%);
 }
 
 .toggle {
@@ -113,7 +128,7 @@ a {
     left: -105%;
     top: -10%;
 
-    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+    background: linear-gradient(to right, #904321, #b06433, #e89c53);
 
     background-repeat: no-repeat;
     background-size: cover;
@@ -137,7 +152,7 @@ span {
     border: none;
 }
 #categories {
-    font-weight: 500;
+    font-weight: 700;
     border: none;
     color: black;
 }
@@ -180,31 +195,38 @@ p {
         grid-template-columns: 40% 2px 59%;
         width: 100%;
         height: 100%;
-        padding: 50px 10px;
+        padding: 10px 10px;
         position: absolute;
         top: 0;
         right: 0;
-        background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+        background: linear-gradient(to bottom, #C19A6B 0%, #B28B5C 100%);
     
         z-index: 1;
         border-radius: 10px 0px 0px 10px;
     }
-    
+
     .menuChild{
         width: 59%;
         height: 100%;
         position: absolute;
         top:0;
         right: 0;
-        background: url("https://zieloniwpodrozy.pl/wp-content/uploads/2015/06/Zdj%C4%99cie-wykonane-o-%C5%9Bwicie-na-Po%C5%82oninie-Cary%C5%84skiej-podczas-naszej-kr%C3%B3tkiej-wycieczki-w-Bieszczady..jpg");
+        background: url("https://i.pinimg.com/originals/24/3c/1d/243c1d709182329320633deb19f207b3.jpg");
         background-position: 51%;
         background-repeat: no-repeat;
         background-size: cover ;
     }
+
     .border{
         width: 100%;
         height: 90%;
-        background-color: #996515;
+        background-color: #704214;
+    }
+
+    .menu a{
+        font-weight: 900;
+        font-size: 40px;
+        letter-spacing: 1px;
     }
 }
 
@@ -253,31 +275,38 @@ p {
         grid-template-columns: 40% 2px 59%;
         width: 100%;
         height: 100%;
-        padding: 50px 10px;
+        padding: 10px 10px;
         position: absolute;
         top: 0;
         right: 0;
-        background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+        background: linear-gradient(to bottom, #C19A6B 0%, #B28B5C 100%);
     
         z-index: 1;
         border-radius: 10px 0px 0px 10px;
     }
-    
+
     .menuChild{
         width: 59%;
         height: 100%;
         position: absolute;
         top:0;
         right: 0;
-        background: url("https://zieloniwpodrozy.pl/wp-content/uploads/2015/06/Zdj%C4%99cie-wykonane-o-%C5%9Bwicie-na-Po%C5%82oninie-Cary%C5%84skiej-podczas-naszej-kr%C3%B3tkiej-wycieczki-w-Bieszczady..jpg");
+        background: url("https://i.pinimg.com/originals/24/3c/1d/243c1d709182329320633deb19f207b3.jpg");
         background-position: 51%;
         background-repeat: no-repeat;
         background-size: cover ;
     }
+
     .border{
         width: 100%;
         height: 90%;
-        background-color: #996515;
+        background-color: #704214;
+    }
+
+    .menu a{
+        font-weight: 900;
+        font-size: 40px;
+        letter-spacing: 1px;
     }
 }
 
@@ -306,6 +335,40 @@ p {
         column-gap: 40px;
         justify-content: center;
         align-items: center;
+    }
+
+    .menuList {
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 44% 2px 54%;
+        width: 100%;
+        height: 100%;
+        padding: 10px 10px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: linear-gradient(to bottom, #C19A6B 0%, #B28B5C 100%);
+    
+        z-index: 1;
+        border-radius: 10px 0px 0px 10px;
+    }
+
+    .menuChild{
+        width: 100%;
+        height: 54%;
+        position: absolute;
+        top:46%;
+        right: 0;
+        background: url("https://i.pinimg.com/originals/24/3c/1d/243c1d709182329320633deb19f207b3.jpg");
+        background-position: 51%;
+        background-repeat: no-repeat;
+        background-size: cover ;
+    }
+
+    .border{
+        width: 100%;
+        height: 90%;
+        background-color: #704214;
     }
 }
 
@@ -347,6 +410,45 @@ p {
     .toggle{
         position: absolute;
         top: -40px;
+    }
+
+    .menuList {
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 49% 2px 49%;
+        width: 100%;
+        height: 100%;
+        padding: 10px 10px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: linear-gradient(to bottom, #C19A6B 0%, #B28B5C 100%);
+    
+        z-index: 1;
+        border-radius: 10px 0px 0px 10px;
+    }
+
+    .menuChild{
+        width: 100%;
+        height: 49%;
+        position: absolute;
+        top:51%;
+        right: 0;
+        background: url("https://i.pinimg.com/originals/24/3c/1d/243c1d709182329320633deb19f207b3.jpg");        
+        background-position: 51%;
+        background-repeat: no-repeat;
+        background-size: cover ;
+    }
+
+    .border{
+        width: 100%;
+        height: 90%;
+        background-color: #704214;
+    }
+
+    .menu a{
+        font-weight: 700;
+        font-size: 30px;
     }
 }
 
