@@ -10,8 +10,6 @@ const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 const app = express();
 
-const hash = (password) => crypto.createHash("sha256").update(password).digest("base64");
-
 mongoose
     .connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => app.listen(process.env.PORT))
@@ -51,3 +49,5 @@ app.use((err, req, res, next) => {
 app.use((req, res) => {
     res.status(404).render("errorPage", { msg: "Nie znaleziono strony", code: 404 });
 });
+
+module.exports = app;
