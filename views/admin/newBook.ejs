@@ -22,7 +22,7 @@
                 <div class="menuList" id="menuList" style="display: none">
                     <div class="toggleMenu">
                         <ul>
-                            <li><a href="/">Strona główna</a></li>
+                            <li><a href="/admin">Admin</a></li>
 
                             <li><a href="/admin/new">Dodaj książkę</a></li>
 
@@ -59,14 +59,14 @@
                         <input type="file" name="img" accept=".jpg,.jpeg,.png,.gif,.apng,.tiff" /><br />
                         <div class="tags">
                             <% tags.forEach(tag => { %>
-                            <label for="<%= tag.name %>"
-                                ><%= tag.name %><input
+                            <label for="<%= tag.name %>">
+                                <%= tag.name %><input
                                     type="checkbox"
                                     class="tag"
                                     name="tags"
                                     id="<%= tag.name %>"
-                                    value="<%= tag.name %>"
-                            /></label>
+                                    value="<%= tag.name %>"/>
+                                </label>
                             <% }) %>
                         </div>
                         <button type="submit">Dodaj</button>

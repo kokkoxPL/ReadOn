@@ -56,7 +56,7 @@ const get_admin = (req, res, next) => {
 const get_admin_login = (req, res, next) => {
     const token = req.cookies.access_token;
     if (!token)
-        return res.render("admin/login", {msg: req.msg});
+        return res.render("admin/login", { msg: req.msg });
 
     jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
         if (err) {
@@ -146,8 +146,7 @@ const post_admin_edit_id_book = async (req, res, next) => {
             if (previousResult.imgDeleteHash && req.file) {
                 deleteImageFromImgur(previousResult.imgDeleteHash).then((result) => {
                     if (result.success === false)
-                        new Error({path: "<Book edit>", err: "Couldn't delete image after edit"}).save()
-                        // console.log("Couldn't delete image after edit");
+                        new Error({ path: "<Book edit>", err: "Couldn't delete image after edit" }).save()
                 });
             }
         })
@@ -188,6 +187,24 @@ const post_admin_tags = (req, res, next) => {
         .catch((err) => next(err));
 };
 
+const get_admin_password = (req, res, next) => {
+    res.render("admin/password");
+};
+
+const post_admin_password = (req, res, next) => {
+    User.findOne({ login: req.body.login })
+        .then((user) => {
+            if (user && bcrypt.compareSync(req.body.password, user.password)) {
+                user.password = bcrypt.hashSync(req.body.newPassword, 10);
+                user.save()
+                    .then(() => res.redirect("/admin"))
+                    .catch((err) => next(err));
+            } else
+                return res.redirect("/admin/password");
+        })
+        .catch(err => next(err));
+};
+
 const post_admin_tags_delete = (req, res, next) => {
     const { id } = req.body;
     Tag.findByIdAndDelete(id)
@@ -201,16 +218,16 @@ const get_admin_error_logs = (req, res, next) => {
         .catch((err) => next(err));
 };
 
-const get_admin_logout = (req, res) => {
-    res.clearCookie("access_token");
-    res.redirect("/");
-};
-
 const clear_logs = (req, res) => {
     Error.deleteMany().then(() => {
         res.redirect("/admin/logs")
     })
 }
+
+const get_admin_logout = (req, res) => {
+    res.clearCookie("access_token");
+    res.redirect("/");
+};
 
 module.exports = {
     is_admin,
@@ -224,6 +241,8 @@ module.exports = {
     post_admin_edit_id_book,
     get_admin_delete_book,
     post_admin_delete_book,
+    get_admin_password,
+    post_admin_password,
     get_admin_tags,
     post_admin_tags,
     post_admin_tags_delete,

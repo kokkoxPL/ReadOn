@@ -1,16 +1,7 @@
 const app = require('../app');
 const request = require('supertest');
-const { expect } = require('chai');
 
-describe('Our application', () => {
-    before((done) => {
-        app.listen(6969, (err) => {
-            if (err)
-                return done(err);
-            done();
-        });
-    });
-
+describe('Read On', () => {
     it('Testing index', (done) => {
         request(app)
             .get('/')
@@ -24,9 +15,9 @@ describe('Our application', () => {
     it('Testing admin', (done) => {
         request(app)
             .post('/admin/login')
-            .send({ 'login': 'admin', 'password': 'book' })
+            .send({ 'login': process.env.LOGIN, 'password': process.env.PASSWORD })
             .expect(302, (err, res) => {
-                expect(res.headers.location).to.equal('/admin');
+                expect(res.headers.location).toBe('/admin');
                 if (err)
                     return done(err);
                 done();

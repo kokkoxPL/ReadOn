@@ -31,6 +31,10 @@ router.route("/tags")
     .get(adminController.get_admin_tags)
     .post(adminController.post_admin_tags);
 
+router.route("/password")
+    .get(adminController.get_admin_password)
+    .post(adminController.post_admin_password)
+
 router.post("/deletetag", adminController.post_admin_tags_delete);
 
 router.get("/logs", adminController.get_admin_error_logs);

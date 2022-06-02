@@ -19,8 +19,8 @@ const msgs = {
     1: "Successfully added a book",
     2: "Successfully edited a book",
     3: "Book cover couldn't be uploaded",
-    4: "Incorrect username or password 👺",
-    5: "Please log in again 🌵"
+    4: "Incorrect username or password",
+    5: "Please log in again"
 };
 
 app.use(compression());
