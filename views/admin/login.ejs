@@ -7,23 +7,48 @@
         <title>Logowanie</title>
 
         <link rel="stylesheet" href="/css/login.css" />
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.js"></script>
     </head>
     <body>
+        <div class="icon-menu" id="menuIcon">
+            <div class="blocks">
+                <div class="mEl1, mEl"></div>
+                <div class="mEl2, mEl"></div>
+                <div class="mEl3"></div>
+            </div>
+        </div>
+        <div class="menu">
+            <div class="menuList" id="menuList" style="display: none">
+                <div class="toggleMenu">
+                    <ul>
+                        <li><a href="/">Strona główna</a></li>
+
+                        <li><a href="/admin/login">Zaloguj się</a></li>
+                    </ul>
+                </div>
+                <div class="border"></div>
+                <div class="menuChild"></div>
+            </div>
+        </div>
+        
+        <script src="/js/menuAnimation.js"></script>
+
         <div class="background">
             <div class="main">
+                
                 <div class="greetings">
                     <h1>WELCOME</h1>
                 </div>
                 <div class="login">
                     <form action="/admin/login" method="post" class="form">
                         <div class="input">
-                            <h2>Login</h2>
-                            <input type="text" name="login" placeholder="Login" /><br />
+                            <h2>Username</h2>
+                            <input type="text" name="login" placeholder="Username"/><br />
                         </div>
 
                         <div class="input">
                             <h2>Password</h2>
-                            <input type="password" name="password" placeholder="Password" /><br />
+                            <input type="password" name="password" placeholder="Password"/><br />
                         </div>
 
                         <% if (msg) { %>
@@ -31,7 +56,7 @@
                             <script>
                                 window.history.pushState({}, document.title, window.location.pathname);
                             </script>
-                            <% } %>
+                        <% } %>
 
                         <button type="submit">Login</button>
                     </form>

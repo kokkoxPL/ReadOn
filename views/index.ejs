@@ -81,24 +81,27 @@
                 <% books.forEach(book => { %>
                 <a href="/book/<%= book._id %>">
                     <div class="book" id="book">
-                        <div class="image" id="image">
-                            <img src="<%= book.imgLink %>" class="img" alt="Book cover" />
-                        </div>
-
-                        <div class="book-content">
-                            <div class="book-title" id="bookTitle">
-                                <p><%= book.title %></p>
+                        <div class="toggleBookAnimation"></div>
+                        <div class="bookElements">
+                            <div class="image" id="image">
+                                <img src="<%= book.imgLink %>" class="img" alt="Book cover" />
                             </div>
-
-                            <div class="author" id="author">
-                                <p><%= book.author %></p>
-                            </div>
-                            <div class="description" id="description" style="display: none">
-                                <p id="bookDesc" class="bookDesc"><%= book.desc %></p>
-                            </div>
-
-                            <div class="category" id="category">
-                                <p><%= book.tags.length < 4 ? book.tags : book.tags.slice(0, 3) + ",..." %></p>
+    
+                            <div class="book-content">
+                                <div class="book-title" id="bookTitle">
+                                    <p><%= book.title %></p>
+                                </div>
+    
+                                <div class="author" id="author">
+                                    <p><%= book.author %></p>
+                                </div>
+                                <div class="description" id="description" style="display: none">
+                                    <p id="bookDesc" class="bookDesc"><%= book.desc %></p>
+                                </div>
+    
+                                <div class="category" id="category">
+                                    <p><%= book.tags.length < 4 ? book.tags : book.tags.slice(0, 3) + ",..." %></p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -168,7 +171,7 @@
         </script>
     </body>
 </html>
-<!--       _                                                 _
-       .__(.)< (MEOW)    (Vote Sweden at ESC ⭐ CORNELIA) >(.)__.
-        \___)                                              (___/
+<!--       _                      _
+       .__(.)< (MEOW)    (WOOF) >(.)__.
+        \___)                    (___/
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->

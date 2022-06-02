@@ -4,14 +4,99 @@
 
 .backs{
     position: absolute;
-    bottom: 0;
-    right: 10%;
+    bottom: 5%;
+    left: 0;
+    writing-mode: vertical-rl;
 }
 
-a{
-    color:#ffbe02;
-    font-size: 10px;
-    margin: 0 20px;
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: white;
+}
+
+::-webkit-scrollbar-thumb{
+    background: #3d0c02;
+
+    border-radius: 10px;
+}
+
+
+a {
+    text-decoration: none;
+    color: unset;
+}
+
+.menu a {
+    text-decoration: none;
+    color: black;
+    transition: 0.5s;
+    padding: 10px 20px;
+}
+
+.menu a:hover {
+    letter-spacing: 4px;
+    /* color: darkred; */
+    color: #704214;
+}
+
+.menu li {
+    margin: 20px 30px;
+    list-style: none;
+}
+
+.icon-menu{
+    width: 50px;
+    height: 50px;
+    z-index: 2;
+    position: absolute;
+    top: 2%;
+    right: 2%;
+
+    border: 1px solid black;
+    background: rgba(0,0,0, 0.6);
+    border-radius: 50%;
+
+}
+
+.blocks{
+    display: grid;
+    grid-template-columns: repeat(1, 35px);
+    grid-template-rows: repeat(3, 5px);
+    row-gap: 4px;
+    position: relative;
+    top: 28%;
+    left: 55%;
+    transform: translateX(-40%);
+}
+
+.mEl{
+    /* background: #DAA520; */
+    background: #A0522D;
+    z-index: 2;
+    border-radius: 6px;
+}
+.mEl3{
+    width: 17px;
+    /* background: #DAA520; */
+    background: #A0522D;
+    border-radius: 6px;
+    transition: 0.5s;
+    margin-left:18px ;
+}
+
+.icon-menu:hover .mEl3{
+    width: 35px;
+    margin-left: 0;
+}
+
+.menuList ul{
+    text-align: center;
+    position: relative;
+    top:50%;
+    transform: translateY(-40%);
 }
 
 body {
@@ -26,7 +111,7 @@ body {
 .background{
     width: 100%;
     height: 100%;
-    background: url("/images/loginBackground.webp");
+    background: url("/images/LoginBackground.webp");
     background-repeat: no-repeat;
     background-size: cover;
     position: absolute;
@@ -40,10 +125,12 @@ body {
 input {
     background: transparent;
     border: none;
-    border-bottom: 2px solid #39b4dd;
+    border-bottom: 2px solid #f6e188;
     font-size: 20px;
     width: 300px;
     padding: 5px 20px;
+
+    color: white;
 }
 
 input::placeholder {
@@ -57,18 +144,17 @@ input:focus {
 button {
     margin: 40px;
     background: none;
-    border: 2px solid #512d87;
+    border: 2px solid #8f631a;
     padding: 10px 30px;
     font-size: 15px;
-
+    color: white;
     border-radius: 10px;
 
     transition: 0.3s;
 }
 
 button:hover {
-    background: #512d87;
-    color: white;
+    background: #8f631a;
 }
 
 p {
@@ -77,7 +163,7 @@ p {
 }
 
 .greetings{
-    background: url("/images/loginImage.webp");
+    background: url("/images/LoginBackgroundMini.webp");
     background-size: cover;
 }
 
@@ -85,8 +171,17 @@ p {
     letter-spacing: 5px;
     text-align: center;
     position: relative;
-    top: 50%;
-    transform: translateY(-50%);
+    width: fit-content;
+    top: 41%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: black;
+    background: linear-gradient(90deg ,#b6a666 30%, #a16d21);
+    padding: 10px 20px;
+    border-radius: 20px;
+    box-shadow: 10px 10px 30px 0px #a16d21;
+
+
 }
 
 @media screen and (min-width: 1599px) {
@@ -102,12 +197,15 @@ p {
 
         display: grid;
         grid-template-columns: 40% 60%;
+
+        box-shadow: 10px 20px 80px black;
+        border-radius: 30px;
     }
 
     .login {
-        background: white;
+        background: #141213;
         text-align: center;
-        border-left: 2px solid #7a3b96;
+        border-left: 2px solid #704214;
         border-radius: 0 30px 30px 0;
     }
 
@@ -126,6 +224,48 @@ p {
         top: 50%;
         transform: translateY(-50%);
     }
+
+    .menuList {
+        display: grid;
+        grid-template-columns: 40% 2px 59%;
+        width: 100%;
+        height: 100%;
+        padding: 10px 10px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: linear-gradient(to bottom, #C19A6B 0%, #B28B5C 100%);
+        z-index: 1;
+        border-radius: 10px 0px 0px 10px;
+    }
+
+    .menuChild{
+        width: 59%;
+        height: 100%;
+        position: absolute;
+        top:0;
+        right: 0;
+        background: url("https://i.pinimg.com/originals/24/3c/1d/243c1d709182329320633deb19f207b3.jpg");
+        background-position: 51%;
+        background-repeat: no-repeat;
+        background-size: cover ;
+    }
+
+    .border{
+        width: 100%;
+        height: 90%;
+        background-color: #704214;
+    }
+
+    .menu a{
+        font-weight: 900;
+        font-size: 40px;
+        letter-spacing: 1px;
+    }
+}
+
+h2{
+    color: white;
 }
 
 @media screen and (max-width: 1599px) {
@@ -141,11 +281,14 @@ p {
 
         display: grid;
         grid-template-columns: 40% 60%;
+
+        box-shadow: 10px 20px 80px black;
+        border-radius: 30px;
     }
     .login {
-        background: white;
+        background: #141213;
         text-align: center;
-        border-left: 2px solid #7a3b96;
+        border-left: 2px solid #704214;
         border-radius: 0 30px 30px 0;
     }
 
@@ -162,6 +305,45 @@ p {
         position: relative;
         top: 50%;
         transform: translateY(-50%);
+    }
+
+    .menuList {
+        display: grid;
+        grid-template-columns: 40% 2px 59%;
+        width: 100%;
+        height: 100%;
+        padding: 10px 10px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: linear-gradient(to bottom, #C19A6B 0%, #B28B5C 100%);
+    
+        z-index: 1;
+        border-radius: 10px 0px 0px 10px;
+    }
+
+    .menuChild{
+        width: 59%;
+        height: 100%;
+        position: absolute;
+        top:0;
+        right: 0;
+        background: url("https://i.pinimg.com/originals/24/3c/1d/243c1d709182329320633deb19f207b3.jpg");
+        background-position: 51%;
+        background-repeat: no-repeat;
+        background-size: cover ;
+    }
+
+    .border{
+        width: 100%;
+        height: 90%;
+        background-color: #704214;
+    }
+
+    .menu a{
+        font-weight: 900;
+        font-size: 40px;
+        letter-spacing: 1px;
     }
 }
 
@@ -182,24 +364,32 @@ p {
 
     .login {
         height: fit-content;
-        background: white;
+        background: #141213;
         text-align: center;
-        border-top: 1px solid #7a3b96;
+        border-top: 1px solid #704214;
+        border-left: none;
         border-radius: 0 0 30px 30px;
     }
 
     .greetings{
-        background-position: 51%;
         border-radius: 30px 30px 0 0;
     }
 
-    h1{
+    .greetings h1{
         font-size: 20px;
+        font-weight: 500;
+        position: relative;
+        top: 40%;
     }
     .form{
         position: relative;
         top: 50%;
         transform: translateY(2%);
+    }
+
+    .menu a{
+        font-weight: 700;
+        font-size: 30px;
     }
 }
 
@@ -220,9 +410,8 @@ p {
     }
     .login {
         height: fit-content;
-        background: white;
         text-align: center;
-        border-top: 1px solid #7a3b96;
+        border-top: 1px solid #704214;
         border-radius: 0 0 30px 30px;
     }
 
@@ -234,9 +423,45 @@ p {
     input {
         width: 200px;
     }
-    h1{
+    .greetings h1{
         font-size: 15px;
+        font-weight: 500;
+        position: relative;
+        top: 35%;
+    }
 
+    .menuList {
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 49% 2px 49%;
+        width: 100%;
+        height: 100%;
+        padding: 10px 10px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: linear-gradient(to bottom, #C19A6B 0%, #B28B5C 100%);
+    
+        z-index: 1;
+        border-radius: 10px 0px 0px 10px;
+    }
+
+    .menuChild{
+        width: 100%;
+        height: 49%;
+        position: absolute;
+        top:51%;
+        right: 0;
+        background: url("https://i.pinimg.com/originals/24/3c/1d/243c1d709182329320633deb19f207b3.jpg");        
+        background-position: 51%;
+        background-repeat: no-repeat;
+        background-size: cover ;
+    }
+
+    .border{
+        width: 100%;
+        height: 90%;
+        background-color: #704214;
     }
 }
 
@@ -256,9 +481,7 @@ p {
     }
     .login {
         height: fit-content;
-        background: white;
         text-align: center;
-        border-top: 1px solid #7a3b96;
         border-radius: 0 0 30px 30px;
     }
 
@@ -270,10 +493,10 @@ p {
     input {
         width: 200px;
     }
-    h1{
-        font-size: 25px;
-        color: black;
-        font-weight: 600;
+    .greetings h1{
+        font-weight: 500;
+        position: relative;
+        top: 35%;
     }
     .input{
         margin-bottom: 50px;
@@ -282,6 +505,7 @@ p {
     h2{
         margin:5px;
         font-weight: 500;
+        color: white;
     }
 }
 
@@ -289,11 +513,6 @@ p {
     input {
         width: 150px;
         font-size: 15px;
-    }
-    h1{
-        font-size: 25px;
-        color: black;
-        font-weight: 500;
     }
     .input{
         margin-bottom: 50px;
