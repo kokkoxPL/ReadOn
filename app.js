@@ -49,5 +49,3 @@ app.use((err, req, res, next) => {
 app.use((req, res) => {
     res.status(404).render("errorPage", { msg: "Nie znaleziono strony", code: 404 });
 });
-
-module.exports = app;
