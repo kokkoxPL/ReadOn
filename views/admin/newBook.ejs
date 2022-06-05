@@ -10,7 +10,7 @@
         <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.js"></script>
     </head>
     <body>
-        <div class="header">
+        <div class="head">
             <div class="icon-menu" id="menuIcon">
                 <div class="blocks">
                     <div class="mEl1, mEl"></div>
@@ -42,7 +42,7 @@
 
             <script src="/js/menuAnimation.js"></script>
 
-            <div class="header-content">
+            <div class="content">
                 <% if (msg) { %>
                 <h1><%= msg %></h1>
                 <script>
@@ -61,7 +61,13 @@
                             <% tags.forEach(tag => { %>
                             <label for="<%= tag.name %>">
                                 <%= tag.name %>
-                                <input type="checkbox" class="tag" name="tags" id="<%= tag.name %>" value="<%= tag.name %>"/>
+                                <input
+                                    type="checkbox"
+                                    class="tag"
+                                    name="tags"
+                                    id="<%= tag.name %>"
+                                    value="<%= tag.name %>"
+                                />
                             </label>
                             <% }) %>
                         </div>
