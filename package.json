@@ -1,7 +1,7 @@
 {
     "name": "readon",
-    "version": "0.7.6",
-    "description": "Library",
+    "version": "0.7.7",
+    "description": "Library Read On",
     "main": "app.js",
     "scripts": {
         "test": "jest tests/test.js",
@@ -23,5 +23,9 @@
         "mongoose": "^6.2.10",
         "multer": "^1.4.4",
         "node-fetch": "^2.6.7"
+    },
+    "engines": {
+        "node": ">=16.0.0",
+        "npm": ">= 8.0.0"
     }
 }

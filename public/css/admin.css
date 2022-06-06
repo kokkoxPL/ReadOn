@@ -1,6 +1,7 @@
 *{
     font-family:Arial, Helvetica, sans-serif;
 }
+
 input[type="text"], input[type="file"], textarea{
     width: 500px;
     padding: 10px 30px;
@@ -11,7 +12,6 @@ input[type="text"], input[type="file"], textarea{
     color: white;
     font-size: 18px;
     border: none;
-
     border-bottom: 1px solid #ffffff;
 }
 
@@ -26,6 +26,7 @@ body{
 textarea{
     max-height: 231px;
 }
+
 :focus{
     outline:none;
 }
@@ -62,7 +63,6 @@ button {
     transition: 0.5s;
     font-size: 20px;
 }
-
 
 button:hover {
     box-shadow: 2px 5px 20px 1px #4caf50;
@@ -156,6 +156,7 @@ button:hover {
     top: 60%;
     transform: translatey(25%);
 }
+
 h1{
     position: absolute;
     top: 90%;

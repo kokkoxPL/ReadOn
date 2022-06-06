@@ -3,7 +3,6 @@ var title = [
     '"Ludzie mówią, że życie to jest to, ale ja wolę sobie poczytać"',
     '"Książka jest niczym ogród, który można włożyć do kieszeni"',
     '"Książka i możliwość czytania, to jeden z największych cudów ludzkiej cywilizacji."',
-    '"Kiedy przeczytam nową książkę, to tak jakbym znalazł nowego przyjaciela, a gdy przeczytam książkę, którą już czytałem - to tak jakbym spotkał się ze starym przyjacielem."'
 ];
 
 //jak ktos to zmieni zajebie
@@ -21,3 +20,28 @@ const update = () => {
 
 setInterval(update, 5000);
 update();
+
+const watch = () => {
+    var hours = document.getElementById('hours');
+    var h = new Date().getHours();
+    hours.innerHTML = h + ":";
+
+
+    var minutes = document.getElementById('minutes');
+    var m = new Date().getMinutes();
+    minutes.innerHTML = m + ":";
+
+
+    var seconds = document.getElementById('seconds');
+    var s = new Date().getSeconds();
+
+    if (s < 10) {
+        seconds.innerHTML = "0" + s;
+    }
+    else {
+        seconds.innerHTML = s;
+    }
+}
+
+setInterval(watch, 1000);
+watch();

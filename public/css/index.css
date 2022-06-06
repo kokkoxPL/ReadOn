@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light+Two&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
 
 :root {
     /* CSS HEX */
@@ -18,17 +19,27 @@ body {
     overflow-x: hidden;
 }
 
+.watch{
+    display: flex;
+    color: white;
+    font-size: 35px;
+    font-family: 'Dancing Script', cursive;
+    width: fit-content;
+    height: auto;
+    letter-spacing: 2px;
+    margin-left: 20px;
+}
+
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-    background: white;
+    background: #eaebec;
 }
 
 ::-webkit-scrollbar-thumb{
     background: #3d0c02;
-
     border-radius: 10px;
 }
 
@@ -138,6 +149,7 @@ a {
     z-index: 2;
     border-radius: 6px;
 }
+
 .mEl3{
     width: 17px;
     /* background: #DAA520; */
@@ -175,7 +187,6 @@ input[type="text"] {
     font-size: 18px;
     transition: 0.5s;
 }
-
 
 input[type="text"]:focus {
     outline: none;
@@ -261,8 +272,6 @@ label:hover {
     transition: 0.5s;
 }
 
-
-
 .book:hover .author {
     letter-spacing: 2px;
     color: rgb(255, 255, 255);
@@ -340,11 +349,9 @@ img {
     text-align: center;
     bottom: 25%;
     left: 45%;
-
     font-size: 25px;
     padding: 20px 40px;
     border-radius: 40px;
-
     transition: 0.5s;
 }
 
@@ -419,7 +426,6 @@ img {
 }
 
 @media screen and (min-width:1600px) {
-
     .bookList {
         display: grid;
         grid-template-columns: repeat(4, 350px);
@@ -543,7 +549,6 @@ img {
 }
 
 @media screen and (max-width:1349px) {
-
     .bookList {
         display: grid;
         grid-template-columns: repeat(4, 280px);
@@ -660,7 +665,6 @@ img {
         padding-bottom: 5%;
     }
 
-
     .menuList {
         display: grid;
         grid-template-columns: 100%;
@@ -699,7 +703,6 @@ img {
         background-position: 60%;
     }
 }
-
 
 @media screen and (max-width:719px) {
     .bookList {
@@ -752,7 +755,6 @@ img {
         margin: 10px auto;
     }
 
-
     .menuList {
         display: grid;
         grid-template-columns: 100%;
@@ -797,12 +799,14 @@ img {
         top: 50%;
         transform: translateY(-50%);
     }
+
     .title-content{
         width: 70%;
         position: absolute;
         right: 0;
         top: 0;
     }
+
     .toggleMenu{
         position: relative;
         top: 50%;
@@ -825,6 +829,7 @@ img {
         top: 50%;
         transform: translateY(-70%);
     }
+    
     .menu a{
         font-size: 25px;
     }

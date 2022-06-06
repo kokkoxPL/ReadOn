@@ -20,10 +20,8 @@
 
 ::-webkit-scrollbar-thumb{
     background: #3d0c02;
-
     border-radius: 10px;
 }
-
 
 a {
     text-decoration: none;
@@ -35,7 +33,6 @@ a {
     color: black;
     transition: 0.5s;
     padding: 10px 20px;
-
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -57,11 +54,9 @@ a {
     position: absolute;
     top: 2%;
     right: 2%;
-
     border: 1px solid black;
     background: rgba(0,0,0, 0.6);
     border-radius: 50%;
-
 }
 
 .blocks{
@@ -81,6 +76,7 @@ a {
     z-index: 2;
     border-radius: 6px;
 }
+
 .mEl3{
     width: 17px;
     /* background: #DAA520; */
@@ -153,7 +149,6 @@ button {
     font-size: 15px;
     color: white;
     border-radius: 10px;
-
     transition: 0.3s;
 }
 
@@ -169,6 +164,7 @@ p {
 .greetings{
     background: url("/images/LoginBackgroundMini.webp");
     background-size: cover;
+    box-shadow: 0px 0px 30px 0px #8f631a;
 }
 
 .greetings h1{
@@ -184,12 +180,9 @@ p {
     padding: 10px 20px;
     border-radius: 20px;
     box-shadow: 10px 10px 30px 0px #a16d21;
-
-
 }
 
 @media screen and (min-width: 1599px) {
-    
     .main{
         width: 980px;
         height: 500px;
@@ -198,10 +191,8 @@ p {
         position: relative;
         top: 50%;
         transform: translateY(-50%);
-
         display: grid;
         grid-template-columns: 40% 60%;
-
         box-shadow: 10px 20px 80px black;
         border-radius: 30px;
     }
@@ -273,7 +264,6 @@ h2{
 }
 
 @media screen and (max-width: 1599px) {
-
     .main{
         width: 980px;
         height: 500px;
@@ -282,13 +272,12 @@ h2{
         position: relative;
         top: 50%;
         transform: translateY(-50%);
-
         display: grid;
         grid-template-columns: 40% 60%;
-
         box-shadow: 10px 20px 80px black;
         border-radius: 30px;
     }
+
     .login {
         background: #141213;
         text-align: center;
@@ -305,6 +294,7 @@ h2{
         font-weight: 500;
         color: white;
     }
+
     .form{
         position: relative;
         top: 50%;
@@ -321,7 +311,6 @@ h2{
         top: 0;
         right: 0;
         background: linear-gradient(to bottom, #C19A6B 0%, #B28B5C 100%);
-    
         z-index: 1;
         border-radius: 10px 0px 0px 10px;
     }
@@ -352,7 +341,6 @@ h2{
 }
 
 @media screen and (max-width: 1049px) {
-
     .main{
         width: 60%;
         margin: auto;
@@ -385,6 +373,7 @@ h2{
         position: relative;
         top: 40%;
     }
+
     .form{
         position: relative;
         top: 50%;
@@ -399,7 +388,6 @@ h2{
 
 
 @media screen and (max-width: 709px) {
-
     .main{
         width: 60%;
         margin: auto;
@@ -412,6 +400,7 @@ h2{
         grid-template-columns: 100%;
         grid-template-rows: 35% 65%;
     }
+
     .login {
         height: fit-content;
         text-align: center;
@@ -427,6 +416,7 @@ h2{
     input {
         width: 200px;
     }
+
     .greetings h1{
         font-size: 15px;
         font-weight: 500;
@@ -478,11 +468,11 @@ h2{
         position: relative;
         top: 50%;
         transform: translateY(-60%);
-
         display: grid;
         grid-template-columns: 100%;
         grid-template-rows: 35% 65%;
     }
+
     .login {
         height: fit-content;
         text-align: center;
@@ -497,15 +487,18 @@ h2{
     input {
         width: 200px;
     }
+
     .greetings h1{
         font-weight: 500;
         position: relative;
         top: 35%;
     }
+
     .input{
         margin-bottom: 50px;
         margin-top: 40px;
     }
+
     h2{
         margin:5px;
         font-weight: 500;
@@ -518,10 +511,12 @@ h2{
         width: 150px;
         font-size: 15px;
     }
+
     .input{
         margin-bottom: 50px;
         margin-top: 40px;
     }
+
     h2{
         margin:5px;
         font-size: 20px;
