@@ -72,7 +72,7 @@ const post_admin_login = (req, res, next) => {
         .then((user) => {
             if (user && bcrypt.compareSync(req.body.password, user.password)) {
                 const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '7d' });
-                res.cookie("access_token", token);
+                res.cookie("access_token", token, { maxAge: 7 * 24 * 60 * 60 * 1000, httpOnly: true });
                 return res.redirect("/admin");
             }
             return res.redirect("/admin/login?msg=4");
