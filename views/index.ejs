@@ -13,18 +13,17 @@
     </head>
     <body>
         <div class="header">
-
             <div class="watch">
-                <div class="hours">
-                    <p id="hours" >00</p>
+                <div class="hours"><h1 id="hours"></h1></div>
+
+                <div class="minutes"><h1 id="minutes"></h1></div>
+
+                <div id="pm" style="display: none">
+                    <h1>PM</h1>
                 </div>
 
-                <div class="minutes">
-                    <p id="minutes" >00</p>
-                </div>
-
-                <div class="seconds">
-                    <p id="seconds">00</p>
+                <div id="am" style="display: none">
+                    <h1>AM</h1>
                 </div>
             </div>
 
@@ -103,19 +102,19 @@
                             <div class="image" id="image">
                                 <img src="<%= book.imgLink %>" class="img" alt="Book cover" />
                             </div>
-    
+
                             <div class="book-content">
                                 <div class="book-title" id="bookTitle">
                                     <p><%= book.title %></p>
                                 </div>
-    
+
                                 <div class="author" id="author">
                                     <p><%= book.author %></p>
                                 </div>
                                 <div class="description" id="description" style="display: none">
                                     <p id="bookDesc" class="bookDesc"><%= book.desc %></p>
                                 </div>
-    
+
                                 <div class="category" id="category">
                                     <p><%= book.tags.length < 4 ? book.tags : book.tags.slice(0, 3) + ",..." %></p>
                                 </div>

@@ -22,26 +22,40 @@ setInterval(update, 5000);
 update();
 
 const watch = () => {
-    var hours = document.getElementById('hours');
+    var am = document.getElementById("am");
+    am.style.fontSize = "20px";
+    var pm = document.getElementById("pm");
+    pm.style.fontSize = "20px";
+
+    var hours = document.getElementById("hours");
     var h = new Date().getHours();
     hours.innerHTML = h + ":";
 
-
-    var minutes = document.getElementById('minutes');
+    var minutes = document.getElementById("minutes");
     var m = new Date().getMinutes();
-    minutes.innerHTML = m + ":";
+    minutes.innerHTML = m;
 
+    if (h > 12) {
+        hours.innerHTML = h - 12 + ":";
 
-    var seconds = document.getElementById('seconds');
-    var s = new Date().getSeconds();
+        if (m < 10 || m == 0) {
+            minutes.innerHTML = "0" + m;
+        }
 
-    if (s < 10) {
-        seconds.innerHTML = "0" + s;
+        var PM = (pm.style.display = "block");
     }
-    else {
-        seconds.innerHTML = s;
+    else if (h <= 12) {
+        hours.innerHTML = h + ":";
+        if (h < 10 || h == 0) {
+            hours.innerHTML = "0" + h + ":";
+        }
+
+        if (m < 10 || m == 0) {
+            minutes.innerHTML = "0" + m;
+        }
+        var AM = (am.style.display = "block");
     }
-}
+};
 
 setInterval(watch, 1000);
 watch();
